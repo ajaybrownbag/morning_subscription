@@ -63,7 +63,7 @@
                         <div class=" collapse navbar-collapse" id="navbar-collapse">
                             <ul class="nav headnavcolor">
                                 <li class="dropdown dropdown-full-width dropdown-hover">
-                                    <a href="#" data-toggle="dropdown">
+                                    <a href="#" data-toggle="dropdown" class="lineheight1">
                                         Category 
                                         <i class="fa fa-angle-down"></i>
                                         <span class="arrow top"></span>
@@ -120,18 +120,15 @@
                                     </a>
                                     <div class="loc-selected">M.K Apartment Dwarka-11 gdfg fdg</div>
                                 </li>
-                                <li>
-                                    
-                                    
-                                        <form action="" method="POST" name="search_form" class="topsearch">
-                                            <div class="input-group">
-                                                <input type="text" placeholder="Search" class="form-control bg-silver-lighter" />
-                                                <span class="input-group-btn">
-                                                    <button class="btn bg-orange-theme" type="submit"><i class="fa fa-search"></i></button>
-                                                </span>
-                                            </div>
-                                        </form>
-                                     
+                                <li> 
+                                    <form action="" method="POST" name="search_form" class="topsearch">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Search" class="form-control bg-silver-lighter" />
+                                            <span class="input-group-btn">
+                                                <button class="btn bg-orange-theme" type="submit"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </form>
                                 </li>
                             </ul>
                         </div>
@@ -142,7 +139,7 @@
                                 <a href="my-cart" class="header-cart" data-toggle="dropdown">
                                     <span class="allicons cart-icon"></span>
                                     <span class="total">2</span>
-                                    <span class="cartrs"><i class="fa fa-inr"></i>200.00</span>
+                                    <span class="cartrs hidden-xs"><i class="fa fa-inr"></i>200.00</span>
                                     <span class="arrow top hidden-xs"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-cart p-0 hidden-xs">
@@ -206,8 +203,8 @@
                             <!-- before login end -->
                             <!-- after login start -->
                             <li class="dropdown dropdown-hover afterlog">
-                                <a href="javascript:void(0);" onclick="myacc_mob_boxopen()">
-                                    <img src="assets/img/user-1.jpg" class="user-img" alt="" />
+                                <a href="javascript:void(0);" onclick="myacc_mob_boxopen()" class="lineheight1">
+                                    <span><img src="assets/img/user-1.jpg" class="user-img" alt="" /></span>
                                     <span class="hidden-md hidden-sm hidden-xs">Sanjay kumar</span>
                                     <span class="arrow top"></span>
                                 </a>

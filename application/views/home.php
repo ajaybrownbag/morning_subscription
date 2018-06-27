@@ -32,7 +32,7 @@
 					<?php endforeach;?>
 				</div>	
 			</div>	
-		</div>
+		</div> 
 	</div>
 	<?php foreach($categories as $category):?>
 	<div class="clearfix"></div>
