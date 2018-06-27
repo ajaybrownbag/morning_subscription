@@ -217,7 +217,7 @@ function myacc_mob_boxopen() {
     $("body").css("overflow","hidden");
 }
 function myacc_mob_boxclose() {
-    document.getElementById("myacc_mobSidenav").style.marginRight = "-70%";
+    document.getElementById("myacc_mobSidenav").style.marginRight = "-75%";
     document.getElementById("myacc_mobOverlay").style.display = "none";
     $("body").css("overflow","visible");
 }

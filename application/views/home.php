@@ -50,6 +50,7 @@
 					<?php foreach($category->products as $product):?>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -224,6 +225,7 @@
 				<div class="carousel">
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -257,6 +259,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -290,6 +293,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -308,6 +312,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -326,6 +331,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -344,6 +350,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -362,6 +369,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -394,6 +402,7 @@
 				<div class="carousel">
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -427,6 +436,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -460,6 +470,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -478,6 +489,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -496,6 +508,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -514,6 +527,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
@@ -532,6 +546,7 @@
 					</div>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
+							<div class="subscribhob-btn"><p align="center"><a href="product_details" class="btn btn-sm btn-green">SUBSCRIBE</a></p></div>
 							<a href="product_details" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
 								<div class="discount">32% OFF</div>
