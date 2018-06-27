@@ -18,7 +18,7 @@
     <link href="<?=base_url('assets/css/subscription-styles.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/css/flickity-slider.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/css/chosen.min.css');?>" rel="stylesheet" />
-    <link href="<?=base_url('assets/css/bootstrap-datetimepicker.min.css');?>" rel="stylesheet" />
+    <link href="<?=base_url('assets/js/daterangepicker/daterangepicker.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/css/owl.carousel.min.css');?>" rel="stylesheet" />
 	<!-- ================== END BASE CSS STYLE ================== -->
 	<!-- ================== BEGIN BASE JS ================== -->

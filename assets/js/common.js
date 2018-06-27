@@ -186,19 +186,9 @@ var bindDateRangeValidation = function (f, s, e) {
 $(function () {
     var sd = new Date(), ed = new Date();
   
-    $('#startDate').datetimepicker({ 
-      pickTime: false, 
-      format: "DD/MM/YYYY", 
-      defaultDate: sd, 
-      maxDate: ed 
-    });
+    $('#startDate').daterangepicker();
   
-    $('#endDate').datetimepicker({ 
-      pickTime: false, 
-      format: "DD/MM/YYYY", 
-      defaultDate: ed, 
-      minDate: sd 
-    });
+    $('#endDate').daterangepicker();
     bindDateRangeValidation($("#form"), 'startDate', 'endDate');
 });
 function toggleChevron(e) {

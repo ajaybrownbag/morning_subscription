@@ -125,7 +125,7 @@
     <script src="<?=base_url('assets/js/chosen.jquery.min.js');?>"></script>
     <script src="<?=base_url('assets/js/bootstrapValidator.min.js');?>"></script>
     <script src="<?=base_url('assets/js/moment.min.js');?>"></script>
-    <script src="<?=base_url('assets/js/bootstrap-datetimepicker.min.js');?>"></script>
+    <script src="<?=base_url('assets/js/daterangepicker/daterangepicker.js');?>"></script>
     <script src="<?=base_url('assets/js/bootstrap-toggle.min.js');?>"></script>
      <script src="<?=base_url('assets/js/owl.carousel.min.js');?>"></script>
     <script src="<?=base_url('assets/js/common.js');?>"></script>
