@@ -16,7 +16,7 @@ class Ajax extends CI_Controller {
 	#============================================================
 	# Handle all ajax requests
 	public function userAction(){
-		$action = $this->input->post("action");
+		$action = $this->input->post_get("action");
 		switch($action){
 			#Product search suggestions
 			case "searchProduct":
@@ -27,6 +27,11 @@ class Ajax extends CI_Controller {
 				echo json_encode($products);
 			break;
 			
+			case "getSuggestions":
+				$term = $this->input->post("term");
+				$products = $this->product->suggestions(trim($term));
+				echo json_encode(array_values($products));
+			break;
 			
 			#Invalidate user action if not found
 			default: echo json_encode(array("status" => false, "message" => "Invalid Action"));

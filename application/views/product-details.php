@@ -14,7 +14,7 @@
                 </div>
                 <div class="product-info">
                     <div class="product-info-header">
-                        <h1 class="product-title"><?=$details->product_name;?> - <?=$details->unit;?></h1>
+                        <h1 class="product-title"><?=$details->product_name;?>  <span class="pull-right"><?=$details->unit;?></span></h1>
                     </div>
 					<div class="product-purchase-container  product-warranty">
 						<div class="product-price pull-left">
@@ -65,10 +65,11 @@
                         	</ul>
                         	<div class="w-100 m-t-20">
                         		<h5><i class="fa fa-calendar"></i> Select Date Range</h5>
+    							<form id="form" name="form" class="form-inline">
     							<div class="form-group">
-									<label for="startDate">Date Range</label>
 									<input id="startDate" name="startDate" type="text" class="form-control" />
     							</div>
+    							</form>
                         	</div>
                     </div>
                     <div class="product-purchase-container">

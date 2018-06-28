@@ -247,27 +247,3 @@ function filter_mob_boxclose() {
     document.getElementById("filter_mobOverlay").style.display = "none";
     $("body").css("overflow","visible");
 };
-var $carousel = $('.categoryslider .carousel').flickity({
-  prevNextButtons: false,
-  pageDots: false,
-  contain:true,
-  freeScroll:true,
-  pageDots:false,
-  adaptiveWidth:true,
-  groupCells:true
-});
-$('.button--previous').on( 'click', function() {
-  $carousel.flickity('previous');
-});
-$('.button--next').on( 'click', function() {
-  $carousel.flickity('next');
-});
-var owl = $('.owl-carousel');
-  owl.owlCarousel({
-    items: 1,
-    loop: true,
-    margin: 0,
-    autoplay: true,
-    autoplayTimeout: 2000,
-    autoplayHoverPause: true
-  });

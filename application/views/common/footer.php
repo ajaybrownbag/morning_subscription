@@ -126,12 +126,14 @@
     <script src="<?=base_url('assets/js/chosen.jquery.min.js');?>"></script>
     <script src="<?=base_url('assets/js/bootstrapValidator.min.js');?>"></script>
     <script src="<?=base_url('assets/js/moment.min.js');?>"></script>
-    <script src="<?=base_url('assets/js/daterangepicker/daterangepicker.js');?>"></script>
+    <script src="<?=base_url('assets/plugins/daterangepicker/daterangepicker.js');?>"></script>
+    <script src="<?=base_url('assets/plugins/autocomplete/autocomplete.min.js');?>"></script>
     <script src="<?=base_url('assets/js/bootstrap-toggle.min.js');?>"></script>
-     <script src="<?=base_url('assets/js/owl.carousel.min.js');?>"></script>
+    <script src="<?=base_url('assets/js/owl.carousel.min.js');?>"></script>
     <script src="<?=base_url('assets/js/common.js');?>"></script>
+	<script src="<?=base_url('assets/js/home.js');?>"></script>
 	<!-- ================== END BASE JS ================== -->
-	<script>$(document).ready(function() { App.init();});</script>
+	<script>$(document).ready(function() { App.init(); new Home().init();});</script>
 </body>
 
 </html>

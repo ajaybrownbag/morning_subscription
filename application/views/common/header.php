@@ -18,11 +18,14 @@
     <link href="<?=base_url('assets/css/subscription-styles.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/css/flickity-slider.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/css/chosen.min.css');?>" rel="stylesheet" />
-    <link href="<?=base_url('assets/js/daterangepicker/daterangepicker.css');?>" rel="stylesheet" />
+    <link href="<?=base_url('assets/plugins/daterangepicker/daterangepicker.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/css/owl.carousel.min.css');?>" rel="stylesheet" />
+    <link href="<?=base_url('assets/plugins/autocomplete/autocomplete.min.css');?>" rel="stylesheet" />
+    <link href="<?=base_url('assets/plugins/autocomplete/autocomplete.themes.min.css');?>" rel="stylesheet" />
 	<!-- ================== END BASE CSS STYLE ================== -->
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="<?=base_url('assets/plugins/pace/pace.min.js');?>"></script>
+	<script> window.base_url = '<?=base_url();?>';</script>
 	<!-- ================== END BASE JS ================== -->
 </head>
 <body class="bg-silver">
@@ -63,7 +66,7 @@
                         <div class=" collapse navbar-collapse" id="navbar-collapse">
                             <ul class="nav headnavcolor">
                                 <li class="dropdown dropdown-full-width dropdown-hover">
-                                    <a href="#" data-toggle="dropdown" class="lineheight1">
+                                    <a href="#" data-toggle="dropdown">
                                         Category 
                                         <i class="fa fa-angle-down"></i>
                                         <span class="arrow top"></span>
@@ -114,21 +117,11 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="dropdown dropdown-hover">
-                                    <a href="#" data-toggle="dropdown">
-                                        Locations
-                                    </a>
-                                    <div class="loc-selected">M.K Apartment Dwarka-11 gdfg fdg</div>
-                                </li>
-                                <li> 
-                                    <form action="" method="POST" name="search_form" class="topsearch">
-                                        <div class="input-group">
-                                            <input type="text" placeholder="Search" class="form-control bg-silver-lighter" />
-                                            <span class="input-group-btn">
-                                                <button class="btn bg-orange-theme" type="submit"><i class="fa fa-search"></i></button>
-                                            </span>
-                                        </div>
-                                    </form>
+                                
+                                <li>
+									<form action="search-results" method="GET" name="search_form" id="searchForm" class="topsearch">
+										<input id="search_query" type="text" placeholder="Search Product" name="q" class="form-control bg-silver-lighter" />
+									</form>
                                 </li>
                             </ul>
                         </div>
@@ -139,7 +132,7 @@
                                 <a href="my-cart" class="header-cart" data-toggle="dropdown">
                                     <span class="allicons cart-icon"></span>
                                     <span class="total">2</span>
-                                    <span class="cartrs hidden-xs"><i class="fa fa-inr"></i>200.00</span>
+                                    <span class="cartrs"><i class="fa fa-inr"></i>200.00</span>
                                     <span class="arrow top hidden-xs"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-cart p-0 hidden-xs">
@@ -194,7 +187,7 @@
                             </li>
                             <li class="divider"></li>
                             <!-- before login start -->
-                            <li style="display: none;">
+                            <li style="display: block;">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#signin-up">
                                     <img src="assets/img/user-1.jpg" class="user-img" alt="" /> 
                                     <span class="hidden-md hidden-sm hidden-xs">Login / Register</span>
@@ -202,9 +195,9 @@
                             </li>
                             <!-- before login end -->
                             <!-- after login start -->
-                            <li class="dropdown dropdown-hover afterlog">
-                                <a href="javascript:void(0);" onclick="myacc_mob_boxopen()" class="lineheight1">
-                                    <span><img src="assets/img/user-1.jpg" class="user-img" alt="" /></span>
+                            <li class="dropdown dropdown-hover afterlog" style="display:none">
+                                <a href="javascript:void(0);" onclick="myacc_mob_boxopen()">
+                                    <img src="assets/img/user-1.jpg" class="user-img" alt="" />
                                     <span class="hidden-md hidden-sm hidden-xs">Sanjay kumar</span>
                                     <span class="arrow top"></span>
                                 </a>
@@ -415,7 +408,7 @@
                 <div class="w-100">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginT5">
                         <div class="w-100">
-                           <h4 class="text-center">You are shopping inn</h4>
+                           <h4 class="text-center">You are shopping in</h4>
                             <hr class="hr">
                         </div>
                         <form action="" method="post">
@@ -442,7 +435,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12 marginT10 m-bottom20">
-                                <button type="button" class="btn btn-blue btn-sm text-center btn-block">START SUBSCRIBE</button>
+                                <button type="button" class="btn btn-blue btn-sm text-center btn-block">BROWSE</button>
                             </div>
                         </form>
                     </div>

@@ -57,8 +57,25 @@ class Product extends CI_Model{
 	
 	public function search($term,$filter = null){
 		$options = array(
-			'table' => "(SELECT bosp.*, bp.product_name, bp.product_mrp,CONCAT(bp.quantity,bp.unit) as unit, bp.seourls FROM bb_ord_subs_product bosp INNER JOIN bb_products bp USING(product_id))temp",
-			"columns" => array('product_id','product_name','category','product_mrp','product_price','unit',"seourls"),
+			'table' => "(SELECT bosp.*, bp.product_name, bp.product_mrp,CONCAT(bp.quantity,bp.unit) as unit, bp.seourls,bpi.product_image_url FROM bb_ord_subs_product bosp INNER JOIN bb_products bp USING(product_id)
+			LEFT JOIN bb_product_images bpi ON bosp.product_id = bpi.product_id AND bpi.is_default = 1)temp",
+			"columns" => array("product_id","product_name","category","product_mrp","product_price","unit","seourls","product_image_url"),
+			"target" => "product_name",
+			"string" => $term
+		);
+		$products = $this->stringSearch->search($options,"desc",300);
+		if(!empty($filter)){
+			$products = $this->stringSearch->matchings($products,$filter);
+		}
+		
+		return $products;
+	}
+	public function suggestions($term,$filter = null){
+		$iconUrl = "https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs_50_50/";
+		$options = array(
+			'table' => "(SELECT bosp.*, bp.product_name, bp.product_mrp,CONCAT(bp.quantity,bp.unit) as unit, bp.seourls,CONCAT('{$iconUrl}',bpi.product_image_url) as product_icon FROM bb_ord_subs_product bosp INNER JOIN bb_products bp USING(product_id)
+			LEFT JOIN bb_product_images bpi ON bosp.product_id = bpi.product_id AND bpi.is_default = 1)temp",
+			"columns" => array("product_id","product_name","category","product_mrp","product_price","unit","seourls","product_icon"),
 			"target" => "product_name",
 			"string" => $term
 		);

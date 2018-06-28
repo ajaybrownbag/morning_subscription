@@ -262,6 +262,14 @@ input:-webkit-autofill:active {transition: background-color 5000s ease-in-out 0s
    .custom-responsive-table td:before {position: absolute; top: 6px; left: 6px; padding-right: 10px; white-space: nowrap; text-align:left; font-weight: bold; }
     .custom-responsive-table td:before { content: attr(data-title); font-size: 13px;width: 40%;margin-top: 10px; } 
 }
-    
+
+.easy-autocomplete-container ul li{font-size:12px!important;}
+.easy-autocomplete-container li:nth-child(2n+1){background:#FEFEFE;}
+.easy-autocomplete.eac-square input{font-size:14px!important;font-style: normal!important;border-radius: 3px!important;}
+.eac-square input, .eac-round input {
+    background-image: url(http://easyautocomplete.com/images/icon_search.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: right 10px center !important;
+}
 
  
