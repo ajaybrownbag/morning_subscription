@@ -1,5 +1,6 @@
 		<div class="mobmyacc-overlay" onclick="myacc_mob_boxclose()" style="cursor:pointer;display: none;" id="myacc_mobOverlay"></div>
-        <div id="policy" class="section-container p-t-30 p-b-30 bg-efefef">
+        <div class="mobfilter-overlay" onclick="filter_mob_boxclose()" style="cursor:pointer;display: none;" id="filter_mobOverlay"></div>
+        <div id="policy" class="section-container p-t-30 p-b-30 bg-efefef sticky-stopper">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-4">

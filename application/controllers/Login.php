@@ -27,6 +27,9 @@ class Login extends CI_Controller {
 	public function subscriptionHistory(){
 		$this->load->view('subscription-history');
 	}
+	public function searchResults(){
+		$this->load->view('search-results');
+	}
 
 	
 }
