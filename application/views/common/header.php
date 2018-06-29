@@ -38,6 +38,7 @@
                         <li><a href="#"><i class="fa fa-envelope"></i> help@brownbag.in</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><b><i class="fa fa-map-marker"></i> You are shopping in :</b> Seema Apartment</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#">How it works</a></li>
                         <li><a href="#">Offers</a></li>
@@ -117,8 +118,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                
-                                <li>
+                                <li class="hidden-xs">
 									<form action="<?=base_url("search-results");?>" method="GET" name="search_form" id="searchForm" class="topsearch">
 										<input id="search_query" type="text" placeholder="Search Product" name="q" class="form-control bg-silver-lighter" />
 									</form>
@@ -247,6 +247,17 @@
                         </ul>
                     </div>
                 </div>
+                <!-- mobile search -->
+                <div class="header-container hidden-lg hidden-md hidden-sm">
+                    <form action="" method="GET" name="search_form">
+                        <div class="easy-autocomplete eac-square eac-icon-left">
+                        <input type="text" placeholder="Search Product" name="q" class="form-control bg-silver-lighter" autocomplete="off"></div>
+                    </form>
+                    <div class="w-100 m-t-10">
+                        <p class="text-left"><b><i class="fa fa-map-marker"></i> You are shopping in:</b> Seema Apartment </p>
+                    </div>
+                </div>
+                <!-- mobile search -->
             </div>
         </div>
 		<div id="selectlocation" class="modal fade" role="dialog">
