@@ -1,18 +1,135 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php $this->load->view("common/header.php");?>
-<div id="promotions" class="bg-silver">
-	<div class="w-100">
-          <div class="owl-carousel owl-theme">
-            <div class="item">
-              	<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/banner/sugar-buy-online-brownbag.jpg" class="img-responsive">
-            </div>
-            <div class="item">
-              	<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/banner/hariom-atta-chakki-brownbag.jpg" class="img-responsive">
-            </div>
-          </div>
+<div id="promotions" class="section-container bg-blue-lighter">
+	<!-- BEGIN container -->
+	<div class="container">
+		<!-- BEGIN row -->
+		<div class="row row-space-10">
+			<!-- BEGIN col-3 -->
+			<div class="col-md-3 col-sm-6">
+				<!-- BEGIN promotion -->
+				<div class="promotion bg-theme-orange">
+					<div class="promotion-image promotion-image-overflow-bottom promotion-image-overflow-top">
+						<img src="assets/img/apple-watch-sm.png" alt="">
+					</div>
+					<div class="promotion-caption promotion-caption-inverse text-right">
+						<h4 class="promotion-title">Apple Watch</h4>
+						<div class="promotion-price"><small>from</small> $299.00</div>
+						<p class="promotion-desc">You. At a glance.</p>
+						<a href="#" class="promotion-btn">View More</a>
+					</div>
+				</div>
+				<!-- END promotion -->
+				<!-- BEGIN promotion -->
+				<div class="promotion bg-theme-blue">
+					<div class="promotion-image text-right">
+						<img src="assets/img/mac-pro.png" alt="">
+					</div>
+					<div class="promotion-caption promotion-caption-inverse">
+						<h4 class="promotion-title">Mac Pro</h4>
+						<div class="promotion-price"><small>from</small> $1,299.00</div>
+						<p class="promotion-desc">Built for creativity on an epic scale.</p>
+						<a href="#" class="promotion-btn">View More</a>
+					</div>
+				</div>
+				<!-- END promotion -->
+			</div>
+			<!-- END col-3 -->
+			<!-- BEGIN col-3 -->
+			<div class="col-md-3 col-sm-6">
+				<!-- BEGIN promotion -->
+				<div class="promotion bg-theme-blue">
+					<div class="promotion-image text-right">
+						<img src="assets/img/mac-pro.png" alt="">
+					</div>
+					<div class="promotion-caption promotion-caption-inverse">
+						<h4 class="promotion-title">Mac Pro</h4>
+						<div class="promotion-price"><small>from</small> $1,299.00</div>
+						<p class="promotion-desc">Built for creativity on an epic scale.</p>
+						<a href="#" class="promotion-btn">View More</a>
+					</div>
+				</div>
+				<!-- END promotion -->
+				<!-- BEGIN promotion -->
+				<div class="promotion bg-theme-orange">
+					<div class="promotion-image promotion-image-overflow-bottom promotion-image-overflow-top">
+						<img src="assets/img/apple-watch-sm.png" alt="">
+					</div>
+					<div class="promotion-caption promotion-caption-inverse text-right">
+						<h4 class="promotion-title">Apple Watch</h4>
+						<div class="promotion-price"><small>from</small> $299.00</div>
+						<p class="promotion-desc">You. At a glance.</p>
+						<a href="#" class="promotion-btn">View More</a>
+					</div>
+				</div>
+				<!-- END promotion -->
+			</div>
+			<!-- END col-3 -->
+			<!-- BEGIN col-3 -->
+			<div class="col-md-3 col-sm-6">
+				<!-- BEGIN promotion -->
+				<div class="promotion bg-theme-orange">
+					<div class="promotion-image promotion-image-overflow-bottom promotion-image-overflow-top">
+						<img src="assets/img/apple-watch-sm.png" alt="">
+					</div>
+					<div class="promotion-caption promotion-caption-inverse text-right">
+						<h4 class="promotion-title">Apple Watch</h4>
+						<div class="promotion-price"><small>from</small> $299.00</div>
+						<p class="promotion-desc">You. At a glance.</p>
+						<a href="#" class="promotion-btn">View More</a>
+					</div>
+				</div>
+				<!-- END promotion -->
+				<!-- BEGIN promotion -->
+				<div class="promotion bg-theme-blue">
+					<div class="promotion-image text-right">
+						<img src="assets/img/mac-pro.png" alt="">
+					</div>
+					<div class="promotion-caption promotion-caption-inverse">
+						<h4 class="promotion-title">Mac Pro</h4>
+						<div class="promotion-price"><small>from</small> $1,299.00</div>
+						<p class="promotion-desc">Built for creativity on an epic scale.</p>
+						<a href="#" class="promotion-btn">View More</a>
+					</div>
+				</div>
+				<!-- END promotion -->
+			</div>
+			<!-- END col-3 -->
+			<!-- BEGIN col-3 -->
+			<div class="col-md-3 col-sm-6">
+				<!-- BEGIN promotion -->
+				<div class="promotion bg-theme-blue">
+					<div class="promotion-image text-right">
+						<img src="assets/img/mac-pro.png" alt="">
+					</div>
+					<div class="promotion-caption promotion-caption-inverse">
+						<h4 class="promotion-title">Mac Pro</h4>
+						<div class="promotion-price"><small>from</small> $1,299.00</div>
+						<p class="promotion-desc">Built for creativity on an epic scale.</p>
+						<a href="#" class="promotion-btn">View More</a>
+					</div>
+				</div>
+				<!-- END promotion -->
+				<!-- BEGIN promotion -->
+				<div class="promotion bg-theme-orange">
+					<div class="promotion-image promotion-image-overflow-bottom promotion-image-overflow-top">
+						<img src="assets/img/apple-watch-sm.png" alt="">
+					</div>
+					<div class="promotion-caption promotion-caption-inverse text-right">
+						<h4 class="promotion-title">Apple Watch</h4>
+						<div class="promotion-price"><small>from</small> $299.00</div>
+						<p class="promotion-desc">You. At a glance.</p>
+						<a href="#" class="promotion-btn">View More</a>
+					</div>
+				</div>
+				<!-- END promotion -->
+			</div>
+			<!-- END col-3 -->
+		</div>
+		<!-- END row -->
 	</div>
+	<!-- END container -->
 </div>
-
 <div id="trending-items" class="section-container bg-silver">
 	<div class="container">
 		<div class="row row-space-10">
@@ -64,7 +181,7 @@
 								</div>
 								<div class="itembox-info-subscribed">
 									<button class="btn btn-xs bg-orange-theme pull-left"><span class="badge"><i class="glyphicon glyphicon-ok"></i></span> Subscribed</button>
-									<button type="button" class="btn btn-xs btn-success pull-right">Modify</button>
+									<button type="button" class="btn btn-xs btn-theme-blue pull-right">Modify</button>
 								</div>
 								<div class="item-info-day">
 									<ul>

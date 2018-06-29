@@ -2,24 +2,24 @@
  $(document).ready(function(){
 $(function() {
     $('#login-form-link').click(function(e) {
-        $("#login-form").delay(100).fadeIn(100);
-        $("#register-form").fadeOut(100);
-        $('#register-form-link').removeClass('active');
+		e.preventDefault();
+		$("#register-form").fadeOut(1);
+        $("#login-form").fadeIn(100);
+		$('#register-form-link').removeClass('active');
         $(this).addClass('active');
-        e.preventDefault();
     });
     $('#register-form-link').click(function(e) {
-        $("#register-form").delay(100).fadeIn(100);
-        $("#login-form").fadeOut(100);
-        $('#login-form-link').removeClass('active');
+		e.preventDefault();
+		$("#login-form").fadeOut(1);
+        $("#register-form").fadeIn(100);
+		$('#login-form-link').removeClass('active');
         $(this).addClass('active');
-        e.preventDefault();
     });
 });
 
 $(".forgetpass").click(function(){
-$(".cardhide").hide();
-$(".cardshow").show();
+	$(".cardhide").hide();
+	$(".cardshow").show();
 });
 $(".reveal").click(function () {
     var type = ($(".pwd").attr('type') == "password") ? "text" : "password";

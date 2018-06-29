@@ -87,4 +87,8 @@ class Product extends CI_Model{
 		return $products;
 	}
 	
+	public function loadMore($options){
+		
+	}
+	
 }
