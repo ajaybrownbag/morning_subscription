@@ -10,6 +10,32 @@ class User extends CI_Model{
 	}
 	
 	#===================================================
+	# Getting user profile
+	public function getProfile($user_id){
+		if(empty($user_id)) return (object)array();
+		$sql = "SELECT 
+			bu.user_id,
+			bu.first_name,
+			bu.last_name,
+			bu.mobile_number,
+			bu.email_id,
+			bosuf.flat_number,
+			bosuf.floor,
+			bosuf.door_bell,
+			bosb.building_name,
+			boss.society_name,
+			bas.area_name
+		FROM bb_users bu
+		LEFT JOIN bb_ord_subs_user_flat bosuf USING(user_id)
+		LEFT JOIN bb_ord_subs_building bosb ON(bosuf.building_id = bosb.building_id)
+		LEFT JOIN bb_ord_subs_society boss ON(bosb.society_id = boss.society_id)
+		LEFT JOIN bb_area_sector bas ON(boss.area_id = bas.area_id)
+		WHERE bu.user_id = '{$user_id}'";
+		return $this->db->query($sql)->row();
+		
+	}
+	
+	#===================================================
 	# Get user wallet token
 	public function getWalletToken($user_id){
 		$this->db->select("wallet_token")

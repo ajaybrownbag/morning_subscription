@@ -16,7 +16,7 @@ class Ajax extends CI_Controller {
 	#============================================================
 	# Handle all ajax requests
 	public function userAction(){
-		$action = $this->input->post_get("action");
+		$action = $this->input->post("action");
 		switch($action){
 			#Product search 
 			case "searchProduct":

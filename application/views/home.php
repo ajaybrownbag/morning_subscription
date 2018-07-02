@@ -1,16 +1,16 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php $this->load->view("common/header.php");?>
-<div id="promotions" class="section-container bg-blue-lighter">
+<div id="promotions" class="section-container morning-background">
 	<!-- BEGIN container -->
 	<div class="container">
 		<!-- BEGIN row -->
 		<div class="row row-space-10">
 			<!-- BEGIN col-3 -->
-			<div class="col-md-3 col-sm-6">
+			<div class="col-md-3 col-sm-6 col-xs-6 hidden-xs">
 				<!-- BEGIN promotion -->
 				<div class="promotion bg-theme-orange">
 					<div class="promotion-image promotion-image-overflow-bottom promotion-image-overflow-top">
-						<img src="assets/img/apple-watch-sm.png" alt="">
+						<img src="<?=base_url("assets/img/offers/product-offers.png");?>" alt="">
 					</div>
 					<div class="promotion-caption promotion-caption-inverse text-right">
 						<h4 class="promotion-title">Apple Watch</h4>
@@ -23,7 +23,7 @@
 				<!-- BEGIN promotion -->
 				<div class="promotion bg-theme-blue">
 					<div class="promotion-image text-right">
-						<img src="assets/img/mac-pro.png" alt="">
+						<img src="<?=base_url("assets/img/offers/atta.png");?>" alt="">
 					</div>
 					<div class="promotion-caption promotion-caption-inverse">
 						<h4 class="promotion-title">Mac Pro</h4>
@@ -36,11 +36,11 @@
 			</div>
 			<!-- END col-3 -->
 			<!-- BEGIN col-3 -->
-			<div class="col-md-3 col-sm-6">
+			<div class="col-md-3 col-sm-6 col-xs-6 hidden-xs">
 				<!-- BEGIN promotion -->
 				<div class="promotion bg-theme-blue">
 					<div class="promotion-image text-right">
-						<img src="assets/img/mac-pro.png" alt="">
+						<img src="<?=base_url("assets/img/offers/milk.png");?>" alt="">
 					</div>
 					<div class="promotion-caption promotion-caption-inverse">
 						<h4 class="promotion-title">Mac Pro</h4>
@@ -53,7 +53,7 @@
 				<!-- BEGIN promotion -->
 				<div class="promotion bg-theme-orange">
 					<div class="promotion-image promotion-image-overflow-bottom promotion-image-overflow-top">
-						<img src="assets/img/apple-watch-sm.png" alt="">
+						<img src="<?=base_url("assets/img/offers/product-offers.png");?>" alt="">
 					</div>
 					<div class="promotion-caption promotion-caption-inverse text-right">
 						<h4 class="promotion-title">Apple Watch</h4>
@@ -66,11 +66,11 @@
 			</div>
 			<!-- END col-3 -->
 			<!-- BEGIN col-3 -->
-			<div class="col-md-3 col-sm-6">
+			<div class="col-md-3 col-sm-6 col-xs-6">
 				<!-- BEGIN promotion -->
 				<div class="promotion bg-theme-orange">
 					<div class="promotion-image promotion-image-overflow-bottom promotion-image-overflow-top">
-						<img src="assets/img/apple-watch-sm.png" alt="">
+						<img src="<?=base_url("assets/img/offers/product-offers.png");?>" alt="">
 					</div>
 					<div class="promotion-caption promotion-caption-inverse text-right">
 						<h4 class="promotion-title">Apple Watch</h4>
@@ -83,7 +83,7 @@
 				<!-- BEGIN promotion -->
 				<div class="promotion bg-theme-blue">
 					<div class="promotion-image text-right">
-						<img src="assets/img/mac-pro.png" alt="">
+						<img src="<?=base_url("assets/img/offers/atta.png");?>" alt="">
 					</div>
 					<div class="promotion-caption promotion-caption-inverse">
 						<h4 class="promotion-title">Mac Pro</h4>
@@ -96,11 +96,11 @@
 			</div>
 			<!-- END col-3 -->
 			<!-- BEGIN col-3 -->
-			<div class="col-md-3 col-sm-6">
+			<div class="col-md-3 col-sm-6 col-xs-6">
 				<!-- BEGIN promotion -->
 				<div class="promotion bg-theme-blue">
 					<div class="promotion-image text-right">
-						<img src="assets/img/mac-pro.png" alt="">
+						<img src="<?=base_url("assets/img/offers/atta.png");?>" alt="">
 					</div>
 					<div class="promotion-caption promotion-caption-inverse">
 						<h4 class="promotion-title">Mac Pro</h4>
@@ -113,7 +113,7 @@
 				<!-- BEGIN promotion -->
 				<div class="promotion bg-theme-orange">
 					<div class="promotion-image promotion-image-overflow-bottom promotion-image-overflow-top">
-						<img src="assets/img/apple-watch-sm.png" alt="">
+						<img src="<?=base_url("assets/img/offers/product-offers.png");?>" alt="">
 					</div>
 					<div class="promotion-caption promotion-caption-inverse text-right">
 						<h4 class="promotion-title">Apple Watch</h4>
@@ -130,7 +130,8 @@
 	</div>
 	<!-- END container -->
 </div>
-<div id="trending-items" class="section-container bg-silver">
+
+<div id="trending-items" class="section-container bg-info">
 	<div class="container">
 		<div class="row row-space-10">
 			<div class="subcatflickity">
@@ -157,8 +158,8 @@
 		<h4 class="section-title clearfix">
 		   <a href="javascript:void(0);" class="pull-right m-l-5 button--next" data-index="<?=$category->category;?>"><i class="fa fa-angle-right f-s-18"></i></a>
 		    <a href="javascript:void(0);" class="pull-right button--previous" data-index="<?=$category->category;?>"><i class="fa fa-angle-left f-s-18"></i></a>
-		    <span class="text-capitalize"><span class="text-success"><?=$category->category;?></span> Category</span>
-		    <small>This category contains <?=$category->product_count;?> products</small>
+		    <span class="text-capitalize"><span class="text-success"><?=$category->category;?></span></span>
+		    <small>We have <b><?=$category->product_count;?></b> products in <b><?=$category->category;?></b> category</small>
 		</h4>
 		<div class="row row-space-10">
 			<div class="categoryslider">
@@ -179,6 +180,7 @@
 									<span class="item-price">₹20.00</span>
 									<span class="item-discount-price">₹21.00</span>
 								</div>
+								<?php if($product->is_subscribed):?>
 								<div class="itembox-info-subscribed">
 									<button class="btn btn-xs bg-orange-theme pull-left"><span class="badge"><i class="glyphicon glyphicon-ok"></i></span> Subscribed</button>
 									<button type="button" class="btn btn-xs btn-theme-blue pull-right">Modify</button>
@@ -194,6 +196,8 @@
 										<li class="active">S</li>
 									</ul>
 								</div>
+								<?php endif;?>
+								
 							</div>
 						</div>
 					</div>

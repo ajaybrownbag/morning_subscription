@@ -1,15 +1,25 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php $this->load->view("common/header.php");?>
+<div id="page-header" class="section-container page-header-container bg-black">
+	<div class="page-header-cover">
+		<img src="<?=base_url("assets/img/milk-banner.jpg");?>" alt="" class="img-100">
+	</div>
+	<div class="container">
+		<h1 class="page-header"><?=$details->product_name;?> - <?=$details->unit;?></h1>
+	</div>
+</div>
 <div id="product" class="section-container p-t-20">
     <div class="container">
-        <h4 class="text-center">Product Details</h4>
         <div class="product">
             <div class="product-detail">
                 <div class="product-image">
                     <div class="product-main-image m-l-0" data-id="main-image">
                         <img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_cow_milk_500ml_f.jpg" alt="" />
-						<hr>
-						<p class="text-left">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+						<div class="hidden-sm hidden-xs">
+							<hr class="hr">
+							<br>
+							<p class="text-left">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+						</div>
                     </div>
                 </div>
                 <div class="product-info">

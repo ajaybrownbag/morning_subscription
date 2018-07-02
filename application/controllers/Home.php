@@ -5,15 +5,19 @@ class Home extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model(array("product","user"));
-		// if(!$this->user->isLoggedIn()){
-			// redirect('/', 'refresh');
-			// return;
-		// }
 	}
 	public function index(){
+		$user_id = (!$this->session->has_userdata('user_id')) ? $this->session->user_id : null;
 		$categories = $this->product->getCategories();
-		array_walk($categories,function(&$category){
-			$category->products = $this->product->getByCategory($category->category,10);
+		array_walk($categories,function(&$category)use($user_id){
+			$category->products = $this->product->getProducts($user_id,null,$category->category_id,0,10);
+			array_walk($category->products,function(&$product)use($user_id){
+				if($product->is_subscribed){
+					$product->days_details = $this->product->getDaysDetails($user_id,$product->product_id);
+				}else{
+					$product->days_details = (object)array();
+				}
+			});
 		});
 		$this->load->view('home',array("categories" => $categories));
 	}

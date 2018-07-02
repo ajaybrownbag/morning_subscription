@@ -75,7 +75,7 @@
                                     <div class="dropdown-menu p-0">
                                         <div class="dropdown-menu-container">
                                             <div class="dropdown-menu-content">
-                                                <h4 class="title">Subscribe By Category</h4>
+                                                <h4 class="title">Subscribe From Categories</h4>
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <ul class="dropdown-menu-list">
@@ -131,45 +131,35 @@
                             <li class="dropdown dropdown-hover">
                                 <a href="#" class="header-cart" data-toggle="dropdown">
                                     <i class="fa fa-shopping-bag"></i>
-                                    <span class="total">2</span>
+                                    <span class="total"><?=count($this->env->cartItems);?></span>
                                     <span class="arrow top"></span>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-cart p-0 hidden-xs">
-                                    <div class="cart-header">
-                                        <h4 class="cart-title">Shopping Bag (1) </h4>
+                                <div class="dropdown-menu dropdown-menu-cart p-0">
+									<?php if(empty($this->env->cartItems)):?>
+									<div class="cart-header">
+                                        <h4 class="cart-title text-center text-warning">YOUR SUBSCRIPTION BAG IS EMPTY</h4>
+                                    </div>
+									<?php else:?>
+									<div class="cart-header">
+                                        <h4 class="cart-title">SUBSCRIPTION BAG (<?=count($this->env->cartItems);?>) </h4>
                                     </div>
                                     <div class="cart-body">
                                         <ul class="cart-item">
-                                            <li>
-                                                <div class="cart-item-image"><img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt="" /></div>
+											<?php foreach($this->env->cartItems as $cartItem):?>
+											<li>
+                                                <div class="cart-item-image"><a href="<?=base_url("product-details/".$cartItem->seourls);?>"><img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/<?=$cartItem->product_image_url;?>" alt="" /></a></div>
                                                 <div class="cart-item-info">
-                                                    <h4>Milk</h4>
-                                                    <p class="price">Rs 21.00</p>
+                                                    <h4><a href="<?=base_url("product-details/".$cartItem->seourls);?>"><?=$cartItem->product_name;?> - <?=$cartItem->unit;?></a></h4>
+                                                    <b>
+														<span class="price">Price: ₹<?=$cartItem->product_price;?></span>
+														<span class="quantity pull-right text-primary">Qty: <?=$cartItem->quantity;?></span>
+													</b>
                                                 </div>
                                                 <div class="cart-item-close">
                                                     <a href="#" data-toggle="tooltip" data-title="Remove">&times;</a>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="cart-item-image"><img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt="" /></div>
-                                                <div class="cart-item-info">
-                                                     <h4>Milk</h4>
-                                                    <p class="price">Rs 21.00</p>
-                                                </div>
-                                                <div class="cart-item-close">
-                                                    <a href="#" data-toggle="tooltip" data-title="Remove">&times;</a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="cart-item-image"><img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt="" /></div>
-                                                <div class="cart-item-info">
-                                                     <h4>Milk</h4>
-                                                    <p class="price">Rs 21.00</p>
-                                                </div>
-                                                <div class="cart-item-close">
-                                                    <a href="#" data-toggle="tooltip" data-title="Remove">&times;</a>
-                                                </div>
-                                            </li>
+											<?php endforeach;?>
                                         </ul>
                                     </div>
                                     <div class="cart-footer">
@@ -182,47 +172,46 @@
                                             </div>
                                         </div>
                                     </div>
+									<?php endif;?>
                                 </div>
                             </li>
                             <li class="divider"></li>
                             <!-- before login start -->
-                            <li style="display: none;">
+							<?php if(empty($this->env->user_id)):?>
+							<li>
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#signin-up">
                                     <img src="<?=base_url("assets/img/user-1.jpg");?>" class="user-img" alt="" /> 
                                     <span class="hidden-md hidden-sm hidden-xs">Login / Register</span>
                                 </a>
                             </li>
-                            <!-- before login end -->
-                            <!-- after login start -->
-                            <li class="dropdown dropdown-hover afterlog" style="display:block">
+							<!-- before login end -->
+							<?php else:?>
+							<!-- after login start -->
+                            <li class="dropdown dropdown-hover afterlog">
                                 <a href="javascript:void(0);" onclick="myacc_mob_boxopen()">
                                     <img src="<?=base_url("assets/img/user-1.jpg");?>" class="user-img" alt="" />
-                                    <span class="hidden-md hidden-sm hidden-xs">Ajay kumar</span>
+                                    <span class="hidden-md hidden-sm hidden-xs">
+										<?=$this->env->userProfile->first_name;?> <?=$this->env->userProfile->last_name;?>
+									</span>
                                     <span class="arrow top"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-cart p-0 loginbox animationacc" id="myacc_mobSidenav">
                                     <div class="w-100 hidden-lg hidden-md hidden-sm">
                                         <i onclick="myacc_mob_boxclose()" class="fa fa-long-arrow-right f-s-20 m-t-10 m-l-15 m-b-5-5"></i>
                                         <p class="text-center m-b-0"><span class="allicons male-icon"></span></p>
-                                        <p class="text-center">Ajay kumar</p>
+                                        <p class="text-center"><?=$this->env->userProfile->first_name;?> <?=$this->env->userProfile->last_name;?></p>
                                         <button class="btn btn-xs bg-orange-theme btn-block border-radius-0">Info</button>
                                     </div>
                                     <div class="cart-body">
                                         <ul class="cart-item">
                                             <li>
-                                                <a href="#" class="logingiconalign">
-                                                    <span class="allicons myprofile-icon"></span>
-                                                    <span class="m-l-10">My Profile</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="active-subscription" class="logingiconalign">
+                                                <a href="<?=base_url("active-subscription");?>" class="logingiconalign">
                                                     <span class="allicons active-sub-icon"> </span>
                                                     <span class="m-l-10">Active Subscription</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="subscription-history"  class="logingiconalign">
+                                                <a href="<?=base_url("subscription-history");?>"  class="logingiconalign">
                                                     <span class="allicons active-sub-icon"> </span>
                                                     <span class="m-l-10">Subscription History</span>
                                                 </a>
@@ -244,14 +233,14 @@
                                 </div>
                             </li>
                             <!-- after login end -->
+							<?php endif;?>
                         </ul>
                     </div>
                 </div>
                 <!-- mobile search -->
                 <div class="header-container hidden-lg hidden-md hidden-sm">
-                    <form action="" method="GET" name="search_form">
-                        <div class="easy-autocomplete eac-square eac-icon-left">
-                        <input type="text" placeholder="Search Product" name="q" class="form-control bg-silver-lighter" autocomplete="off"></div>
+                    <form action="<?=base_url("search-results");?>" method="GET" name="search_form">
+                        <input type="text" placeholder="Search Product" name="q" class="form-control bg-silver-lighter" autocomplete="off" id="mobile_search">
                     </form>
                     <div class="w-100 m-t-10">
                         <p class="text-left"><b><i class="fa fa-map-marker"></i> You are shopping in:</b> Seema Apartment </p>

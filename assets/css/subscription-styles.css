@@ -242,6 +242,16 @@ input:-webkit-autofill:active {transition: background-color 5000s ease-in-out 0s
     .custom-responsive-table td:before { content: attr(data-title); font-size: 13px;width: 40%;margin-top: 10px; } 
 }
 
+.morning-background{
+	background-image: url(img/banner.png) !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+	background-size:cover;
+}
 
+.easy-autocomplete-container ul li{font-size:12px!important;border-bottom:1px solid #EFEFEF!important;}
+.easy-autocomplete-container ul li:last{border-bottom:1px solid #7f8c8d!important; border-radius:0 0 3px 3px;}
+.easy-autocomplete-container ul li a{text-decoration:none;}
+.easy-autocomplete-container ul li img{height:20px;margin-right:5px;}
 
  
