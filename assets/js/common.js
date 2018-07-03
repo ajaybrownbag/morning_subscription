@@ -49,7 +49,7 @@ if($(window).width() <= 767) return;
 var $sticky = $('.sticky');
   var $stickyrStopper = $('.sticky-stopper');
   if (!!$sticky.offset()) {
-    var generalSidebarHeight = $sticky.innerHeight();
+    var generalSidebarHeight = $sticky.outerHeight();
     var stickyTop = $sticky.offset().top;
     var stickOffset = 0;
     var stickyStopperPosition = $stickyrStopper.offset().top;
@@ -59,9 +59,9 @@ var $sticky = $('.sticky');
     $(window).scroll(function(){
       var windowTop = $(window).scrollTop();
       if (stopPoint < windowTop) {
-          $sticky.css({ 'position':'absolute', 'top': diff - 20 });
+          $sticky.css({ 'position':'absolute', 'top': diff - 100 });
       } else if (stickyTop < windowTop+stickOffset) {
-          $sticky.css({ 'position':'fixed', 'width': outerwidth, 'z-index':'99','top':stickOffset });
+          $sticky.css({ 'position':'fixed', 'width': outerwidth, 'z-index':'4','top':stickOffset });
       } else {
           $sticky.css({'position':'absolute','top':'initial', 'width': outerwidth});
       }
