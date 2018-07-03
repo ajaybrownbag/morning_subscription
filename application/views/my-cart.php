@@ -12,14 +12,22 @@
                     </div>
                 </div>
                 <div class="checkout-body">
-                    <div class="well-area bg-efefef">
+                    <div class="bg-efefef w-100 well-sm-custom">
+                        <div class="w-100 bg-white well-sm-custom"><i class="fa f-s-16 fa-map-marker"></i> <b>Address:</b> Seema Apartment
+                        <span class="pull-right"><button type="button" class="btn btn-xs btn-blue">Change Location</button></span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="well-area well-sm-custom bg-efefef m-t-15">
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-6">
                             <p></p>
-                             <i class="fa fa-bell"></i> Ring The Bell
+                             <i class="fa fa-bell m-l-10"></i> Ring The Bell
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                				<div class="checkbox pull-right height35 m-b-0 m-t-0">
+                				<div class="checkbox pull-right height35 m-b-0 m-t-0 m-r-10">
                 				<label class="bellbtn">
                 				<input type="checkbox" checked data-toggle="toggle">
                 				</label>

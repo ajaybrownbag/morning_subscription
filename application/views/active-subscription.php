@@ -12,19 +12,19 @@
                     </div>
                 </div>
                 <div class="checkout-body">
-                    <div class="well-area bg-efefef">
+                    <div class="well-area well-sm-custom bg-efefef">
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                             <img src="assets/img/vacation-icon.png"> Are you going on a vacation ?
+                             <span class="m-l-10"><img src="assets/img/vacation-icon.png"> Are you going on a vacation ?</span>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                <button class="btn btn-xs btn-blue pull-right m-t-5" data-toggle="collapse" data-parent="#accordionaccp" href="#collapseOne">SET VACATION</button>
+                                <button class="btn btn-xs btn-blue pull-right m-t-3 m-r-10" data-toggle="collapse" data-parent="#accordionaccp" href="#collapseOne">SET VACATION</button>
                             </div>
                         </div>
-                            <div id="collapseOne" class="panel-collapse collapse m-t-20 mob-m-l-r-10-10">
+                            <div id="collapseOne" class="panel-collapse collapse m-t-10 mob-m-l-r-10-10">
                                 <div class="panel-body bg-white">
                                     <h4>Select Vacation Date Range</h4>
-                                    <div class="warning-msg">If you are going on a vacation, you can put all subscription products on hold by giving vacation date.</div>
+                                    <div class="warning-msg well-sm-custom alert alert-danger fade in alert-dismissible">If you are going on a vacation, you can put all subscription products on hold by giving vacation date.</div>
                                     <div class="w-100">
                                         <h5><i class="fa fa-calendar"></i> Select Vacation Date Range</h5>
                                         <form id="form" name="form" class="form-inline">

@@ -68,7 +68,7 @@
                             <ul class="nav headnavcolor">
                                 <li class="dropdown dropdown-full-width dropdown-hover">
                                     <a href="#" data-toggle="dropdown">
-                                        Categories
+                                        <i class="fa fa-bars"></i> Categories
                                         <i class="fa fa-angle-down"></i>
                                         <span class="arrow top"></span>
                                     </a>
@@ -77,42 +77,85 @@
                                             <div class="dropdown-menu-content">
                                                 <h4 class="title">Subscribe From Categories</h4>
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2 col-sm-2 col-xs-3">
                                                         <ul class="dropdown-menu-list">
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Milk</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
+                                                            <li>
+                                                                <a href="#" class="topcategory">
+                                                                    <span class="allicons1 milk-icon iconcateg"></span>
+                                                                    <br>
+                                                                    <span class="m-t-5"> Milk</span>
+                                                                </a>
+                                                            </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2 col-sm-2 col-xs-3">
                                                         <ul class="dropdown-menu-list">
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Milk</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
+                                                            <li>
+                                                                <a href="#" class="topcategory">
+                                                                    <span class="allicons1 bread-icon iconcateg"></span>
+                                                                    <br>
+                                                                    <span class="m-t-5"> Bread</span>
+                                                                </a>
+                                                            </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2 col-sm-2 col-xs-3">
                                                         <ul class="dropdown-menu-list">
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Milk</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
+                                                            <li>
+                                                                <a href="#" class="topcategory">
+                                                                    <span class="allicons1 egg-icon iconcateg"></span>
+                                                                    <br>
+                                                                    <span class="m-t-5"> Egg</span>
+                                                                </a>
+                                                            </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2 col-sm-2 col-xs-3">
                                                         <ul class="dropdown-menu-list">
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Milk</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
-                                                            <li><a href="product_detail.html"><i class="fa fa-fw fa-angle-right text-muted"></i> Bread</a></li>
+                                                            <li>
+                                                                <a href="#" class="topcategory">
+                                                                    <span class="allicons1 yogurt-icon iconcateg"></span>
+                                                                    <br>
+                                                                    <span class="m-t-5"> Yogurt</span>
+                                                                </a>
+                                                            </li>
                                                         </ul>
                                                     </div>
+                                                   <div class="col-md-2 col-sm-2 col-xs-3">
+                                                        <ul class="dropdown-menu-list">
+                                                            <li>
+                                                                <a href="#" class="topcategory">
+                                                                    <span class="allicons1 butter-icon iconcateg"></span>
+                                                                    <br>
+                                                                    <span class="m-t-5"> Butter</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-2 col-xs-3">
+                                                        <ul class="dropdown-menu-list">
+                                                            <li>
+                                                                <a href="#" class="topcategory">
+                                                                    <span class="allicons1 cheese-icon iconcateg"></span>
+                                                                    <br>
+                                                                    <span class="m-t-5"> Cheese</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-2 col-xs-3">
+                                                        <ul class="dropdown-menu-list">
+                                                            <li>
+                                                                <a href="#" class="topcategory">
+                                                                    <span class="allicons1 paneer-icon iconcateg"></span>
+                                                                    <br>
+                                                                    <span class="m-t-5"> Panner</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                    
                                                 </div>
                                             </div>
                                         </div>
