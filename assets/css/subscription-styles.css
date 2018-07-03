@@ -181,6 +181,8 @@ input:-webkit-autofill:active {transition: background-color 5000s ease-in-out 0s
 .easy-autocomplete-container li:nth-child(2n+1){background:#FEFEFE;}
 .easy-autocomplete.eac-square input{font-size:14px!important;font-style: normal!important;border-radius: 3px!important;}
 .eac-square input, .eac-round input {background-image: url(../img/icon_search.png) !important; background-repeat: no-repeat !important; background-position: right 10px center !important; }
+.topfixed{position: fixed;z-index: 99;width: 100%;top:0px;}
+
  @media screen and (min-width: 300px) and (max-width: 767px){
 .mob-txt-r{text-align: right;}
 .mob-m-t-10{margin-top: 10px;}

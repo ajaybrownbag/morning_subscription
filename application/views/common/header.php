@@ -50,7 +50,7 @@
             <div class="container">
                 <div class="header-container">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                        <button type="button" class="iconbarwidth navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -127,7 +127,7 @@
                         </div>
                     </div>
                     <div class="header-nav">
-                        <ul class="nav pull-right">
+                        <ul class="nav pull-right iconshopbag">
                             <li class="dropdown dropdown-hover">
                                 <a href="#" class="header-cart" data-toggle="dropdown">
                                     <i class="fa fa-shopping-bag"></i>
@@ -178,7 +178,7 @@
                             <li class="divider"></li>
                             <!-- before login start -->
 							<?php if(empty($this->env->user_id)):?>
-							<li>
+							<li class="mobilescrollhide">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#signin-up">
                                     <img src="<?=base_url("assets/img/user-1.jpg");?>" class="user-img" alt="" /> 
                                     <span class="hidden-md hidden-sm hidden-xs">Login / Register</span>
@@ -187,7 +187,7 @@
 							<!-- before login end -->
 							<?php else:?>
 							<!-- after login start -->
-                            <li class="dropdown dropdown-hover afterlog">
+                            <li class="dropdown dropdown-hover afterlog mobilescrollhide">
                                 <a href="javascript:void(0);" onclick="myacc_mob_boxopen()">
                                     <img src="<?=base_url("assets/img/user-1.jpg");?>" class="user-img" alt="" />
                                     <span class="hidden-md hidden-sm hidden-xs">
@@ -240,9 +240,9 @@
                 <!-- mobile search -->
                 <div class="header-container hidden-lg hidden-md hidden-sm">
                     <form action="<?=base_url("search-results");?>" method="GET" name="search_form">
-                        <input type="text" placeholder="Search Product" name="q" class="form-control bg-silver-lighter" autocomplete="off" id="mobile_search">
+                        <input type="text" placeholder="Search Product" name="q" class="form-control bg-silver-lighter searchwidth" autocomplete="off" id="mobile_search">
                     </form>
-                    <div class="w-100 m-t-10">
+                    <div class="w-100 m-t-10 mobilescrollhide">
                         <p class="text-left"><b><i class="fa fa-map-marker"></i> You are shopping in:</b> Seema Apartment </p>
                     </div>
                 </div>
