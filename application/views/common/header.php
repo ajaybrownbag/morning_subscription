@@ -82,7 +82,9 @@
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
-                                                                    <span class="allicons1 milk-icon iconcateg"></span>
+                                                                    <span class="iconcateg">
+                                                                        <img src="assets/img/categoryimg/ghee-cooking.svg">
+                                                                    </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Milk</span>
                                                                 </a>
@@ -93,7 +95,9 @@
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
-                                                                    <span class="allicons1 bread-icon iconcateg"></span>
+                                                                   <span class="iconcateg">
+                                                                        <img src="assets/img/categoryimg/ghee-cooking.svg">
+                                                                    </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Bread</span>
                                                                 </a>
@@ -104,7 +108,9 @@
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
-                                                                    <span class="allicons1 egg-icon iconcateg"></span>
+                                                                    <span class="iconcateg">
+                                                                        <img src="assets/img/categoryimg/milk-and-milk.svg">
+                                                                    </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Egg</span>
                                                                 </a>
@@ -115,7 +121,9 @@
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
-                                                                    <span class="allicons1 yogurt-icon iconcateg"></span>
+                                                                   <span class="iconcateg">
+                                                                        <img src="assets/img/categoryimg/ghee-cooking.svg">
+                                                                    </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Yogurt</span>
                                                                 </a>
@@ -126,7 +134,9 @@
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
-                                                                    <span class="allicons1 butter-icon iconcateg"></span>
+                                                                    <span class="iconcateg">
+                                                                        <img src="assets/img/categoryimg/milk-and-milk.svg">
+                                                                    </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Butter</span>
                                                                 </a>
@@ -137,7 +147,9 @@
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
-                                                                    <span class="allicons1 cheese-icon iconcateg"></span>
+                                                                    <span class="iconcateg">
+                                                                        <img src="assets/img/categoryimg/ghee-cooking.svg">
+                                                                    </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Cheese</span>
                                                                 </a>
@@ -148,7 +160,9 @@
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
-                                                                    <span class="allicons1 paneer-icon iconcateg"></span>
+                                                                    <span class="iconcateg">
+                                                                        <img src="assets/img/categoryimg/milk-and-milk.svg">
+                                                                    </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Panner</span>
                                                                 </a>
