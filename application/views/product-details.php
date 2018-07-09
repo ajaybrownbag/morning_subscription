@@ -75,11 +75,9 @@
                         	</ul>
                         	<div class="w-100 m-t-20">
                         		<h5><i class="fa fa-calendar"></i> Select Date Range</h5>
-    							<form id="form" name="form" class="form-inline">
     							<div class="form-group">
 									<input id="startDate" name="startDate" type="text" class="form-control" />
     							</div>
-    							</form>
                         	</div>
                     </div>
                     <div class="product-purchase-container">

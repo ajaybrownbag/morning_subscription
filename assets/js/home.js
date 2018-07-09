@@ -1,48 +1,6 @@
 class Home{
 	constructor(){}
-	
-	
-	
-	
-	
-	
-	
-	init(){
-		// Product by category sliders
-		var productSliders = {};
-		$('.categoryslider .carousel').each(function(){	
-			var key = "productSlider_"+$(this).data("index");
-			productSliders[key] = $(this).flickity({
-			  prevNextButtons: false,
-			  pageDots: false,
-			  contain:true,
-			  freeScroll:true,
-			  pageDots:false,
-			  adaptiveWidth:true,
-			  groupCells:true,
-			  cellAlign: 'left'
-			});
-		});
-		$('.button--previous').on( 'click', function() {
-			var $key = "productSlider_"+$(this).data("index");
-			productSliders[$key].flickity('previous');
-		});
-		$('.button--next').on( 'click', function() {
-			var $key = "productSlider_"+$(this).data("index");
-			productSliders[$key].flickity('next');
-		});
-		
-		
-		// var owl = $('.owl-carousel');
-		// owl.owlCarousel({
-			// items: 1,
-			// loop: true,
-			// margin: 0,
-			// autoplay: true,
-			// autoplayTimeout: 5000,
-			// autoplayHoverPause: true
-		// });
-		
+	static async init(){
 		//================================================
 		// Header Autosuggestions
 		$("input#search_query, input#mobile_search").easyAutocomplete({ 

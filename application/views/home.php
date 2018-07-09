@@ -130,7 +130,6 @@
 	</div>
 	<!-- END container -->
 </div>
-
 <div id="trending-items" class="section-container bg-info">
 	<div class="container">
 		<div class="row row-space-10">
@@ -156,48 +155,66 @@
 	<div class="clearfix"></div>
 	<div class="container m-t-30">
 		<h4 class="section-title clearfix">
-		   <a href="javascript:void(0);" class="pull-right m-l-5 button--next" data-index="<?=$category->category;?>"><i class="fa fa-angle-right f-s-18"></i></a>
-		    <a href="javascript:void(0);" class="pull-right button--previous" data-index="<?=$category->category;?>"><i class="fa fa-angle-left f-s-18"></i></a>
-		    <span class="text-capitalize"><span class="text-success"><?=$category->category;?></span></span>
+		   <a href="javascript:void(0);" class="pull-right m-l-5 button--next" data-category="<?=$category->category_id;?>"><i class="fa fa-angle-right f-s-18"></i></a>
+		    <a href="javascript:void(0);" class="pull-right button--previous" data-category="<?=$category->category_id;?>"><i class="fa fa-angle-left f-s-18"></i></a>
+		    <span class="text-capitalize"><span class="text-warning"><?=$category->category;?></span></span>
 		    <small>We have <b><?=$category->product_count;?></b> products in <b><?=$category->category;?></b> category</small>
 		</h4>
 		<div class="row row-space-10">
 			<div class="categoryslider">
-				<div class="carousel" data-index="<?=$category->category;?>">
+				<div id="catSlider<?=$category->category_id;?>" class="carousel" data-status="1" data-index="1" data-category="<?=$category->category_id;?>">
 					<?php foreach($category->products as $product):?>
 					<div class="carousel-cell">
 						<div class="item item-thumbnail inner-cell">
 							<a href="<?=base_url("product-details/".$product->seourls);?>" class="item-image">
 								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/<?=$product->product_image_url;?>" alt="" />
-								<div class="discount">32% OFF</div>
+								<?php if($product->product_price < $product->product_mrp):
+									$discount = round((100-$product->product_price*100/$product->product_mrp),2);
+								?>
+								<div class="discount"><?=$discount;?>% OFF</div>
+								<?php endif;?>
 							</a>
 							<div class="item-info">
 								<h4 class="item-title">
-									<a href="<?=base_url("product-details/".$product->seourls);?>"><?=$product->product_name;?> - <?=$product->unit;?></a>
+									<a href="<?=base_url("product-details/".$product->seourls);?>">
+										<?=$product->product_name;?>-<?=$product->quantity.$product->unit;?>
+									</a>
 								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
+								<p class="item-desc">
+									<span class="cutofftime">Cut Off Time - 
+										<span class="cutofftime-tm">
+											<?=date("h:iA",strtotime($product->cutoff_time));?>
+										</span>
+									</span>
+								</p>
 								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
+									<span>Price: </span>
+									<span class="item-price">₹<?=$product->product_price;?></span>
+									<?php if($product->product_price< $product->product_mrp):?>
+									<span class="item-discount-price">₹<?=$product->product_mrp;?></span>
+									<?php endif;?>	
 								</div>
 								<?php if($product->is_subscribed):?>
 								<div class="itembox-info-subscribed">
-									<button class="btn btn-xs bg-orange-theme pull-left"><span class="badge"><i class="glyphicon glyphicon-ok"></i></span> Subscribed</button>
-									<button type="button" class="btn btn-xs btn-theme-blue pull-right">Modify</button>
+									<button class="btn btn-xs bg-orange-theme pull-left">
+										<i class="fa fa-check"></i> Subscribed
+									</button>
+									<a href="<?=base_url("product-details/".$product->seourls);?>" class="btn btn-xs btn-theme-blue pull-right">Modify</a>
 								</div>
 								<div class="item-info-day">
 									<ul>
-										<li class="active">M</li>
-										<li>T</li>
-										<li class="active">W</li>
-										<li>T</li>
-										<li class="active">F</li>
-										<li>S</li>
-										<li class="active">S</li>
+									<?php $day_mapping = ["mon"=>"M","tue"=>"T","wed"=>"W","thu"=>"T","fri"=>"F","sat"=>"S","sun"=>"S"];
+									foreach($product->days_details as $day => $status): $class=$status?"active":'';?>
+										<li class="<?=$class;?>"><?=$day_mapping[$day];?></li>
+									<?php endforeach;?>
 									</ul>
 								</div>
+								<?php elseif($product->in_cart):?>
+								<div class="itembox-info-subscribed">
+									<button class="btn btn-xs btn-blue pull-left">In Cart</button>
+									<a href="<?=base_url("product-details/".$product->seourls);?>" class="btn btn-xs btn-success pull-right">Modify</a>
+								</div>
 								<?php endif;?>
-								
 							</div>
 						</div>
 					</div>
@@ -208,345 +225,5 @@
 	</div>
 	<?php endforeach;?>
 	<div class="clearfix"></div>
-	<div class="container m-t-30">
-		<h4 class="section-title clearfix">
-		   <a href="javascript:void(0);" class="pull-right m-l-5 button--next"><i class="fa fa-angle-right f-s-18"></i></a>
-		    <a href="javascript:void(0);" class="pull-right button--previous"><i class="fa fa-angle-left f-s-18"></i></a>
-		    Popular Category
-		    <small>Shop and get your favourite items at amazing prices!</small>
-		</h4>
-		<div class="row row-space-10">
-			<div class="categoryslider">
-				<div class="carousel">
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_details">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-								<div class="itembox-info-subscribed">
-									<button class="btn btn-xs bg-orange-theme pull-left"><span class="badge"><i class="glyphicon glyphicon-ok"></i></span> Subscribed</button>
-									<button type="button" class="btn btn-xs btn-success pull-right">Modify</button>
-								</div>
-								<div class="item-info-day">
-									<ul>
-										<li class="active">M</li>
-										<li>T</li>
-										<li class="active">W</li>
-										<li>T</li>
-										<li class="active">F</li>
-										<li>S</li>
-										<li class="active">S</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_details">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-								<div class="itembox-info-subscribed">
-									<button class="btn btn-xs btn-blue pull-left">In Cart</button>
-									<button type="button" class="btn btn-xs btn-success pull-right">Modify</button>
-								</div>
-								<div class="item-info-day">
-									<ul>
-										<li class="active">M</li>
-										<li>T</li>
-										<li class="active">W</li>
-										<li>T</li>
-										<li class="active">F</li>
-										<li>S</li>
-										<li class="active">S</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product.html">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product.html">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_details">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_details">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_details">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<h4 class="section-title clearfix">
-		   <a href="javascript:void(0);" class="pull-right m-l-5 button--next"><i class="fa fa-angle-right f-s-18"></i></a>
-		    <a href="javascript:void(0);" class="pull-right button--previous"><i class="fa fa-angle-left f-s-18"></i></a>
-		    Milk Category
-		    <small>Shop and get your favourite items at amazing prices!</small>
-		</h4>
-		<div class="row row-space-10">
-			<div class="categoryslider">
-				<div class="carousel">
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_details">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-								<div class="itembox-info-subscribed">
-									<button class="btn btn-xs bg-orange-theme pull-left"><span class="badge"><i class="glyphicon glyphicon-ok"></i></span> Subscribed</button>
-									<button type="button" class="btn btn-xs btn-success pull-right">Modify</button>
-								</div>
-								<div class="item-info-day">
-									<ul>
-										<li class="active">M</li>
-										<li>T</li>
-										<li class="active">W</li>
-										<li>T</li>
-										<li class="active">F</li>
-										<li>S</li>
-										<li class="active">S</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_details">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-								<div class="itembox-info-subscribed">
-									<button class="btn btn-xs btn-blue pull-left">In Cart</button>
-									<button type="button" class="btn btn-xs btn-success pull-right">Modify</button>
-								</div>
-								<div class="item-info-day">
-									<ul>
-										<li class="active">M</li>
-										<li>T</li>
-										<li class="active">W</li>
-										<li>T</li>
-										<li class="active">F</li>
-										<li>S</li>
-										<li class="active">S</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product.html">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product.html">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_details">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_details">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="carousel-cell">
-						<div class="item item-thumbnail inner-cell">
-							<a href="product_details" class="item-image">
-								<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_toned_milk_1lit_f.jpg" alt=""  />
-								<div class="discount">32% OFF</div>
-							</a>
-							<div class="item-info">
-								<h4 class="item-title">
-									<a href="product_details">PATANJALI Pachak Hing Peda</a>
-								</h4>
-								<p class="item-desc"><span class="cutofftime">Cut Off Time - <span class="cutofftime-tm">08:00PM</span></span></p>
-								<div class="w-100">
-									<span class="item-price">₹20.00</span>
-									<span class="item-discount-price">₹21.00</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
 <?php $this->load->view("common/footer.php");?>

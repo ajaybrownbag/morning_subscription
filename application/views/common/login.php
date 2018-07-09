@@ -22,22 +22,23 @@
                                 <div class="card marginT20 cardhide">
                                     <div class="input-container">
                                         <i class="inputicon comon-sprit mobile-icon"></i>
-                                        <input type="text" required="required"/>
+                                        <input type="text" name="mobile" required="required"/>
                                         <label for="Mobile">Mobile</label>
                                         <div class="bar"></div>
                                     </div>
                                     <div class="input-container">
                                         <i class="inputicon comon-sprit pass-icon"></i>
-                                        <input type="password" required="required"/>
+                                        <input type="password" name="password" required="required"/>
                                         <label for="Password">Password</label>
                                         <div class="bar"></div>
                                     </div>
+									<br>
+									<p id="error-message" class="text-danger text-center" style="display:none"></p>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginT20">
-                                        <button type="button" class="btn btn-blue btn-md text-center btn-block">Login Securely</button>
+                                        <button type="button" id="login-button" class="btn btn-blue btn-md text-center btn-block">Login Securely</button>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginT20">
                                         <div class="clearfix">
-                                            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
                                             <a href="#" class="pull-right forgetpass">Forgot Password?</a>
                                         </div>
                                     </div>
@@ -52,7 +53,7 @@
                                     </div>
                                    
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginT20">
-                                        <button type="button" class="btn btn-blue btn-md text-center btn-block">Forgot Password</button>
+                                        <button type="button" class="btn btn-blue btn-md text-center btn-block">Reset Password</button>
                                     </div>
                                     
                                 </div>
@@ -63,31 +64,32 @@
                                     <h5 class="text-center">Create Your Account</h5>
                                     <div class="input-container">
                                         <i class="inputicon comon-sprit mobile-icon"></i>
-                                        <input type="text" required="required"/>
+                                        <input type="text" required="required" name="mobile"/>
                                         <label for="Mobile">Mobile</label>
                                         <div class="bar"></div>
                                     </div>
                                     <div class="input-container">
                                         <i class="inputicon comon-sprit email-icon"></i>
-                                        <input type="text" required="required"/>
+                                        <input type="text" required="required" name="email"/>
                                         <label for="email">Email</label>
                                         <div class="bar"></div>
                                     </div>
                                     <div class="input-container">
                                         <i class="inputicon comon-sprit pass-icon"></i>
-                                        <input type="password" required="required" class="pwd" />
+                                        <input type="password" required="required" class="pwd" name="password" />
                                         <i class="fa fa-eye reveal passeyeicon"></i>
                                         <label for="Password">Password</label>
                                         <div class="bar"></div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginT20">
-                                        <button type="button" class="btn btn-blue btn-md text-center btn-block">Procced</button>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginT20">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginT20">
                                         <div class="clearfix">
-                                            <label class="pull-left checkbox-inline"><input type="checkbox"> I agree with terms & conditions</label>
+                                            <label class="pull-left checkbox-inline"><input type="checkbox" name="tnc"> I agree with terms & conditions</label>
                                         </div>
                                     </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginT20">
+                                        <button type="button" id="signup-button" class="btn btn-blue btn-md text-center btn-block">Procced</button>
+                                    </div>
+                                    
                                 </div>
                                 <!-- next step for register -->
                                 <div class="card" style="display: none;">

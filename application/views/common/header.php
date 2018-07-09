@@ -7,7 +7,7 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
-    <link rel="shortcut icon" href="assets/img/user_favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?=base_url('assets/img/icons/favicon.png');?>" type="image/x-icon" />
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link href="<?=base_url('assets/plugins/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet" />
@@ -83,7 +83,7 @@
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="assets/img/categoryimg/ghee-cooking.svg">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/ghee-cooking.svg');?>">
                                                                     </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Milk</span>
@@ -96,7 +96,7 @@
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                    <span class="iconcateg">
-                                                                        <img src="assets/img/categoryimg/ghee-cooking.svg">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/ghee-cooking.svg');?>">
                                                                     </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Bread</span>
@@ -109,7 +109,7 @@
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="assets/img/categoryimg/milk-and-milk.svg">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/milk-and-milk.svg');?>">
                                                                     </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Egg</span>
@@ -122,7 +122,7 @@
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                    <span class="iconcateg">
-                                                                        <img src="assets/img/categoryimg/ghee-cooking.svg">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/ghee-cooking.svg');?>">
                                                                     </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Yogurt</span>
@@ -135,7 +135,7 @@
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="assets/img/categoryimg/milk-and-milk.svg">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/milk-and-milk.svg');?>">
                                                                     </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Butter</span>
@@ -148,7 +148,7 @@
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="assets/img/categoryimg/ghee-cooking.svg">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/ghee-cooking.svg');?>">
                                                                     </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Cheese</span>
@@ -161,7 +161,7 @@
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="assets/img/categoryimg/milk-and-milk.svg">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/milk-and-milk.svg');?>">
                                                                     </span>
                                                                     <br>
                                                                     <span class="m-t-5"> Panner</span>
@@ -169,8 +169,6 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    
-                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -264,25 +262,19 @@
                                         <ul class="cart-item">
                                             <li>
                                                 <a href="<?=base_url("active-subscription");?>" class="logingiconalign">
-                                                    <span class="allicons active-sub-icon"> </span>
+                                                    <span class="fa fa-dashboard"></span>
                                                     <span class="m-l-10">Active Subscription</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="<?=base_url("subscription-history");?>"  class="logingiconalign">
-                                                    <span class="allicons active-sub-icon"> </span>
+                                                    <span class="fa fa-clock-o"></span>
                                                     <span class="m-l-10">Subscription History</span>
-                                                </a>
+                                                </a> 
                                             </li>
                                             <li>
-                                                <a href="#"  class="logingiconalign">
-                                                    <span class="allicons mywallet-icon"> </span>
-                                                    <span class="m-l-10">My Wallet</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="" class="logingiconalign">
-                                                    <span class="allicons logout-icon"></span>
+                                                <a href="<?=base_url("logout");?>" class="logingiconalign">
+                                                    <span class="fa fa-power-off"></span>
                                                     <span class="m-l-10">Logout</span>
                                                 </a>
                                             </li>

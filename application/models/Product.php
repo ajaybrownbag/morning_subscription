@@ -9,12 +9,11 @@ class Product extends CI_Model{
 	}
 	
 	# Getting product by seourls
-	public function getIdByUrl($seourls){
+	public function getByUrl($seourls){
 		$this->db->select("product_id")
 		->from("bb_products")
 		->where("seourls",$seourls);
-		$product = $this->db->get()->result();
-		return $product[0]->product_id;
+		return $this->db->get()->row();
 	}
 	
 	
@@ -26,7 +25,7 @@ class Product extends CI_Model{
 		->join("bb_products bp","bosp.product_id = bp.product_id","inner")
 		->join("bb_product_images bpi","bosp.product_id = bpi.product_id AND bpi.is_default = 1","left")
 		->where("bosp.product_id",$product_id);
-		return $this->db->get()->result()[0];
+		return $this->db->get()->row();
 	}
 	
 	# Getting products according to area_id or all
@@ -73,7 +72,7 @@ class Product extends CI_Model{
 		FROM bb_ord_subs_item bosi
 		LEFT JOIN bb_ord_subscription bos ON bosi.order_id = bos.order_id
 		WHERE bos.user_id = '{$user_id}' AND bosi.product_id = '{$product_id}'";
-		return $this->db->query($sql)->result();
+		return $this->db->query($sql)->row();
 	}
 	
 	public function getByCategory($category,$limit=null){

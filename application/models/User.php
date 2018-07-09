@@ -41,26 +41,26 @@ class User extends CI_Model{
 		$this->db->select("wallet_token")
 		->from("bb_users")
 		->where("user_id",$user_id);
-		$user = $this->db->get()->result()[0];
+		$user = $this->db->get()->row();
 		return $user->wallet_token;
 	}
 	
 	#=====================================================
 	#Process Login
 	public function login($mobile,$password){
-		$password = sha1($password);
-		$user = $this->db->get_where(array("mobile_number" => $mobile, "password" => $password))->result();
+		$password = md5($password);
+		$user = $this->db->get_where("bb_users",array("mobile_number" => $mobile, "password" => $password))->row();
 		if(!empty($user)){
 			$details = array(
-				"user_id" => $this->encrypt->encode($user[0]->user_id),
-				"wallet_token" => $user[0]->wallet_token,
+				"user_id" => $user->user_id,
+				"wallet_token" => $user->wallet_token,
 				"logged_in" => true
 			);
 			#setting user into session
 			$this->setDetails($details);
 			return (object)array("status"=> true,"message"=>"Success");
 		}else{
-			return (object)array("status"=> false,"message"=>"Invalid Credentials!");
+			return (object)array("status"=> false,"message"=>"Incorrect mobile number or password!");
 		}
 	}
 	
@@ -81,13 +81,12 @@ class User extends CI_Model{
 	public function isLoggedIn(){
 		if($this->session->has_userdata('logged_in'))
 		return ($this->session->userdata('logged_in')) ? true : false;
-		return false;
 	}
 	
 	#==================================================
 	#check for already exist
 	public function isExist($options){
-		$user = $this->db->get_where("bb_users",$options)->result();
+		$user = $this->db->get_where("bb_users",$options)->row();
 		return (!empty($user)) ? true : false;
 	}
 	
@@ -100,9 +99,10 @@ class User extends CI_Model{
 	#=============================================
 	#Refresh the wallet tokens
 	public function refreshTokens($user_id){
-		$user = $this->db->get_where("bb_users",array("user_id" => $user_id))->result();
+		if(empty($user_id)) return true;
+		$user = $this->db->get_where("bb_users",array("user_id" => $user_id))->row();
 		if(!empty($user)){
-			$this->session->set_userdata("wallet_token", $user[0]->wallet_token);
+			$this->session->set_userdata("wallet_token", $user->wallet_token);
 		}
 		return true;
 	}

@@ -117,6 +117,8 @@
         </div>
     </div>
 	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="https://cdn.polyfill.io/v2/polyfill.js?features=fetch"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
 	<script src="<?=base_url('assets/plugins/jquery/jquery-1.9.1.min.js');?>"></script>
 	<script src="<?=base_url('assets/plugins/jquery/jquery-migrate-1.1.0.min.js');?>"></script>
 	<script src="<?=base_url('assets/plugins/bootstrap/js/bootstrap.min.js');?>"></script>
@@ -131,9 +133,17 @@
     <script src="<?=base_url('assets/js/bootstrap-toggle.min.js');?>"></script>
     <script src="<?=base_url('assets/js/owl.carousel.min.js');?>"></script>
     <script src="<?=base_url('assets/js/common.js');?>"></script>
-	<script src="<?=base_url('assets/js/home.js');?>"></script>
+	<script src="<?=base_url('assets/js/Home.js');?>"></script>
+	<script src="<?=base_url('assets/js/utils.js');?>"></script>
+	<script src="<?=base_url('assets/js/User.js');?>"></script>
 	<!-- ================== END BASE JS ================== -->
-	<script>$(document).ready(function() { App.init(); new Home().init();});</script>
+	<script>
+	$(document).ready(function() { 
+		App.init(); 
+		Home.init();
+		AsyncSlider.init();
+		User.init();
+	});
+	</script>
 </body>
-
 </html>

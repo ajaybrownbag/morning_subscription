@@ -146,8 +146,8 @@ input:-webkit-autofill:active {transition: background-color 5000s ease-in-out 0s
 .expand-brn .glyphicon-minus{margin-left: -1px;}
 .panel-default .active{background: #faecde;}
 .afterlog .loginbox{ width: 150px !important; margin-right: -35px;}
-.logingiconalign{color:#0d5776;font-size: 14px;}
-.logingiconalign span{float: left;display: inline-block;position: relative;}
+.logingiconalign{color:#0d5776;font-size: 14px;text-decoration:none;}
+.logingiconalign span{display: inline-block;position: relative;text-decoration:none;}
 .locationmodalwidth{width: 400px !important;}
 .login-upwidth{width: 750px !important}
 .footerlatestpd{max-height: 60px; max-width: 40px;}

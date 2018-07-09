@@ -15,36 +15,31 @@
                     <div class="well-area well-sm-custom bg-efefef">
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-6">
-                             <span class="m-l-10"><img src="assets/img/vacation-icon.png"> Are you going on a vacation ?</span>
+                             <span class="m-l-10"><img src="<?=base_url('assets/img/vacation-icon.png');?>"> Are you going on a vacation ?</span>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-6">
                                 <button class="btn btn-xs btn-blue pull-right m-t-3 m-r-10" data-toggle="collapse" data-parent="#accordionaccp" href="#collapseOne">SET VACATION</button>
                             </div>
                         </div>
-                            <div id="collapseOne" class="panel-collapse collapse m-t-10 mob-m-l-r-10-10">
-                                <div class="panel-body bg-white">
-                                    <h4>Select Vacation Date Range</h4>
-                                    <div class="warning-msg well-sm-custom alert alert-danger fade in alert-dismissible">If you are going on a vacation, you can put all subscription products on hold by giving vacation date.</div>
-                                    <div class="w-100">
-                                        <h5><i class="fa fa-calendar"></i> Select Vacation Date Range</h5>
-                                        <form id="form" name="form" class="form-inline">
-                                            <div class="form-group col-xs-6 p-l-0">
-                                                <label for="startDate">Start Date</label>
-                                                <input id="startDate" name="startDate" type="text" class="form-control" />
-                                            </div>
-                                            <div class="form-group col-xs-6 p-r-0">
-                                                <label for="endDate">End Date</label>
-                                                <input id="endDate" name="endDate" type="text" class="form-control" />
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="w-100">
-                                        <button class="btn btn-xs btn-blue pull-right">SAVE</button>
-                                        <button class="btn btn-xs btn-default pull-right m-r-10">CANCEL</button>
-                                    </div>
-                                </div>
-                            </div>
+						<div id="collapseOne" class="panel-collapse collapse m-t-10 mob-m-l-r-10-10">
+							<div class="panel-body bg-white">
+								<div class="warning-msg well-sm-custom alert alert-danger fade in">If you are going on a vacation, you can put all subscription products on hold by giving vacation date.</div>
+								<div class="w-100">
+									<form class="form-inline">
+										<div class="form-group">
+											<label for="endDate"><i class="fa fa-calendar"></i> Select Vacation Date Range</label>
+											<input id="endDate" name="endDate" type="text" class="form-control" />
+										</div>
+									</form>
+								</div>
+								<div class="w-100">
+									<button class="btn btn-xs btn-blue pull-right">SAVE</button>
+									<button class="btn btn-xs btn-default pull-right m-r-10">CANCEL</button>
+								</div>
+							</div>
+						</div>
                     </div>
+					<hr class="hr">
                     <div class="custom-responsive-table">
                         <table class="table table-cart">
                             <thead>
