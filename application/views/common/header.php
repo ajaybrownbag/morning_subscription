@@ -73,98 +73,98 @@
                                         <i class="fa fa-angle-down"></i>
                                         <span class="arrow top"></span>
                                     </a>
-                                    <div class="dropdown-menu p-0">
+                                    <div class="dropdown-menu p-0 topcategorywidth">
                                         <div class="dropdown-menu-container">
                                             <div class="dropdown-menu-content">
                                                 <h4 class="title">Subscribe From Categories</h4>
-                                                <div class="row">
-                                                    <div class="col-md-2 col-sm-2 col-xs-3">
+                                                <div class="row overflowscroll">
+                                                    <div class="col-md-3 col-sm-4 col-xs-4">
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/ghee-cooking.svg');?>">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/milk.png');?>">
                                                                     </span>
                                                                     <br>
-                                                                    <span class="m-t-5"> Milk</span>
+                                                                    <span class=" topcatename"> Milk</span>
                                                                 </a>
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-md-2 col-sm-2 col-xs-3">
+                                                    <div class="col-md-3 col-sm-4 col-xs-4">
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                    <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/ghee-cooking.svg');?>">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/bread.png');?>">
                                                                     </span>
                                                                     <br>
-                                                                    <span class="m-t-5"> Bread</span>
+                                                                    <span class="topcatename"> Bread</span>
                                                                 </a>
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-md-2 col-sm-2 col-xs-3">
+                                                    <div class="col-md-3 col-sm-4 col-xs-4">
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/milk-and-milk.svg');?>">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/egg.png');?>">
                                                                     </span>
                                                                     <br>
-                                                                    <span class="m-t-5"> Egg</span>
+                                                                    <span class="topcatename"> Egg</span>
                                                                 </a>
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-md-2 col-sm-2 col-xs-3">
+                                                    <div class="col-md-3 col-sm-4 col-xs-4">
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                    <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/ghee-cooking.svg');?>">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/yogurt.png');?>">
                                                                     </span>
                                                                     <br>
-                                                                    <span class="m-t-5"> Yogurt</span>
+                                                                    <span class="topcatename"> Yogurt</span>
                                                                 </a>
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                   <div class="col-md-2 col-sm-2 col-xs-3">
+                                                   <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/milk-and-milk.svg');?>">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/butter.png');?>">
                                                                     </span>
                                                                     <br>
-                                                                    <span class="m-t-5"> Butter</span>
+                                                                    <span class="topcatename"> Butter</span>
                                                                 </a>
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-md-2 col-sm-2 col-xs-3">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/ghee-cooking.svg');?>">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/cheese.png');?>">
                                                                     </span>
                                                                     <br>
-                                                                    <span class="m-t-5"> Cheese</span>
+                                                                    <span class="topcatename"> Cheese</span>
                                                                 </a>
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-md-2 col-sm-2 col-xs-3">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/milk-and-milk.svg');?>">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/panner.png');?>">
                                                                     </span>
                                                                     <br>
-                                                                    <span class="m-t-5"> Panner</span>
+                                                                    <span class="topcatename"> Panner</span>
                                                                 </a>
                                                             </li>
                                                         </ul>
