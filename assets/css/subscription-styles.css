@@ -251,6 +251,8 @@ input:-webkit-autofill:active {transition: background-color 5000s ease-in-out 0s
 @media screen and (min-width: 768px) and (max-width: 995px){
 .topsearch {width: 255px; margin-top: 22px; margin-left: 58px; }
 .easy-autocomplete.eac-square input {min-width: 255px !important; }
+.header-nav .nav > li > a {padding: 10px 5px;}
+.topcategorywidth{width: 550px;left: 100px !important;}
 }
  @media only screen and (max-width: 800px) {
     .custom-responsive-table table, .custom-responsive-table thead, .custom-responsive-table tbody, .custom-responsive-table th, .custom-responsive-table td, .custom-responsive-table tr {display: block; }
