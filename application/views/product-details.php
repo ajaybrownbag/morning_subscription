@@ -18,13 +18,14 @@
 						<div class="hidden-sm hidden-xs">
 							<hr class="hr">
 							<br>
-							<p class="text-left">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+							<p class="text-left"><?=$details->product_description;?></p>
 						</div>
                     </div>
                 </div>
                 <div class="product-info">
                     <div class="product-info-header">
                         <h1 class="product-title"><?=$details->product_name;?>  <span class="pull-right"><?=$details->unit;?></span></h1>
+						<p class="text-muted"><b>Brand: </b><?=$details->product_brand;?></p>
                     </div>
 					<div class="product-purchase-container  product-warranty">
 						<div class="product-price pull-left">

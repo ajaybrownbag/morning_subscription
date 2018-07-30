@@ -13,9 +13,12 @@ class Home extends CI_Controller {
 			$category->products = $this->product->getProducts($user_id,null,$category->category_id,0,10);
 			array_walk($category->products,function(&$product)use($user_id){
 				if($product->is_subscribed){
-					$product->days_details = $this->product->getDaysDetails($user_id,$product->product_id);
+					$product->date_configs = $this->product->getDateConfigs($user_id,$product->product_id);
+					$product->date_configs->date_config = json_decode($product->date_configs->date_config,true);
+					$product->date_configs->pattern_value = ($product->date_configs->pattern == 'weekdays')
+					? json_decode($product->date_configs->pattern_value,true) : $product->date_configs->pattern_value;
 				}else{
-					$product->days_details = (object)array();
+					$product->date_configs = (object)array();
 				}
 			});
 		});
@@ -28,24 +31,26 @@ class Home extends CI_Controller {
 			$details = $this->product->get($product->product_id);
 			$this->load->view('product-details',array("details" => $details));
 		}else{
-			$this->error();
+			$this->notFound();
 		}
 	}
 	public function myCart(){
 		$this->load->view('my-cart');
 	}
 	public function activeSubscription(){
-		$this->load->view('active-subscription');
+		$user_id = $this->env->user_id;
+		if(empty($user_id)){
+			$this->notFound();
+			return;
+		}else{
+			$subscription = $this->subscription->get($user_id);
+		}
+		$this->load->view('active-subscription',array("subscription" => $subscription));
 	}
 	public function subscriptionHistory(){
 		$this->load->view('subscription-history');
 	}
-	public function searchResults(){
-		$this->load->view('search-results');
-	}
-	
-	public function error(){
+	public function notFound(){
 		$this->load->view("errors/html/error_404");
 	}
-	
 }

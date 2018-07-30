@@ -137,13 +137,18 @@
 				<div class="carousel" data-flickity='{ "lazyLoad": true, "freeScroll": true, "contain": true,"pageDots": false,"groupCells": true,"prevNextButtons":false}'>
 					<?php foreach($categories as $category):?>
 					<div class="carousel-cell">
-					  <div class="subcatslidbox">
-						<a href="#">
-						  <div class="subcatslidbox-img">
-							<img src="https://s3.ap-south-1.amazonaws.com/brownbagassets/prodstore/mobile/categoryimg/line-icons/ghee-cooking-oils-and-vinegars-04062018.svg" class="flickity-lazyloaded">
-						  </div>
-						  <div class="subcatslidbox-content text-capitalize"><p><?=$category->category;?></p></div>
-						</a>
+					 <div class="category-box">
+						<ul class="dropdown-menu-list">
+							<li>
+								<a href="#" class="topcategory">
+									<span class="iconcateg">
+										<img src="http://localhost/morning_subscription/assets/img/categoryimg/<?=$category->image_url;?>">
+									</span>
+									<br>
+									<span class=" topcatename"><?=$category->category_name;?></span>
+								</a>
+							</li>
+						</ul>
 					  </div>
 					</div>
 					<?php endforeach;?>
@@ -157,8 +162,8 @@
 		<h4 class="section-title clearfix">
 		   <a href="javascript:void(0);" class="pull-right m-l-5 button--next" data-category="<?=$category->category_id;?>"><i class="fa fa-angle-right f-s-18"></i></a>
 		    <a href="javascript:void(0);" class="pull-right button--previous" data-category="<?=$category->category_id;?>"><i class="fa fa-angle-left f-s-18"></i></a>
-		    <span class="text-capitalize"><span class="text-warning"><?=$category->category;?></span></span>
-		    <small>We have <b><?=$category->product_count;?></b> products in <b><?=$category->category;?></b> category</small>
+		    <span class="text-capitalize"><span class="text-warning"><?=$category->category_name;?></span></span>
+		    <small>We have <b><?=$category->product_count;?></b> products in <b><?=$category->category_name;?></b> category</small>
 		</h4>
 		<div class="row row-space-10">
 			<div class="categoryslider">
@@ -180,34 +185,35 @@
 										<?=$product->product_name;?>-<?=$product->quantity.$product->unit;?>
 									</a>
 								</h4>
-								<p class="item-desc">
-									<span class="cutofftime">Cut Off Time - 
-										<span class="cutofftime-tm">
-											<?=date("h:iA",strtotime($product->cutoff_time));?>
-										</span>
-									</span>
-								</p>
 								<div class="w-100">
-									<span>Price: </span>
 									<span class="item-price">₹<?=$product->product_price;?></span>
 									<?php if($product->product_price< $product->product_mrp):?>
 									<span class="item-discount-price">₹<?=$product->product_mrp;?></span>
 									<?php endif;?>	
 								</div>
 								<?php if($product->is_subscribed):?>
-								<div class="itembox-info-subscribed">
-									<button class="btn btn-xs bg-orange-theme pull-left">
-										<i class="fa fa-check"></i> Subscribed
-									</button>
-									<a href="<?=base_url("product-details/".$product->seourls);?>" class="btn btn-xs btn-theme-blue pull-right">Modify</a>
-								</div>
 								<div class="item-info-day">
+									<?php if($product->date_configs->pattern == 'weekdays'):
+										$days = ["mon"=>"M","tue"=>"T","wed"=>"W","thu"=>"T","fri"=>"F","sat"=>"S","sun"=>"S"];
+									?>
 									<ul>
-									<?php $day_mapping = ["mon"=>"M","tue"=>"T","wed"=>"W","thu"=>"T","fri"=>"F","sat"=>"S","sun"=>"S"];
-									foreach($product->days_details as $day => $status): $class=$status?"active":'';?>
-										<li class="<?=$class;?>"><?=$day_mapping[$day];?></li>
+									<?php foreach($days as $day => $letter):?>
+									<?php if($product->date_configs->pattern_value[$day] == 'true'):?>
+									<li class="active"><?=$letter;?></li>
+									<?php else:?>
+									<li><?=$letter;?></li>
+									<?php endif;?>
 									<?php endforeach;?>
 									</ul>
+									<?php elseif($product->date_configs->pattern == 'alternate'):?>
+										<span class="btn btn-xs btn-warning pull-left">
+										<?=$product->date_configs->pattern_value." Day(s) Alternate";?>
+										</span>
+									<?php else:?>
+										<span class="btn btn-xs btn-warning pull-left">
+										<?=ucwords($product->date_configs->pattern);?>
+										</span>
+									<?php endif;?>
 								</div>
 								<?php elseif($product->in_cart):?>
 								<div class="itembox-info-subscribed">

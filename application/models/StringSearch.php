@@ -129,4 +129,35 @@ class StringSearch extends CI_Model{
 		});
 		return $matching;
 	}
+	
+	function aggregate($fields, $data) {
+		$aggrigation = array();
+		array_walk($data,function($row) use(&$aggrigation,$data,$fields){
+			$exists = [];
+			$combined = array_filter($data,function($subRow)use($row,$fields){
+				$status = true;
+				foreach($fields as $field){
+					if($subRow->$field != $row->$field) $status = false;
+				}
+				return $status;
+			});
+			$exists = array_filter($aggrigation,function($aggr)use($row,$fields){
+				$status = true;
+				foreach($fields as $field){
+					if($aggr->$field != $row->$field) $status = false;
+				}
+				return $status;
+			});
+			if(empty($exists)){
+				$dataRow = new stdClass;
+				foreach($fields as $field){
+					$dataRow->$field = $row->$field;
+				}
+				$dataRow->hits = count($combined);
+				array_push($aggrigation,$dataRow);
+			}
+		});
+		return $aggrigation;
+	}
+	
 }

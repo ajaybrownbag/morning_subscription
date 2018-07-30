@@ -18,15 +18,33 @@
 	<link href="<?=base_url('assets/css/animate.min.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/css/subscription-styles.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/css/flickity-slider.css');?>" rel="stylesheet" />
-    <link href="<?=base_url('assets/css/chosen.min.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/plugins/daterangepicker/daterangepicker.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/css/owl.carousel.min.css');?>" rel="stylesheet" />
+    <link href="<?=base_url('assets/plugins/ui/jquery-ui.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/plugins/autocomplete/autocomplete.min.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/plugins/autocomplete/autocomplete.themes.min.css');?>" rel="stylesheet" />
+    <link href="<?=base_url('assets/plugins/select2/css/select2.min.css');?>" rel="stylesheet" />
+	<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />-->
 	<!-- ================== END BASE CSS STYLE ================== -->
 	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="<?=base_url('assets/plugins/jquery/jquery-1.9.1.min.js');?>"></script>
+	<script src="<?=base_url('assets/plugins/jquery/jquery-migrate-1.1.0.min.js');?>"></script>
+	<script src="<?=base_url('assets/plugins/bootstrap/js/bootstrap.min.js');?>"></script>
 	<script src="<?=base_url('assets/plugins/pace/pace.min.js');?>"></script>
 	<script> window.base_url = '<?=base_url();?>';</script>
+	<style>
+	  #header.affix {
+		  top: 0;
+		  width: 100%;
+	  }
+	  .sticky.affix {
+		  top: 0;
+		  width: 100%;
+	  }
+	  #header.affix + .affix-seperator {
+		  padding-top: 88px;
+	  }
+	  </style>
 	<!-- ================== END BASE JS ================== -->
 </head>
 <body class="bg-silver">
@@ -69,7 +87,7 @@
                             <ul class="nav headnavcolor">
                                 <li class="dropdown dropdown-full-width dropdown-hover">
                                     <a href="#" data-toggle="dropdown">
-                                        <i class="fa fa-bars"></i> Categories
+                                        <i class="fa fa-qrcode"></i> Categories
                                         <i class="fa fa-angle-down"></i>
                                         <span class="arrow top"></span>
                                     </a>
@@ -78,97 +96,21 @@
                                             <div class="dropdown-menu-content">
                                                 <h4 class="title">Subscribe From Categories</h4>
                                                 <div class="row overflowscroll">
-                                                    <div class="col-md-3 col-sm-4 col-xs-4">
+													<?php foreach($this->env->categories as $category):?>
+													<div class="col-md-3 col-sm-4 col-xs-4 category-box">
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="#" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/milk.png');?>">
+                                                                        <img src="<?=base_url('assets/img/categoryimg/'.$category->image_url);?>">
                                                                     </span>
                                                                     <br>
-                                                                    <span class=" topcatename"> Milk</span>
+                                                                    <span class=" topcatename"> <?=$category->category_name;?></span>
                                                                 </a>
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                    <div class="col-md-3 col-sm-4 col-xs-4">
-                                                        <ul class="dropdown-menu-list">
-                                                            <li>
-                                                                <a href="#" class="topcategory">
-                                                                   <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/bread.png');?>">
-                                                                    </span>
-                                                                    <br>
-                                                                    <span class="topcatename"> Bread</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-4 col-xs-4">
-                                                        <ul class="dropdown-menu-list">
-                                                            <li>
-                                                                <a href="#" class="topcategory">
-                                                                    <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/egg.png');?>">
-                                                                    </span>
-                                                                    <br>
-                                                                    <span class="topcatename"> Egg</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-4 col-xs-4">
-                                                        <ul class="dropdown-menu-list">
-                                                            <li>
-                                                                <a href="#" class="topcategory">
-                                                                   <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/yogurt.png');?>">
-                                                                    </span>
-                                                                    <br>
-                                                                    <span class="topcatename"> Yogurt</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                   <div class="col-md-4 col-sm-4 col-xs-4">
-                                                        <ul class="dropdown-menu-list">
-                                                            <li>
-                                                                <a href="#" class="topcategory">
-                                                                    <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/butter.png');?>">
-                                                                    </span>
-                                                                    <br>
-                                                                    <span class="topcatename"> Butter</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-4">
-                                                        <ul class="dropdown-menu-list">
-                                                            <li>
-                                                                <a href="#" class="topcategory">
-                                                                    <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/cheese.png');?>">
-                                                                    </span>
-                                                                    <br>
-                                                                    <span class="topcatename"> Cheese</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-4 col-xs-4">
-                                                        <ul class="dropdown-menu-list">
-                                                            <li>
-                                                                <a href="#" class="topcategory">
-                                                                    <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/panner.png');?>">
-                                                                    </span>
-                                                                    <br>
-                                                                    <span class="topcatename"> Panner</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+													<?php endforeach;?>
                                                 </div>
                                             </div>
                                         </div>
@@ -299,48 +241,35 @@
                 <!-- mobile search -->
             </div>
         </div>
-		<div id="selectlocation" class="modal fade" role="dialog">
-			<div class="modal-dialog locationmodalwidth">
-				<div class="modal-content">
-					<div class="modal-body padding0">
-						<button type="button" class="close modaldismis" data-dismiss="modal">&times;</button>
+		<div class="affix-seperator"></div>
+		<!--<div id="locationSelector" class="modal fade" role="dialog">-->
+			<div id="locationSelector" class="custom-modal-dialog" style="display:none">
+				<div class="custom-modal-content">
+					<div class="custom-modal-body padding0">
 						<div class="w-100">
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginT5">
 								<div class="w-100">
-								   <h4 class="text-center">You are shopping in</h4>
+								   <h4 class="text-center">CHOOSE YOUR LOCATION</h4>
 									<hr class="hr">
 								</div>
-								<form action="" method="post">
-									<div class="col-md-12 col-sm-12 col-xs-12">
-										<div class="w-100 marginT10">
-										  <select class="selectcity form-control">
-										  <option>Please Select City</option>
-										  <option>Delhi</option>
-										  </select>
-										</div>
-										<div class="w-100 marginT10">
-										  <select class="selectarea form-control">
-										  <option>Please Select Area</option>
-										  <option>Dwarka Sec - 1</option>
-										  <option>Dwarka Sec - 2</option>
-										  </select>
-										</div>
-										<div class="w-100 marginT10">
-										  <select class="selectsociety form-control">
-										  <option>Please Select Society</option>
-										  <option>MK Residencial</option>
-										  <option>Seema Apartment</option>
-										  </select>
-										</div>
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="w-100 marginT10">
+									  <select class="citySelector form-control no-radius" style="width:100%;"></select>
 									</div>
-									<div class="col-md-12 col-sm-12 col-xs-12 marginT10 m-bottom20">
-										<button type="button" class="btn btn-blue btn-sm text-center btn-block">BROWSE</button>
+									<div class="w-100 marginT10">
+									  <select class="areaSelector form-control no-radius" style="width:100%;"></select>
 									</div>
-								</form>
+									<div class="w-100 marginT10">
+									  <select class="societySelector form-control no-radius" style="width:100%;"></select>
+									</div>
+								</div>
+								<div class="col-md-12 col-sm-12 col-xs-12 marginT10 m-bottom20">
+									<button type="button" id="locationSelectorBtn" class="btn btn-blue btn-sm text-center btn-block">START BROWSING</button>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		<!--</div>-->
 		<?php $this->load->view("common/login");?>

@@ -6,7 +6,7 @@ class Ajax extends CI_Controller {
 	# Default Constructor
 	public function __construct(){
 		parent::__construct();
-		$this->load->model(array("product","stringSearch"));
+		$this->load->model(array("product","subscription"));
 		#Validate is ajax request
 		if(!$this->input->is_ajax_request()){
 			exit('Unautherized Access!');
@@ -16,8 +16,45 @@ class Ajax extends CI_Controller {
 	#============================================================
 	# Handle all ajax requests
 	public function userAction(){
-		$action = $this->input->post("action");
+		$action = $this->input->post_get("action");
 		switch($action){
+			#Search City
+			case "searchCity":
+				$term = $this->input->post("term");
+				$state = $this->input->post_get("state");
+				$cities = $this->subscription->searchCity($term,$state);
+				echo json_encode($cities);
+			break;
+			
+			#Search Area
+			case "searchArea":
+				$term = $this->input->post("term");
+				$city_id = $this->input->post_get("city_id");
+				$areas = $this->subscription->searchArea($term,$city_id);
+				echo json_encode($areas);
+			break;
+			
+			#Search Society
+			case "searchSociety":
+				$term = $this->input->post("term");
+				$area_id = $this->input->post_get("area_id");
+				$societies = $this->subscription->searchSociety($term,$area_id);
+				echo json_encode($societies);
+			break;
+			
+			#Set Location
+			case "checkLocation":
+				$response = $this->env->checkLocation();
+				echo json_encode($response);
+			break;
+			
+			#Set Location
+			case "setLocation":
+				$society_id = $this->input->post("society_id");
+				$this->env->setLocation($society_id);
+				echo json_encode(["status" => true, "message" => "Set successfully"]);
+			break;
+			
 			#Product search 
 			case "searchProduct":
 				$category = $this->input->post("category");
@@ -27,22 +64,32 @@ class Ajax extends CI_Controller {
 				echo json_encode($products);
 			break;
 			
-			#getting produc suggestions while searching
+			#getting product search suggestions
 			case "getSuggestions":
-				$term = $this->input->post("term");
+				$term = $this->input->post_get("term");
 				$products = $this->product->suggestions(trim($term));
 				echo json_encode(array_values($products));
 			break;
 			
 			#getting products for sliders
-			case "loadMoreProducts":
-				$index = $this->input->post("index");
+			case "loadMoreSearchResults":
 				$category = $this->input->post("categroy");
-				$limit = 6;
-				$options = ["index" => $index, "category" => $category, "limit" => $limit];
-				$products = $this->product->loadMore($options);
+				$term = $this->input->post("term");
+				$index = $this->input->post("index");
+				$limit = 10;
+				$offset = ($index) ? $index*$limit : $index;
+				$options = [
+					"term" => $term, 
+					"index" => $index, 
+					"category" => $category, 
+					"limit" => $limit, 
+					"offset" => $offset
+				];
+				
+				$products = $this->product->loadMoreSearches($options);
 				echo json_encode($products);
 			break;
+			
 			case "loadCategoryProducts":
 				$category_id = $this->input->post("category_id");
 				$index = $this->input->post("index");
@@ -52,9 +99,12 @@ class Ajax extends CI_Controller {
 				$area_id = $this->session->area_id;
 				$products = $this->product->getProducts($user_id,$area_id,$category_id,$offset,$limit);
 				array_walk($products,function(&$product)use($user_id){
-					$product->days_details = ($product->is_subscribed) 
-						? $this->product->getDaysDetails($user_id,$product->product_id)
-						: (object)array();
+					if($product->is_subscribed){
+						$product->date_configs = $this->product->getDateConfigs($user_id,$product->product_id);
+						$product->date_configs->date_config = json_decode($product->date_configs->date_config,true);
+						$product->date_configs->pattern_value = ($product->date_configs->pattern == 'weekdays')
+							? json_decode($product->date_configs->pattern_value,true) : $product->date_configs->pattern_value;
+					}
 				});
 				if(!empty($products)){
 					echo json_encode(array(
@@ -69,6 +119,21 @@ class Ajax extends CI_Controller {
 						"products" => $products
 					));
 				}
+			break;
+			case "filterCategoryResults":
+				$user_id = (!$this->session->has_userdata('user_id')) ? $this->session->user_id : null;
+				$category = $this->input->post("type");
+				$term = $this->input->post("term");
+				#testing
+				$options = [
+					"term" => $term, 
+					"index" => 0, 
+					"category" => $category,
+					"limit" => 30, 
+					"offset" => 0
+				];
+				$response = $this->product->loadSearches($options);
+				echo json_encode($response);
 			break;
 			
 			#Invalidate user action if not found

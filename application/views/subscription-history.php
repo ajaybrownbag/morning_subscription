@@ -7,7 +7,7 @@
                 <div class="mycart-header bg-blue-theme">
                     <div class="row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                           Subscription History
+                           Subscription Orders History
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse in">
                                 <div class="panel-body p-l-0 p-r-0 p-t-0">
-                                    <div class="custom-responsive-table history-products-list">
+                                    <div class="custom-responsive-table history-products-list bg-warning">
                                         <table class="table table-cart">
                                             <thead>
                                                 <tr>
@@ -121,7 +121,7 @@
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body p-l-0 p-r-0 p-t-0">
-                                    <div class="custom-responsive-table history-products-list">
+                                    <div class="custom-responsive-table history-products-list  bg-warning">
                                         <table class="table table-cart">
                                             <thead>
                                                 <tr>
@@ -198,7 +198,7 @@
                 <div class="checkout-footer bg-grey">
                     <div class="text-center">
                         <ul class="pagination m-t-0">
-                            <li class="disabled"><a href="javascript:;">Previous</a></li>
+                            <li class="disabled"><a href="javascript:;">Prev</a></li>
                             <li class="active hidden-xs"><a href="javascript:;">1</a></li>
                             <li class="hidden-xs"><a href="javascript:;">2</a></li>
                             <li class="hidden-xs"><a href="javascript:;">3</a></li>

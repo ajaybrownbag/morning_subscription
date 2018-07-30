@@ -22,103 +22,108 @@ var niceTime = function(string){
 	return hr.padLeft()+":"+mn.padLeft()+ampm;
 };
 
-
-class AsyncSlider{
+class Utils{
+	
+	/*====================
+	# Default Constructor 
+	====================*/
 	constructor(){}
-	// Sending ajax request
-	static async sendRequest(options,callback){
-		// Preparing and calling the ajax defined in Jquery
-		await (()=>{
-			$.ajax({
-				url: options.url, // defining request url from options
-				data: options.data || null, // posting data with request from options
-				type: options.type || 'POST', // using the request type
-				dataType: options.dataType || 'json',
-				success: function(response){ // getting the response back from server
-					callback(response); // passing response to callback function
-				},
-				error: function(){
-					// passing error status in callback in case of errors
-					callback({status:false,message:"Failed to process your request"});
-				}
-			});
-		})();
-	}
 	
+	/*========================
+	# Sending Server Request 
+	========================*/
+	static async sendRequest(url,data){
+		var self = this;
+		return $.ajax({
+			url: url, 
+			data: data, 
+			type: 'POST', 
+			dataType:'json',
+			success: function(response){
+				return response;
+			},
+			error: function(){
+				return {status:false,message:"Failed to process your request"};
+			}
+		});
+	}
+	/*============= Category Sliders Start ===================*/
+	// Creating Product cards
 	static async createProductCards(products,slider){
-		await (async ()=>{
-			var productCards = [];
-			await (()=>{
-				products.forEach(function(product,idx){
-					var discountWrapper = '';
-					var discount = 0;
-					var cutMrp = '';
-					var subOrCart = $("<div></div>");
-					var day_mapping = {"mon":"M","tue":"T","wed":"W","thu":"T","fri":"F","sat":"S","sun":"S"};
-					// if it is on offer
-					if(product.product_price < product.product_mrp){
-						discount = (100-product.product_price*100/product.product_mrp);
-						discountWrapper = '<div class="discount">'+discount.toFixed(2)+'% OFF</div>';
-						cutMrp = ' <span class="item-discount-price">₹'+product.product_mrp+'</span>';
-					}
-					
-					// if subscribed
-					if(parseInt(product.is_subscribed)){
-						var day_wrapper = $('<div class="item-info-day"><ul></ul></div>');
-						for (var day in day_mapping){
-							var $class = (parseInt(product.days_details[day])) ? "active" : ""; 
-							day_wrapper.find("ul").append('<li class="'+$class+'">'+day_mapping[day]+'</li>');
-						}
-						subOrCart.append('<div class="itembox-info-subscribed">'
-						+'	<button class="btn btn-xs bg-orange-theme pull-left">'
-						+'		<i class="fa fa-check"></i> Subscribed'
-						+'	</button>'
-						+'	<a href="'+window.base_url+"product-details/"+product.seourls+'" class="btn btn-xs btn-theme-blue pull-right">Modify</a>'
-						+'</div>');
-						subOrCart.append(day_wrapper);
-					}else if(parseInt(product.in_cart)){
-						subOrCart.append('<div class="itembox-info-subscribed">'
-						+'	<button class="btn btn-xs btn-blue pull-left">In Cart</button>'
-						+'	<a href="'+window.base_url+"product-details/"+product.seourls+'" class="btn btn-xs btn-success pull-right">Modify</a>'
-						+'</div>');
-					}
-					 var card = document.createElement('div');
-					card.className = 'carousel-cell';
-					var innerCard = '<div class="item item-thumbnail inner-cell">'
-					+'		<a href="'+window.base_url+'product-details/'+product.seourls+');?>" class="item-image">'
-					+'			<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/'+product.product_image_url+'" alt="" />'
-					+			discountWrapper
-					+'		</a>'
-					+'		<div class="item-info">'
-					+'			<h4 class="item-title">'
-					+'				<a href="'+window.base_url+'product-details/'+product.seourls+'">'
-					+					product.product_name+' - '+product.quantity+product.unit
-					+'				</a>'
-					+'			</h4>'
-					+'			<p class="item-desc">'
-					+'				<span class="cutofftime">Cut Off Time - '
-					+'					<span class="cutofftime-tm">'
-					+					niceTime(product.cutoff_time)
-					+'					</span>'
-					+'				</span>'
-					+'			</p>'
-					+'			<div class="w-100">'
-					+'				<span>Price: </span>'
-					+'				<span class="item-price">₹'+product.product_price+'</span>'
-					+				cutMrp
-					+'			</div>'
-					+			subOrCart.html()
-					+'		</div>'
-					+'	</div>';
-					card.innerHTML = innerCard;
-					productCards.push(card);
-				});
-			})();
-			slider.append(productCards);
-		})();
-		
+		var productCards = [];
+		products.forEach(function(product,idx){
+			var discountWrapper = '';
+			var discount = 0;
+			var cutMrp = '';
+			var subOrCart = $("<div></div>");
+			// if it is on offer
+			if(product.product_price < product.product_mrp){
+				discount = (100-product.product_price*100/product.product_mrp);
+				discountWrapper = '<div class="discount">'+discount.toFixed(2)+'% OFF</div>';
+				cutMrp = ' <span class="item-discount-price">₹'+product.product_mrp+'</span>';
+			}
+			// if subscribed
+			if(parseInt(product.is_subscribed)){
+				var days = [
+						{day:"mon",letter:"M"},
+						{day:"tue",letter:"T"},
+						{day:"wed",letter:"W"},
+						{day:"thu",letter:"T"},
+						{day:"fri",letter:"F"},
+						{day:"sat",letter:"S"},
+						{day:"sun",letter:"S"}
+					];
+				var configs = product.date_configs;
+				var configContainer = $("<div>").addClass("item-info-day");
+				if(configs.pattern == 'weekdays'){
+					var ul = $("<ul>").empty();
+					days.forEach(function(data){
+						var li = $("<li>").text(data.letter);
+						var active = (configs.pattern_value[data.day] == "true") ? "active" : "not-active";
+						li.addClass(active);
+						ul.append(li);
+					});
+					configContainer.append(ul);
+				}else if(configs.pattern == 'alternate'){
+					var span = $('<span class="btn btn-xs btn-warning pull-left">').text(configs.pattern_value+" Day(s) Alternate");
+					configContainer.append(span);
+				}else{
+					var span = $('<span class="btn btn-xs btn-warning pull-left">').text(configs.pattern);
+					configContainer.append(span);
+				}
+				subOrCart.append(configContainer);
+			}else if(parseInt(product.in_cart)){
+				var configContainer = $("<div>").addClass("item-info-day");
+				var cartBtn = $("<span>").addClass("fa fa-shopping-cart btn btn-xs btn-default pull-left");
+				configContainer.append(cartBtn);
+			}
+			var card = document.createElement('div');
+			card.className = 'carousel-cell';
+			var innerCard = '<div class="item item-thumbnail inner-cell">'
+			+'		<a href="'+window.base_url+'product-details/'+product.seourls+');?>" class="item-image">'
+			+'			<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/'+product.product_image_url+'" alt="" />'
+			+			discountWrapper
+			+'		</a>'
+			+'		<div class="item-info">'
+			+'			<h4 class="item-title">'
+			+'				<a href="'+window.base_url+'product-details/'+product.seourls+'">'
+			+					product.product_name+' - '+product.quantity+product.unit
+			+'				</a>'
+			+'			</h4>'
+			+'			<div class="w-100">'
+			+'				<span class="item-price">₹'+product.product_price+'</span>'
+			+				cutMrp
+			+'			</div>'
+			+			subOrCart.html()
+			+'		</div>'
+			+'	</div>';
+			card.innerHTML = innerCard;
+			productCards.push(card);
+		});
+		slider.append(productCards);
 	}
 	
+	// Request to add more products
 	static async addProducts(data, slider){
 		var self = this;
 		var index = data.index+1;
@@ -126,22 +131,19 @@ class AsyncSlider{
 		$(sliderContainer).data("index",index);
 		var status = $(sliderContainer).data("status");
 		data.action = "loadCategoryProducts";
-		var options = {
-			url:window.base_url+"ajax/load_category_products",
-			data:data
-		};
+		
+		var url = window.base_url+"ajax/load_category_products";
 		if(parseInt(status)){
-			await self.sendRequest(options,async (response)=>{
-				if(response.status){
-					await self.createProductCards(response.products,slider);
-				}else{
-					$(sliderContainer).data("status",0);
-				}
-			});
+			var response = await self.sendRequest(url,data);
+			if(response.status){
+				await self.createProductCards(response.products,slider);
+			}else{
+				$(sliderContainer).data("status",0);
+			}
 		}
 	}
 	
-	static async init(){
+	static async initSlider(){
 		var self = this;
 		// Product by category sliders
 		var productSliders = {};
@@ -162,7 +164,7 @@ class AsyncSlider{
 				if(pointer.movementX < 0){
 					if(productSliders[key].slides.length - (productSliders[key].selectedIndex + 1) < 10){
 						var index = $("#catSlider"+category_id).data("index");
-						await (()=>{self.addProducts({category_id,index},productSliders[key])})();
+						await self.addProducts({category_id,index},productSliders[key]);
 					}
 				}
 			});
@@ -182,4 +184,130 @@ class AsyncSlider{
 			}
 		});
 	}
+	/*=========== Category Slider Ends ================*/
+	
+	/*============ Location Functionality Starts =========== */
+	static async createCitySelector(element,state){
+		$("button#locationSelectorBtn").attr("disabled",true);
+		return await $(element).select2({
+			minimumInputLength: 0,
+			placeholder: "SELECT CITY",
+			ajax: {
+				url: window.base_url+"ajax/search_suggestions?action=searchCity&state="+state,
+				dataType: 'json',
+				type: "POST",
+				data: function (term) {return term;},
+				processResults: function (data) {
+					return {
+						results: $.map(data, function (item) {
+							return {
+								text: item.city_name,
+								id: item.city_id,
+							};
+						})
+					};
+				}
+			}
+		});
+	}
+	
+	static async createAreaSelector(element,city_id){
+		return await $(element).select2({
+			minimumInputLength: 0,
+			placeholder: "SELECT AREA",
+			ajax: {
+				url: window.base_url+"ajax/search_suggestions?action=searchArea&city_id="+city_id,
+				dataType: 'json',
+				type: "POST",
+				data: function (term) {return term;},
+				processResults: function (data) {
+					return {
+						results: $.map(data, function (item) {
+							return {
+								text: item.area_name,
+								id: item.area_id,
+							};
+						})
+					};
+				}
+			}
+		});
+	}
+	static async createSocietySelector(element,area_id){
+		return await $(element).select2({
+			minimumInputLength: 0,
+			placeholder: "SELECT SOCIETY",
+			ajax: {
+				url: window.base_url+"ajax/search_suggestions?action=searchSociety&area_id="+area_id,
+				dataType: 'json',
+				type: "POST",
+				data: function (term) {return  term;},
+				processResults: function (data) {
+					return {
+						results: $.map(data, function (item) {
+							return {
+								text: item.society_name,
+								id: item.society_id,
+							};
+						})
+					};
+				}
+			}
+		});
+	}
+	
+	static async setLocation(data){
+		var url = window.base_url+"ajax/set_location";
+		data.action = "setLocation";
+		var response = await this.sendRequest(url,data);
+		if(response.status){
+			$('#locationSelector').fadeOut(1);
+			$("body").css({overflowY:"auto"});
+			window.location.reload();
+		}
+	}
+	
+	static async checkLocation(){
+		var url = window.base_url+"ajax/check_location";
+		var data = {
+			action : "checkLocation"
+		};
+		var response = await this.sendRequest(url,data);
+		if(!response.status){
+			$('#locationSelector').fadeIn(1);
+			$("body").css({overflowY:"hidden"});
+		}
+	}
+	
+	static async initLocationSelector(){
+		var self = this;		
+		var citySelector = await self.createCitySelector("select.citySelector","Delhi");
+		citySelector.on("select2:select",async function(e){
+			$("select.areaSelector").val([]);
+			$("select.societySelector").val([]);
+			$("button#locationSelectorBtn").attr("disabled",true);
+			var city = e.params.data;
+			var areaSelector = await self.createAreaSelector("select.areaSelector",city.id);
+			areaSelector.on("select2:select",async function(e){
+				$("select.societySelector").val([]);
+				$("button#locationSelectorBtn").attr("disabled",true);
+				var area = e.params.data;
+				var societySelector = await self.createSocietySelector("select.societySelector",area.id);
+				societySelector.on("select2:select",function(e){
+					$("button#locationSelectorBtn").attr("disabled",false);
+				});
+			});
+		});
+		$("button#locationSelectorBtn").on("click",function(e){
+			e.preventDefault();
+			var data = {
+				society_id : $("select.societySelector").val()
+			};
+			self.setLocation(data);
+			
+		});
+		self.checkLocation();
+		
+	}
+	/*========== Location Selector Ends ========== */
 }

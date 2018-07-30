@@ -1,0 +1,226 @@
+array(1) {
+  ["society_id"]=>
+  string(1) "3"
+}
+
+string(560) "SELECT 
+			bc.city_id, 
+			bc.city_name,
+			bas.area_name,
+			bas.area_zipcode,
+			bas.area_id,
+			boss.society_name,
+			boss.society_id,
+			bosb.building_id,
+			bosb.building_name,
+			bosuf.flat_id
+		FROM bb_ord_subs_user_flat bosuf
+		INNER JOIN bb_ord_subs_building bosb ON(bosuf.building_id = bosb.building_id)
+		INNER JOIN bb_ord_subs_society boss ON(bosb.society_id = boss.society_id)
+		INNER JOIN bb_area_sector bas ON(boss.area_id = bas.area_id)
+		INNER JOIN bb_city bc ON (bas.city_id = bc.city_id)
+		WHERE 1=1 AND boss.society_id = '3'"
+
+array(2) {
+  [0]=>
+  object(stdClass)#32 (10) {
+    ["city_id"]=>
+    string(1) "1"
+    ["city_name"]=>
+    string(5) "Delhi"
+    ["area_name"]=>
+    string(16) "Sector 22 Dwarka"
+    ["area_zipcode"]=>
+    string(6) "110075"
+    ["area_id"]=>
+    string(3) "575"
+    ["society_name"]=>
+    string(11) "Ecovillage2"
+    ["society_id"]=>
+    string(1) "3"
+    ["building_id"]=>
+    string(1) "5"
+    ["building_name"]=>
+    string(9) "B14 Tower"
+    ["flat_id"]=>
+    string(1) "3"
+  }
+  [1]=>
+  object(stdClass)#33 (10) {
+    ["city_id"]=>
+    string(1) "1"
+    ["city_name"]=>
+    string(5) "Delhi"
+    ["area_name"]=>
+    string(16) "Sector 22 Dwarka"
+    ["area_zipcode"]=>
+    string(6) "110075"
+    ["area_id"]=>
+    string(3) "575"
+    ["society_name"]=>
+    string(11) "Ecovillage2"
+    ["society_id"]=>
+    string(1) "3"
+    ["building_id"]=>
+    string(1) "5"
+    ["building_name"]=>
+    string(9) "B14 Tower"
+    ["flat_id"]=>
+    string(1) "4"
+  }
+}
+
+object(stdClass)#32 (10) {
+  ["city_id"]=>
+  string(1) "1"
+  ["city_name"]=>
+  string(5) "Delhi"
+  ["area_name"]=>
+  string(16) "Sector 22 Dwarka"
+  ["area_zipcode"]=>
+  string(6) "110075"
+  ["area_id"]=>
+  string(3) "575"
+  ["society_name"]=>
+  string(11) "Ecovillage2"
+  ["society_id"]=>
+  string(1) "3"
+  ["building_id"]=>
+  string(1) "5"
+  ["building_name"]=>
+  string(9) "B14 Tower"
+  ["flat_id"]=>
+  string(1) "3"
+}
+
+object(stdClass)#32 (10) {
+  ["city_id"]=>
+  string(1) "1"
+  ["city_name"]=>
+  string(5) "Delhi"
+  ["area_name"]=>
+  string(16) "Sector 22 Dwarka"
+  ["area_zipcode"]=>
+  string(6) "110075"
+  ["area_id"]=>
+  string(3) "575"
+  ["society_name"]=>
+  string(11) "Ecovillage2"
+  ["society_id"]=>
+  string(1) "3"
+  ["building_id"]=>
+  string(1) "5"
+  ["building_name"]=>
+  string(9) "B14 Tower"
+  ["flat_id"]=>
+  string(1) "3"
+}
+
+NULL
+
+object(stdClass)#33 (7) {
+  ["city_id"]=>
+  string(1) "1"
+  ["city_name"]=>
+  string(5) "Delhi"
+  ["area_name"]=>
+  string(16) "Sector 11 Dwarka"
+  ["area_zipcode"]=>
+  string(6) "110075"
+  ["area_id"]=>
+  string(3) "553"
+  ["society_name"]=>
+  string(12) "MK Residency"
+  ["society_id"]=>
+  string(1) "2"
+}
+
+object(stdClass)#32 (7) {
+  ["city_id"]=>
+  string(1) "1"
+  ["city_name"]=>
+  string(5) "Delhi"
+  ["area_name"]=>
+  string(16) "Sector 11 Dwarka"
+  ["area_zipcode"]=>
+  string(6) "110075"
+  ["area_id"]=>
+  string(3) "553"
+  ["society_name"]=>
+  string(12) "MK Residency"
+  ["society_id"]=>
+  string(1) "2"
+}
+
+object(stdClass)#32 (7) {
+  ["city_id"]=>
+  string(1) "1"
+  ["city_name"]=>
+  string(5) "Delhi"
+  ["area_name"]=>
+  string(16) "Sector 11 Dwarka"
+  ["area_zipcode"]=>
+  string(6) "110075"
+  ["area_id"]=>
+  string(3) "553"
+  ["society_name"]=>
+  string(12) "MK Residency"
+  ["society_id"]=>
+  string(1) "2"
+}
+
+object(stdClass)#32 (7) {
+  ["city_id"]=>
+  string(1) "1"
+  ["city_name"]=>
+  string(5) "Delhi"
+  ["area_name"]=>
+  string(16) "Sector 22 Dwarka"
+  ["area_zipcode"]=>
+  string(6) "110075"
+  ["area_id"]=>
+  string(3) "575"
+  ["society_name"]=>
+  string(21) "Sadbhavana Apartments"
+  ["society_id"]=>
+  string(1) "1"
+}
+
+array(8) {
+  ["__ci_last_regenerate"]=>
+  int(1532930262)
+  ["last_login_time"]=>
+  int(1532929861)
+  ["admin_user_id"]=>
+  string(2) "46"
+  ["admin_user_type"]=>
+  string(1) "0"
+  ["admin_remember"]=>
+  string(1) "0"
+  ["city_id"]=>
+  string(1) "1"
+  ["area_id"]=>
+  string(3) "575"
+  ["society_id"]=>
+  string(1) "1"
+}
+
+array(8) {
+  ["__ci_last_regenerate"]=>
+  int(1532931170)
+  ["last_login_time"]=>
+  int(1532929861)
+  ["admin_user_id"]=>
+  string(2) "46"
+  ["admin_user_type"]=>
+  string(1) "0"
+  ["admin_remember"]=>
+  string(1) "0"
+  ["city_id"]=>
+  string(1) "1"
+  ["area_id"]=>
+  string(3) "553"
+  ["society_id"]=>
+  string(1) "2"
+}
+

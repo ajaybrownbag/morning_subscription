@@ -117,11 +117,6 @@
         </div>
     </div>
 	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="https://cdn.polyfill.io/v2/polyfill.js?features=fetch"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
-	<script src="<?=base_url('assets/plugins/jquery/jquery-1.9.1.min.js');?>"></script>
-	<script src="<?=base_url('assets/plugins/jquery/jquery-migrate-1.1.0.min.js');?>"></script>
-	<script src="<?=base_url('assets/plugins/bootstrap/js/bootstrap.min.js');?>"></script>
 	<script src="<?=base_url('assets/plugins/jquery-cookie/jquery.cookie.js');?>"></script>
 	<script src="<?=base_url('assets/js/apps.min.js');?>"></script>
     <script src="<?=base_url('assets/js/flickity-slider.min.js');?>"></script>
@@ -130,19 +125,25 @@
     <script src="<?=base_url('assets/js/moment.min.js');?>"></script>
     <script src="<?=base_url('assets/plugins/daterangepicker/daterangepicker.js');?>"></script>
     <script src="<?=base_url('assets/plugins/autocomplete/autocomplete.min.js');?>"></script>
+    <script src="<?=base_url('assets/plugins/ui/jquery-ui.js');?>"></script>
+    <script src="<?=base_url('assets/plugins/select2/js/select2.min.js');?>"></script>
     <script src="<?=base_url('assets/js/bootstrap-toggle.min.js');?>"></script>
     <script src="<?=base_url('assets/js/owl.carousel.min.js');?>"></script>
+    <script src="<?=base_url('assets/js/sticky.js');?>"></script>
     <script src="<?=base_url('assets/js/common.js');?>"></script>
 	<script src="<?=base_url('assets/js/Home.js');?>"></script>
-	<script src="<?=base_url('assets/js/utils.js');?>"></script>
+	<script src="<?=base_url('assets/js/Search.js');?>"></script>
+	<script src="<?=base_url('assets/js/Utils.js');?>"></script>
 	<script src="<?=base_url('assets/js/User.js');?>"></script>
 	<!-- ================== END BASE JS ================== -->
 	<script>
 	$(document).ready(function() { 
 		App.init(); 
 		Home.init();
-		AsyncSlider.init();
+		Utils.initSlider();
+		Utils.initLocationSelector();
 		User.init();
+		Search.init();
 	});
 	</script>
 </body>
