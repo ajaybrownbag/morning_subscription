@@ -79,7 +79,7 @@
                         <div class="header-logo">
                             <a href="http://localhost/morning_subscription/">
                                 <span><img class="brand" src="<?=base_url('assets/img/icons/logo.png');?>" style="border-radius:2px; border:1px solid #666;padding:5px;height:35px;background:#0D5776"></span>
-                                <span>BB<span class="text-success">Subscription</span></span>
+                                <span>BB<span class="text-theme-blue">Subscription</span></span>
                                 <small>Morning Delivery Service</small>
                             </a>
                         </div>

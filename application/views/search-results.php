@@ -5,7 +5,7 @@
 		<img src="assets/img/milk-banner.jpg" alt="" class="img-100" />
 	</div>
 	<div class="container">
-		<h1 class="page-header">Search Results for "<b><?=$response->filters->term;?></b>"</h1>
+		<h1 class="page-header">रोजाना सुबह 7 से पहले डिलीवरी पाएं |  Call or Whatsapp 7042391949</h1>
 	</div>
 </div>
 <div id="search-results" class="section-container bg-info">

@@ -5,7 +5,7 @@
 		<img src="<?=base_url("assets/img/milk-banner.jpg");?>" alt="" class="img-100">
 	</div>
 	<div class="container">
-		<h1 class="page-header"><?=$details->product_name;?> - <?=$details->unit;?></h1>
+		<h1 class="page-header">रोजाना सुबह 7 से पहले डिलीवरी पाएं |  Call or Whatsapp 7042391949</h1>
 	</div>
 </div>
 <div id="product" class="section-container p-t-20">

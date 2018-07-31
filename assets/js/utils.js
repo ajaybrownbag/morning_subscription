@@ -61,7 +61,7 @@ class Utils{
 			var cutMrp = '';
 			var subOrCart = $("<div></div>");
 			// if it is on offer
-			if(product.product_price < product.product_mrp){
+			if(parseFloat(product.product_price) < parseFloat(product.product_mrp)){
 				discount = (100-product.product_price*100/product.product_mrp);
 				discountWrapper = '<div class="discount">'+discount.toFixed(2)+'% OFF</div>';
 				cutMrp = ' <span class="item-discount-price">₹'+parseFloat(product.product_mrp).toFixed(2)+'</span>';

@@ -37,32 +37,5 @@ class Home{
 			},
 			theme: "square"
 		});
-		//-------------------------------------------------
-		
-		// $("input#search_query, input#mobile_search").autocomplete({
-			// source: function (request, response) {
-				// $.ajax({
-					// url: window.base_url+"ajax/search_suggestions",
-					// dataType: "json",
-					// type: "POST",
-					// data: {
-						// term: request.term,
-						// action: "getSuggestions"
-					// },
-					// success: function (results) {
-						// var newArray = [];
-						// results.forEach(function (result) {
-							// var obj = {label: result.product_name};
-							// newArray.push(obj);
-						// });
-						// response(newArray);
-					// },
-					// error: function (message) {
-						// response([]);
-					// }
-				// });
-			// },
-			// minLength: 2
-		// });
 	}
 }
