@@ -140,9 +140,9 @@
 					 <div class="category-box">
 						<ul class="dropdown-menu-list">
 							<li>
-								<a href="#" class="topcategory">
+								<a href="<?=base_url("search-results?q=all&type=".$category->category_url);?>" class="topcategory">
 									<span class="iconcateg">
-										<img src="http://localhost/morning_subscription/assets/img/categoryimg/<?=$category->image_url;?>">
+										<img src="<?=base_url("assets/img/categoryimg/".$category->image_url);?>">
 									</span>
 									<br>
 									<span class=" topcatename"><?=$category->category_name;?></span>
@@ -182,7 +182,7 @@
 							<div class="item-info">
 								<h4 class="item-title">
 									<a href="<?=base_url("product-details/".$product->seourls);?>">
-										<?=$product->product_name;?>-<?=$product->quantity.$product->unit;?>
+										<?=$product->product_short_name;?>-<?=$product->quantity.$product->unit;?>
 									</a>
 								</h4>
 								<div class="w-100">

@@ -5,7 +5,7 @@
 		<img src="assets/img/milk-banner.jpg" alt="" class="img-100" />
 	</div>
 	<div class="container">
-		<h1 class="page-header">Search Results for "<b><?=$response->term;?></b>"</h1>
+		<h1 class="page-header">Search Results for "<b><?=$response->filters->term;?></b>"</h1>
 	</div>
 </div>
 <div id="search-results" class="section-container bg-info">
@@ -15,7 +15,7 @@
 				<div class="search-toolbar">
 					<div class="row">
 						<div class="col-md-10 col-sm-10 col-xs-9">
-							<h4>We found <?=$response->hits;?> Items for "<?=$response->term;?>"</h4>
+							<h4>We found <?=$response->hits;?> Items for "<?=$response->filters->term;?>"</h4>
 						</div>
 						<div class="col-md-2 col-sm-2 col-xs-3 text-right hidden-lg hidden-md hidden-sm">
                             <span><a href="javascript:void(0);" onclick="filter_mob_boxopen()"><i class="fa fa-filter text-primary"></i> filter</a></span>
@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<?php endif;?>
-					<div id="product-container" class="item-row">
+					<div id="product-container" class="item-row" data-term="<?=$response->filters->term;?>" data-index="1" data-type="<?=$response->filters->type;?>">
 						<?php foreach($response->products as $product):?>
 						<div class="item item-thumbnail product-cell"  title="<?=$product->product_name." - ".$product->unit;?>">
 							<div class="subscribhob-btn"><p align="center"><a href="<?=base_url("product-details/".$product->seourls);?>" class="btn btn-sm btn-green"><?=($product->is_subscribed ? "MODIFY" : "SUBSCRIBE");?></a></p></div>
@@ -45,7 +45,7 @@
 							<div class="item-info">
 								<h4 class="item-title">
 									<a href="<?=base_url("product-details/".$product->seourls);?>">
-									<?=$product->product_name." - ".$product->unit;?>
+									<?=$product->product_short_name." - ".$product->unit;?>
 									</a>
 								</h4>
 								<div class="w-100">
@@ -89,13 +89,23 @@
 					</div>
 				</div>
 			</div>
-		<div class="search-sidebar sidebar-search-filter animationacc sticky" id="filter_mobSidenav">
+		<div class="search-sidebar sidebar-search-filter animationacc sticky hidden-sm" id="filter_mobSidenav">
 			<div class="w-100">
-				<h4 class="title m-b-0">Categories  <i onclick="filter_mob_boxclose()" class="fa fa-long-arrow-left f-s-20 pull-right hidden-lg hidden-md hidden-sm"></i></h4>
+				<h4 class="title m-b-0">Categories <i onclick="filter_mob_boxclose()" class="fa fa-long-arrow-left f-s-20 pull-right hidden-lg hidden-md hidden-sm"></i></h4>
 				<ul class="search-category-list">
 				<?php if(!empty($response->aggregations)):?>
+				<?php $selected = empty($response->filters->type) ? "active" : "";?>
+					<li class="<?=$selected;?>"><a class="category-item" href="javascript:;" data-type="">
+						<img class="allicons1 img-responsive img-circle img-thumbnail" src="<?=base_url("assets/img/categoryimg/all-category.png");?>" style="height:30px">
+						<span>All</span> <span class="pull-right m-t-5">(<?=$response->hits;?>)</span></a>
+					</li>
 					<?php foreach($response->aggregations as $aggregation):?>
-					<li><a class="category-item" href="javascript:;" data-term="<?=$response->term;?>" data-type="<?=$aggregation->category_url;?>"><span class="allicons1 milk-icon"></span><span class="caticon"> <?=$aggregation->category_name;?></span> <span class="pull-right m-t-5">(<?=$aggregation->hits;?>)</span></a></li>
+					<?php $selected = ($response->filters->type == $aggregation->category_url) ? "active" : "";?>
+					<li class="<?=$selected;?>">
+						<a class="category-item" href="javascript:;" data-type="<?=$aggregation->category_url;?>">
+						<img class="allicons1 img-responsive img-circle img-thumbnail" src="<?=base_url("assets/img/categoryimg/".$aggregation->image_url);?>" style="height:30px">
+						<span> <?=$aggregation->category_name;?></span> <span class="pull-right m-t-5">(<?=$aggregation->hits;?>)</span></a>
+					</li>
 					<?php endforeach;?>
 				<?php else:?>
 					<li><a href="#"><span class="allicons1 milk-icon"></span><span class="caticon"> No search results found!</span> </a></li>

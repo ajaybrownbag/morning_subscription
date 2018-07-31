@@ -1,3 +1,7 @@
+/*====================================================
+# Author : Ajay Kumar
+====================================================*/
+
 Number.prototype.padLeft = function(base,chr){
    var  len = (String(base || 10).length - String(this).length)+1;
    return len > 0? new Array(len).join(chr || '0')+this : this;
@@ -60,7 +64,7 @@ class Utils{
 			if(product.product_price < product.product_mrp){
 				discount = (100-product.product_price*100/product.product_mrp);
 				discountWrapper = '<div class="discount">'+discount.toFixed(2)+'% OFF</div>';
-				cutMrp = ' <span class="item-discount-price">₹'+product.product_mrp+'</span>';
+				cutMrp = ' <span class="item-discount-price">₹'+parseFloat(product.product_mrp).toFixed(2)+'</span>';
 			}
 			// if subscribed
 			if(parseInt(product.is_subscribed)){
@@ -107,7 +111,7 @@ class Utils{
 			+'		<div class="item-info">'
 			+'			<h4 class="item-title">'
 			+'				<a href="'+window.base_url+'product-details/'+product.seourls+'">'
-			+					product.product_name+' - '+product.quantity+product.unit
+			+					product.product_short_name+' - '+product.quantity+product.unit
 			+'				</a>'
 			+'			</h4>'
 			+'			<div class="w-100">'

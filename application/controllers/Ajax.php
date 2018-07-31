@@ -124,13 +124,15 @@ class Ajax extends CI_Controller {
 				$user_id = (!$this->session->has_userdata('user_id')) ? $this->session->user_id : null;
 				$category = $this->input->post("type");
 				$term = $this->input->post("term");
+				$index = $this->input->post("index");
+				$limit = 12;
+				$offset = $index*$limit;
 				#testing
 				$options = [
 					"term" => $term, 
-					"index" => 0, 
 					"category" => $category,
-					"limit" => 30, 
-					"offset" => 0
+					"limit" => $limit,  
+					"offset" => $offset
 				];
 				$response = $this->product->loadSearches($options);
 				echo json_encode($response);

@@ -7,6 +7,17 @@ class Search{
 	// Default Constructor
 	constructor(){}
 	
+	// listing footer loader
+	static async loading(status){
+		if(status){
+			var loaderImg = window.base_url+"assets/img/loading.gif";
+			var loader = $('<div class="col-sm-12 text-center" id="loader" style="padding:10px;"><img src="'+loaderImg+'" ></div>');
+			$(".search-item-container").append(loader);
+		}else{
+			$(".search-item-container").find("#loader").remove();
+		}
+	}
+	
 	/*==== Blocking UI ==== */
 	static async blockUI(status){
 		if(status){
@@ -21,6 +32,14 @@ class Search{
 		}
 	}
 	
+	// Create new url
+	static async createUrl(data){
+		var url = "q="+data.term;
+		if(data.type.length>0) url += "&type="+data.type
+		var params=window.location.href.split("?")[0]+"?"+url;
+		window.history.pushState(null,null,params);
+	}
+	
 	// Communicate with server
 	static async sendRequest(url,data){
 		var self = this;
@@ -29,23 +48,23 @@ class Search{
 			data: data, 
 			type: 'POST', 
 			dataType:'json',
-			beforeSend: function(){self.blockUI(true);},
+			beforeSend: function(){},
 			success: function(response){
-				self.blockUI(false);
 				return response;
 			},
 			error: function(){
-				self.blockUI(false);
 				return {status:false,message:"Failed to process your request"};
 			}
 		});
 	}
 	
+	// Discount Calculate
 	static async calculateDiscount(product_mrp,product_price){
 		var discount = parseFloat(100-product_price*100/product_mrp).toFixed(2);
 		return (Math.ceil(discount) == parseInt(discount)) ? parseInt(discount) : discount;
 	}
 	
+	// Creating product card
 	static async createCard(product){
 		var self = this;
 		var cell = $("<div>").addClass("item item-thumbnail product-cell").attr("title",product.product_name+" - "+product.unit);
@@ -67,7 +86,7 @@ class Search{
 		cell.append(itemImage);
 		var itemInfo = $('<div class="item-info">');
 		var itemTitle = $('<h4 class="item-title">')
-			.append($('<a href="'+productLink+'">').text(product.product_name+" - "+product.unit));
+			.append($('<a href="'+productLink+'">').text(product.product_short_name+" - "+product.unit));
 		itemInfo.append(itemTitle);
 		var w100 = $('<div class="w-100">')
 			.append('<span class="item-price">₹'+product.product_price+'</span>');
@@ -117,55 +136,99 @@ class Search{
 		return cell;
 	}
 	
-	
-	static async createProductCards(products){
-		console.log(products);
+	// Adding created product cards
+	static async createProductCards(products,productContainer){
 		var self = this;
+		self.isComplete = products.length < 12 ? true : false;
 		if(!products.length) return null;
-		var productContainer = $("#product-container").empty();
 		products.forEach(async function(product){
 			var card = await self.createCard(product);
 			productContainer.append(card);
 		});
 	}
 	
-	static async loadMore(options){
+	// Loading more products on scroll
+	static async loadMore(data){
 		var self = this;
-		options.action = "loadMoreSearchResults";
-		var url = window.base_url+"ajax/load_more_search_results";
-		var response = await self.sendRequest(url,options);
-		console.log(response);
-		self.createProductCards(response.products);
+		data.action = "filterCategoryResults";
+		var url = window.base_url+"ajax/filter_category_search";
+		self.loading(true);
+		var response = await self.sendRequest(url,data);
+		var productContainer = $("#product-container");
+		var index = productContainer.data("index");
+		self.createProductCards(response.products,productContainer);
+		self.loading(false);
+		productContainer.data("index",index+1);
+		self.loader = false;
 		
 	}
 	
+	// Filter category products
 	static async filterCategory(data){
 		var self = this;
 		var url = window.base_url+"ajax/filter_category_search";
+		self.createUrl(data);
 		data.action = "filterCategoryResults";
+		self.blockUI(true);
 		var response = await self.sendRequest(url,data);
-		self.createProductCards(response.products);
+		self.blockUI(false);
+		var productContainer = $("#product-container").empty();
+		productContainer.data('index',1);
+		self.isComplete = false;
+		self.createProductCards(response.products,productContainer);
 	}
 	
+	// Initializing the default data and binding the events
 	static async init(){
 		var self = this;
-		$("ul.search-category-list a.category-item").on("click",function(){
+		// Category Clicking handling
+		$("ul.search-category-list a.category-item, a.all-category").on("click",function(){
+			$.each($("ul.search-category-list a.category-item"),function(){
+				$(this).parent("li").removeClass("active");
+			});
+			$(this).parent("li").addClass("active");
+			self.type = $(this).data("type");
 			var data = {
-				term : $(this).data("term"),
-				type : $(this).data("type"),
+				term : $("#product-container").data("term"),
+				type : self.type,
+				index : 0
 			};
 			self.filterCategory(data);
 		});
 		
-		var footerHeight = $("#policy").outerHeight(true) + $("#footer").outerHeight(true) + $("#footer-copyright").outerHeight(true);
-		$(".search-sidebar-helper").css({'width':$(".sticky").outerWidth(true)+29});
-		$(".sticky").sticky({ 
-			topSpacing: $("#header").outerHeight(true)+10,
-			bottomSpacing : footerHeight+30,
-			getWidthFrom : '.search-sidebar-helper'
+		// Category Sticky setup
+		var footerHeight = $("#policy").outerHeight(true) 
+			+ $("#footer").outerHeight(true) 
+			+ $("#footer-copyright").outerHeight(true);
+		if($(window).width() >= 767){
+			$(".search-sidebar-helper").css({'width':$(".sticky").outerWidth(true)+29});
+			$(".sticky").sticky({ 
+				topSpacing: $("#header").outerHeight(true)+10,
+				bottomSpacing : footerHeight+58,
+				getWidthFrom : '.search-sidebar-helper'
+			});
+		}
+		
+		// Setup for loading more products on scroll
+		$(window).scroll(function(){
+			if($(this).scrollTop() > ($(document).height()-(footerHeight+$(window).height()+20))){
+				var data = {
+					term : $("#product-container").data("term"),
+					type : self.type,
+					index : $("#product-container").data("index")
+				};
+				if(!self.loader && !self.isComplete){
+					self.loader = true;
+					self.loadMore(data);
+				}
+			}
 		});
-
 	}
 }
-// Setting static variable for UI Blocking;
+
+// Setting default values for static variable;
 Search.requestCount = 0;
+Search.loader = false;
+Search.type = $("#product-container").data("type");
+Search.isComplete = false;
+

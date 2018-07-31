@@ -12,10 +12,12 @@
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 	<link href="<?=base_url('assets/plugins/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet" />
 	<link href="<?=base_url('assets/plugins/font-awesome/css/font-awesome.min.css');?>" rel="stylesheet" />
+	<link href="<?=base_url('assets/css/pace/pace-theme-center-simple.css');?>" rel="stylesheet" />
 	<link href="<?=base_url('assets/css/style.min.css');?>" rel="stylesheet" />
 	<link href="<?=base_url('assets/css/style-responsive.min.css');?>" rel="stylesheet" />
 	<link href="<?=base_url('assets/css/theme/orange.css');?>" id="theme" rel="stylesheet" />
 	<link href="<?=base_url('assets/css/animate.min.css');?>" rel="stylesheet" />
+	<link href="<?=base_url('assets/plugins/font-awesome/css/fa-animate.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/css/subscription-styles.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/css/flickity-slider.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/plugins/daterangepicker/daterangepicker.css');?>" rel="stylesheet" />
@@ -100,7 +102,7 @@
 													<div class="col-md-3 col-sm-4 col-xs-4 category-box">
                                                         <ul class="dropdown-menu-list">
                                                             <li>
-                                                                <a href="#" class="topcategory">
+                                                                <a href="<?=base_url("search-results?q=all&type=".$category->category_url);?>" class="topcategory">
                                                                     <span class="iconcateg">
                                                                         <img src="<?=base_url('assets/img/categoryimg/'.$category->image_url);?>">
                                                                     </span>

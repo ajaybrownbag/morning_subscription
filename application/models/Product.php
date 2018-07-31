@@ -18,7 +18,7 @@ class Product extends CI_Model{
 	
 	# Getting the product details
 	public function get($product_id){
-		$this->db->select("bosp.*,bp.product_name, bp.product_mrp,CONCAT(bp.quantity,bp.unit) AS unit,bp.seourls,bp.product_description,bp.product_brand,bpi.product_image_url")
+		$this->db->select("bosp.*,bp.product_name,bp.product_short_name, bp.product_mrp,CONCAT(bp.quantity,bp.unit) AS unit,bp.seourls,bp.product_description,bp.product_brand,bpi.product_image_url")
 		->from("bb_ord_subs_product bosp")
 		->join("bb_products bp","bosp.product_id = bp.product_id","inner")
 		->join("bb_product_images bpi","bosp.product_id = bpi.product_id AND bpi.is_default = 1","left")
@@ -37,6 +37,7 @@ class Product extends CI_Model{
 				boscat.category_id,
 				TIME_FORMAT(bosp.cutoff_time,'%H:%i') as cutoff_time,
 				bp.product_name,
+				bp.product_short_name,
 				bp.product_mrp,
 				bosp.product_price,
 				bp.quantity,
@@ -98,7 +99,7 @@ class Product extends CI_Model{
 	
 	public function search($term,$filter = null){
 		$options = array(
-			'table' => "(SELECT bosp.*, bp.product_name, bp.product_mrp,CONCAT(bp.quantity,bp.unit) as unit, bp.seourls,bpi.product_image_url FROM bb_ord_subs_product bosp INNER JOIN bb_products bp USING(product_id)
+			'table' => "(SELECT bosp.*, bp.product_name, bp.product_short_name, bp.product_mrp,CONCAT(bp.quantity,bp.unit) as unit, bp.seourls,bpi.product_image_url FROM bb_ord_subs_product bosp INNER JOIN bb_products bp USING(product_id)
 			LEFT JOIN bb_product_images bpi ON bosp.product_id = bpi.product_id AND bpi.is_default = 1)temp",
 			"columns" => array("product_id","product_name","category","product_mrp","product_price","unit","seourls","product_image_url"),
 			"target" => "product_name",
@@ -119,7 +120,7 @@ class Product extends CI_Model{
 		$condition = ($this->session->area_id) ? "FIND_IN_SET('{$this->session->area_id}',bosp.serving_areas)" : "1=1";
 		$condition .= " AND MATCH(bp.product_name) AGAINST('{$term}' IN BOOLEAN MODE)";
 		$iconUrl = "https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs_50_50/";
-		$sql = "SELECT bosp.*, boscat.category_name, bp.product_name, bp.product_mrp,CONCAT(bp.quantity,bp.unit) as unit, bp.seourls,CONCAT('{$iconUrl}',bpi.product_image_url) as product_icon FROM bb_ord_subs_product bosp INNER JOIN bb_products bp USING(product_id) INNER JOIN bb_ord_subs_category boscat ON bosp.category = boscat.category_id
+		$sql = "SELECT bosp.*, boscat.category_name, bp.product_name,bp.product_short_name, bp.product_mrp,CONCAT(bp.quantity,bp.unit) as unit, bp.seourls,CONCAT('{$iconUrl}',bpi.product_image_url) as product_icon FROM bb_ord_subs_product bosp INNER JOIN bb_products bp USING(product_id) INNER JOIN bb_ord_subs_category boscat ON bosp.category = boscat.category_id
 			LEFT JOIN bb_product_images bpi ON bosp.product_id = bpi.product_id AND bpi.is_default = 1
 		WHERE {$condition}
 		ORDER BY MATCH(bp.product_name) AGAINST('{$term}' IN BOOLEAN MODE) DESC,bosp.rank ASC";
@@ -146,6 +147,10 @@ class Product extends CI_Model{
 			$condition .= " AND MATCH(bp.product_name) AGAINST('{$term}' IN BOOLEAN MODE)";
 			$order_by .= ", MATCH(bp.product_name) AGAINST('{$term}' IN BOOLEAN MODE) DESC, MATCH(boscat.category_name) AGAINST('{$term}' IN BOOLEAN MODE) DESC";
 		}
+		$limit = "";
+		if($options['limit']){
+			$limit .= "LIMIT {$options['offset']},{$options['limit']}";
+		}
 		$user_id = $this->session->user_id;
 		
 		$now = date("Y-m-d");
@@ -156,6 +161,7 @@ class Product extends CI_Model{
 				boscat.category_id,
 				TIME_FORMAT(bosp.cutoff_time,'%H:%i') as cutoff_time,
 				bp.product_name,
+				bp.product_short_name,
 				bp.product_mrp,
 				bosp.product_price,
 				CONCAT(bp.quantity,bp.unit) AS unit,
@@ -171,7 +177,7 @@ class Product extends CI_Model{
 			LEFT JOIN bb_ord_subs_item bosi
 				ON(bosp.product_id = bosi.product_id AND bos.order_id = bosi.order_id AND bosi.end_date >= '{$now}')
 			LEFT JOIN bb_product_images bpi ON bosp.product_id = bpi.product_id AND bpi.is_default = '1'
-			WHERE {$condition} GROUP BY bosp.id {$order_by}";
+			WHERE {$condition} GROUP BY bosp.id {$order_by} {$limit}";
 		return $this->db->query($sql)->result();
 	}
 	
@@ -185,14 +191,52 @@ class Product extends CI_Model{
 					? json_decode($product->date_configs->pattern_value,true) : $product->date_configs->pattern_value;
 			}
 		});
-		$aggregations = $this->stringSearch->aggregate(["category_name","category_url","category_id"],$products);
-		
+		$aggregations = [];
+		if(!empty($products)){
+			$aggregations = $this->getCategoryAggregations($options);
+		}
+		$total_hits = 0;
+		array_walk($aggregations,function($aggr)use(&$total_hits){$total_hits+=$aggr->hits;});
 		$response = (object)[
-			"term" => $options['term'],
-			"hits" => count($products),
+			"filters" => (object)[
+				"term" => $options['term'],
+				"type" => $options['category']
+			],
+			"hits" => $total_hits,
 			"products" => $products,
 			"aggregations" => $aggregations
 		];
 		return $response; 
+	}
+	
+	public function getCategoryAggregations($options){
+		$condition = ($this->session->area_id) ? "FIND_IN_SET('{$this->session->area_id}',bosp.serving_areas)" : "1=1";
+		$order_by = "ORDER BY bosp.rank ASC";
+		if(strtolower($options['term']) != "" && strtolower($options['term']) != "all"){
+			$words = explode(" ",$options['term']);
+			$string = array_map(function(&$word){
+				return "+".$word."*";
+			},$words);
+			$term = implode(" ",$string);
+			$condition .= " AND MATCH(bp.product_name) AGAINST('{$term}' IN BOOLEAN MODE)";
+			$order_by .= ", MATCH(bp.product_name) AGAINST('{$term}' IN BOOLEAN MODE) DESC, MATCH(boscat.category_name) AGAINST('{$term}' IN BOOLEAN MODE) DESC";
+		}
+		
+		$user_id = $this->session->user_id;
+		$now = date("Y-m-d");
+		
+		$sql = "SELECT bosp.id,
+			COUNT(bosp.product_id) AS hits,
+			boscat.category_name,
+			boscat.category_url,
+			boscat.category_id,
+			boscat.image_url
+		FROM bb_ord_subs_product bosp
+		INNER JOIN bb_ord_subs_category boscat ON(bosp.category = boscat.category_id)
+		LEFT JOIN bb_products bp USING(product_id)
+		LEFT JOIN bb_ord_subscription bos ON(bos.user_id = '{$user_id}')
+		LEFT JOIN bb_product_images bpi ON bosp.product_id = bpi.product_id AND bpi.is_default = '1'
+		WHERE {$condition} GROUP BY boscat.category_id {$order_by}";
+		return $this->db->query($sql)->result();
 	}
 }

@@ -15,12 +15,11 @@ class Search extends CI_Controller {
 			$this->notFound();
 			return;
 		}
-		#testing
+		
 		$options = [
 			"term" => $term, 
-			"index" => 0, 
 			"category" => $category,
-			"limit" => 30, 
+			"limit" => 12, 
 			"offset" => 0
 		];
 		$response = $this->product->loadSearches($options);
