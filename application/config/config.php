@@ -22,6 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+$config['category_image_url'] = 'https://d2gxays8f387d8.cloudfront.net/prodstore/subscription/web/category/';
 $config['base_url'] = 'http://localhost/morning_subscription';
 
 /*

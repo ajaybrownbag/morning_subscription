@@ -1,215 +1,66 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php $this->load->view("common/header.php");?>
+<style>
+@media screen and (min-device-width: 300px) and (max-device-width: 767px)  {
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {padding: 4px 0px;}
+#subscription-history-table > thead{ display: none; }
+#subscription-history-table {display: block; }
+#subscription-history-table > tbody{width: 100% !important;display: inline-block;}
+#subscription-history-table > tbody > tr{ border: 1px solid #eee; display: inline-block; width: 100%; }
+#subscription-history-table > tbody > tr > td{display: block; position: relative !important; padding-left: 50% !important; width: 50% !important; }
+#subscription-history-table > tbody > tr > td:before {position: absolute; top: 6px; left: 6px; width: 50%; white-space: nowrap;font-weight: bold;}
+#subscription-history-table > tbody > tr > td img{height: 50% !important;}
+#subscription-history-table > tbody > tr > td:nth-of-type(1){height: 20px;}
+#subscription-history-table > tbody > tr > td:nth-of-type(1):before { content: "View Products"; }
+#subscription-history-table > tbody > tr > td:nth-of-type(2):before { content: "TXN#"; }
+#subscription-history-table > tbody > tr > td:nth-of-type(3):before { content: "Total Items"; }
+#subscription-history-table > tbody > tr > td:nth-of-type(4):before { content: "Delivery Charges"; }
+#subscription-history-table > tbody > tr > td:nth-of-type(5):before { content: "Total Amount"; }
+#subscription-history-table > tbody > tr > td:nth-of-type(6):before { content: "Delivery Date"; }
+.table > tbody > tr > td > div > table{width: 100% !important;}
+.table > tbody > tr > td > div > table > tbody > tr:nth-of-type(1){display: none;}
+.table > tbody > tr > td > div > table > tbody > tr{display: block; background:#fbf5ef; width: 100%; position: relative;}
+.table > tbody > tr > td > div > table:after, .table > tbody > tr > td > div > table:before {bottom: 100%; left: 53%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
+.table > tbody > tr > td > div > table:before {border-color: rgba(236, 118, 237, 0); border-bottom-color: #ecbc89; border-width: 10px; margin-left: -20px; }
+.table > tbody > tr > td > div > table > tbody > tr > td{display: block; position: relative !important; padding-left: 47% !important; width: 50% !important; margin-bottom: 5px; }
+.table > tbody > tr > td > div > table > tbody > tr > td:before {position: absolute; top: 6px; left: 6px; width: 50%; white-space: nowrap;font-weight: bold;}
+.table > tbody > tr > td > div > table > tbody > tr > td:nth-of-type(1):before { content: "Image"; }
+.table > tbody > tr > td > div > table > tbody > tr > td:nth-of-type(2):before { content: "Product"; }
+.table > tbody > tr > td > div > table > tbody > tr > td:nth-of-type(3):before { content: "Unit"; }
+.table > tbody > tr > td > div > table > tbody > tr > td:nth-of-type(4):before { content: "MRP"; }
+.table > tbody > tr > td > div > table > tbody > tr > td:nth-of-type(5):before { content: "Price"; }
+.table > tbody > tr > td > div > table > tbody > tr > td:nth-of-type(6):before { content: "Quantity"; }
+.table > tbody > tr > td > div > table > tbody > tr > td:nth-of-type(7):before { content: "Total"; }
+}
+</style>
 <div class="section-container" id="checkout-cart">
     <div class="container">
         <div class="checkout">
-            <form action="#" method="POST" name="form_checkout">
-                <div class="mycart-header bg-blue-theme">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                           Subscription Orders History
-                        </div>
+            <div class="mycart-header bg-blue-theme">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                       Subscription Orders History
                     </div>
                 </div>
-                <div class="checkout-body">
-                    <div class="panel-group" id="accordionaccp">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <div class="row">
-                                        <div class="col-md-1 col-sm-1 col-xs-3 expand-brn">
-                                            <a class="accordion-toggle m-l-5" data-toggle="collapse" data-parent="#accordionaccp" href="#collapseOne">
-                                                <i class="indicator glyphicon glyphicon-minus"></i>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 col-sm-3 col-xs-5"><i class="fa fa-calendar"></i> June/16/2018</div>
-                                        <div class="col-md-2 col-sm-2 col-xs-4">Items (<b>2</b>)</div>
-                                       <div class="col-md-3 col-sm-3 col-xs-6 mob-m-t-10 mob-txt-r">Total Amount<br class="hidden-lg hidden-md hidden-sm"> <b><i class="fa fa-rupee"></i>100.00</b></div>
-                                        <div class="col-md-3 col-sm-3 col-xs-6 mob-m-t-10 mob-txt-r">Delivery Charges<br class="hidden-lg hidden-md hidden-sm"> <b><i class="fa fa-rupee"></i>20.00</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse in">
-                                <div class="panel-body p-l-0 p-r-0 p-t-0">
-                                    <div class="custom-responsive-table history-products-list bg-warning">
-                                        <table class="table table-cart">
-                                            <thead>
-                                                <tr>
-                                                    <th>Image</th>
-                                                    <th>Product Name</th>
-                                                    <th>MRP</th>
-                                                    <th>Price</th>
-                                                    <th class="text-center">Quantity</th>
-                                                    <th class="text-center">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td data-title="Image">
-                                                        <div class="cart-pd-img">
-                                                            <img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_cow_milk_500ml_f.jpg" alt="" />
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="Product">
-                                                        <div class="cart-product-info">
-                                                            <div class="title">Mother Dairy Toned Milk</div>
-                                                            <div class="desc"><b>1 liter</b></div>
-                                                        </div> 
-                                                    </td>
-                                                    <td data-title="MRP" class="text-left">
-                                                        <b><i class="fa fa-rupee"></i> 21.00</b>
-                                                    </td>
-                                                    <td data-title="Price" class="text-left">
-                                                        <b><i class="fa fa-rupee"></i> 20.00</b>
-                                                    </td>
-                                                    <td data-title="Quantity" class="text-center"> 2</td>
-                                                    <td data-title="Total" class="text-center">
-                                                        <b class="f-s-16"><i class="fa fa-rupee"></i> 42.00</b> 
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="Image">
-                                                        <div class="cart-pd-img">
-                                                            <img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_cow_milk_500ml_f.jpg" alt="" />
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="Product">
-                                                        <div class="cart-product-info">
-                                                            <div class="title">Mother Dairy Toned Milk</div>
-                                                            <div class="desc"><b>1 liter</b></div>
-                                                        </div> 
-                                                    </td>
-                                                    <td data-title="MRP" class="text-left">
-                                                        <b><i class="fa fa-rupee"></i> 21.00</b>
-                                                    </td>
-                                                    <td data-title="Price" class="text-left">
-                                                        <b><i class="fa fa-rupee"></i> 20.00</b>
-                                                    </td>
-                                                    <td data-title="Quantity" class="text-center"> 2</td>
-                                                    <td data-title="Total" class="text-center"> 
-                                                        <b class="f-s-16"><i class="fa fa-rupee"></i> 42.00</b> 
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="w-100">
-                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-6 col-xs-offset-0">
-                                                <h5 class="text-right"><b>Payment Details</b></h5>
-                                                <hr>
-                                                <p class="text-right">Sub Total (<b><i class="fa fa-rupee"></i>40</b>) + Delivery Charge (<b><i class="fa fa-rupee"></i>2</b>) = Total <i class="fa fa-rupee"></i><b>42.00</b>  </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    <div class="row">
-                                        <div class="col-md-1 col-sm-1 col-xs-3 expand-brn">
-                                            <a class="accordion-toggle m-l-5" data-toggle="collapse" data-parent="#accordionaccp" href="#collapseTwo">
-                                            <i class="indicator glyphicon glyphicon-plus"></i>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-3 col-sm-3 col-xs-5"><i class="fa fa-calendar"></i> June/16/2018</div>
-                                        <div class="col-md-2 col-sm-2 col-xs-4">Items (<b>2</b>)</div>
-                                        <div class="col-md-3 col-sm-3 col-xs-6 mob-m-t-10 mob-txt-r">Total Amount<br class="hidden-lg hidden-md hidden-sm"> <b><i class="fa fa-rupee"></i>100.00</b></div>
-                                        <div class="col-md-3 col-sm-3 col-xs-6 mob-m-t-10 mob-txt-r">Delivery Charges<br class="hidden-lg hidden-md hidden-sm"> <b><i class="fa fa-rupee"></i>20.00</b></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse">
-                                <div class="panel-body p-l-0 p-r-0 p-t-0">
-                                    <div class="custom-responsive-table history-products-list  bg-warning">
-                                        <table class="table table-cart">
-                                            <thead>
-                                                <tr>
-                                                    <th>Image</th>
-                                                    <th>Product Name</th>
-                                                    <th>MRP</th>
-                                                    <th>Price</th>
-                                                    <th class="text-center">Quantity</th>
-                                                    <th class="text-center">Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td data-title="Image">
-                                                        <div class="cart-pd-img">
-                                                            <img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_cow_milk_500ml_f.jpg" alt="" />
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="Product">
-                                                        <div class="cart-product-info">
-                                                            <div class="title">Mother Dairy Toned Milk</div>
-                                                            <div class="desc"><b>1 liter</b></div>
-                                                        </div> 
-                                                    </td>
-                                                    <td data-title="MRP" class="text-left">
-                                                        <b><i class="fa fa-rupee"></i> 21.00</b>
-                                                    </td>
-                                                    <td data-title="Price" class="text-left">
-                                                        <b><i class="fa fa-rupee"></i> 20.00</b>
-                                                    </td>
-                                                    <td data-title="Quantity" class="text-center"> 2</td>
-                                                    <td data-title="Total" class="text-center">
-                                                        <b class="f-s-16"><i class="fa fa-rupee"></i> 42.00</b> 
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td data-title="Image">
-                                                        <div class="cart-pd-img">
-                                                            <img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_cow_milk_500ml_f.jpg" alt="" />
-                                                        </div>
-                                                    </td>
-                                                    <td data-title="Product">
-                                                        <div class="cart-product-info">
-                                                            <div class="title">Mother Dairy Toned Milk</div>
-                                                            <div class="desc"><b>1 liter</b></div>
-                                                        </div> 
-                                                    </td>
-                                                    <td data-title="MRP" class="text-left">
-                                                        <b><i class="fa fa-rupee"></i> 21.00</b>
-                                                    </td>
-                                                    <td data-title="Price" class="text-left">
-                                                        <b><i class="fa fa-rupee"></i> 20.00</b>
-                                                    </td>
-                                                    <td data-title="Quantity" class="text-center"> 2</td>
-                                                    <td data-title="Total" class="text-center"> 
-                                                        <b class="f-s-16"><i class="fa fa-rupee"></i> 42.00</b> 
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="w-100">
-                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-6 col-xs-offset-0">
-                                                <h5 class="text-right"><b>Payment Details</b></h5>
-                                                <hr>
-                                                <p class="text-right">Sub Total (<b><i class="fa fa-rupee"></i>40</b>) + Delivery Charge (<b><i class="fa fa-rupee"></i>2</b>) = Total <i class="fa fa-rupee"></i><b>42.00</b>  </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="checkout-footer bg-grey">
-                    <div class="text-center">
-                        <ul class="pagination m-t-0">
-                            <li class="disabled"><a href="javascript:;">Prev</a></li>
-                            <li class="active hidden-xs"><a href="javascript:;">1</a></li>
-                            <li class="hidden-xs"><a href="javascript:;">2</a></li>
-                            <li class="hidden-xs"><a href="javascript:;">3</a></li>
-                            <li class="hidden-xs"><a href="javascript:;">4</a></li>
-                            <li class="hidden-xs"><a href="javascript:;">5</a></li>
-                            <li><a href="javascript:;">Next</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </form>
+            </div>
+            <div class="checkout-body">
+              <div class="text-muted">
+      					<table class="table table-striped display" id="subscription-history-table">
+      					  <thead>
+      						<tr>
+      						<th class="text-center"><i class="fa fa-plus-circle"></i></th>
+      						<th>TRANSACTION</th>
+      						<th>TOTAL ITEMS</th>
+      						<th>DELIVERY CHARGE</th>
+                  <th>TOTAL AMOUNT</th>
+                  <th>DELIVERY DATE</th>
+      						</tr>
+      					  </thead>
+      					  <tbody></tbody>
+      					</table>
+    				  </div>
+            </div>
         </div>
     </div>
 </div>
-<?php $this->load->view("common/footer.php");?>
+<?php $this->load->view("common/footer.php",["pageName"=>"orderHistory"]);?>

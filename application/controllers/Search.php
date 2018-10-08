@@ -17,13 +17,12 @@ class Search extends CI_Controller {
 		}
 		
 		$options = [
-			"term" => $term, 
+			"term" => trim($term), 
 			"category" => $category,
-			"limit" => 12, 
+			"limit" => 20, 
 			"offset" => 0
 		];
-		$response = $this->product->loadSearches($options);
-		
+		$response = $this->product->loadSearches($options,true);
 		$this->load->view('search-results',["response" => $response]);
 	}
 

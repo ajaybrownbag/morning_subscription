@@ -25,8 +25,8 @@
     <link href="<?=base_url('assets/plugins/ui/jquery-ui.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/plugins/autocomplete/autocomplete.min.css');?>" rel="stylesheet" />
     <link href="<?=base_url('assets/plugins/autocomplete/autocomplete.themes.min.css');?>" rel="stylesheet" />
-    <link href="<?=base_url('assets/plugins/select2/css/select2.min.css');?>" rel="stylesheet" />
-	<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />-->
+		<link href="<?=base_url('assets/plugins/select2/css/select2.min.css');?>" rel="stylesheet" />
+    <link href="<?=base_url('assets/plugins/datatables/css/dataTables.bootstrap.min.css');?>" rel="stylesheet" />
 	<!-- ================== END BASE CSS STYLE ================== -->
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="<?=base_url('assets/plugins/jquery/jquery-1.9.1.min.js');?>"></script>
@@ -35,18 +35,10 @@
 	<script src="<?=base_url('assets/plugins/pace/pace.min.js');?>"></script>
 	<script> window.base_url = '<?=base_url();?>';</script>
 	<style>
-	  #header.affix {
-		  top: 0;
-		  width: 100%;
-	  }
-	  .sticky.affix {
-		  top: 0;
-		  width: 100%;
-	  }
-	  #header.affix + .affix-seperator {
-		  padding-top: 88px;
-	  }
-	  </style>
+	  #header.affix { top: 0; width: 100%; }
+	  .sticky.affix { top: 0; width: 100%; }
+	  #header.affix + .affix-seperator {  padding-top: 88px; }
+	</style>
 	<!-- ================== END BASE JS ================== -->
 </head>
 <body class="bg-silver">
@@ -77,7 +69,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <div class="header-logo">
-                            <a href="http://localhost/morning_subscription/">
+                            <a href="<?=base_url();?>">
                                 <span><img class="brand" src="<?=base_url('assets/img/icons/logo.png');?>" style="border-radius:2px; border:1px solid #666;padding:5px;height:35px;background:#0D5776"></span>
                                 <span>BB<span class="text-theme-blue">Subscription</span></span>
                                 <small>Morning Delivery Service</small>
@@ -98,13 +90,13 @@
                                             <div class="dropdown-menu-content">
                                                 <h4 class="title">Subscribe From Categories</h4>
                                                 <div class="row overflowscroll">
-													<?php foreach($this->env->categories as $category):?>
-													<div class="col-md-3 col-sm-4 col-xs-4 category-box">
+																									<?php foreach($this->env->categories as $category):?>
+																									<div class="col-md-3 col-sm-4 col-xs-4 category-box">
                                                         <ul class="dropdown-menu-list">
                                                             <li>
                                                                 <a href="<?=base_url("search-results?q=all&type=".$category->category_url);?>" class="topcategory">
                                                                     <span class="iconcateg">
-                                                                        <img src="<?=base_url('assets/img/categoryimg/'.$category->image_url);?>">
+                                                                        <img src="<?=category_image($category->image_url);?>">
                                                                     </span>
                                                                     <br>
                                                                     <span class=" topcatename"> <?=$category->category_name;?></span>
@@ -112,16 +104,16 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-													<?php endforeach;?>
+																									<?php endforeach;?>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="hidden-xs">
-									<form action="<?=base_url("search-results");?>" method="GET" name="search_form" id="searchForm" class="topsearch">
-										<input id="search_query" type="text" placeholder="Search Product" name="q" class="form-control bg-silver-lighter" />
-									</form>
+																	<form action="<?=base_url("search-results");?>" method="GET" name="search_form" id="searchForm" class="topsearch">
+																		<input id="search_query" type="text" placeholder="Search Product" name="q" class="form-control bg-silver-lighter" />
+																	</form>
                                 </li>
                             </ul>
                         </div>
@@ -135,64 +127,61 @@
                                     <span class="arrow top"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-cart p-0">
-									<?php if(empty($this->env->cartItems)):?>
-									<div class="cart-header">
+																	<?php if(empty($this->env->cartItems)):?>
+																	<div class="cart-header">
                                         <h4 class="cart-title text-center text-warning">YOUR SUBSCRIPTION BAG IS EMPTY</h4>
                                     </div>
-									<?php else:?>
-									<div class="cart-header">
+																		<?php else:?>
+																		<div class="cart-header">
                                         <h4 class="cart-title">SUBSCRIPTION BAG (<?=count($this->env->cartItems);?>) </h4>
                                     </div>
                                     <div class="cart-body">
                                         <ul class="cart-item">
-											<?php foreach($this->env->cartItems as $cartItem):?>
-											<li>
+																						<?php foreach($this->env->cartItems as $cartItem):?>
+																						<li>
                                                 <div class="cart-item-image"><a href="<?=base_url("product-details/".$cartItem->seourls);?>"><img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/<?=$cartItem->product_image_url;?>" alt="" /></a></div>
                                                 <div class="cart-item-info">
                                                     <h4><a href="<?=base_url("product-details/".$cartItem->seourls);?>"><?=$cartItem->product_name;?> - <?=$cartItem->unit;?></a></h4>
                                                     <b>
-														<span class="price">Price: ₹<?=$cartItem->product_price;?></span>
-														<span class="quantity pull-right text-primary">Qty: <?=$cartItem->quantity;?></span>
-													</b>
+																											<span class="price">Price: ₹<?=$cartItem->product_price;?></span>
+																											<span class="quantity pull-right text-primary">Qty: <?=$cartItem->quantity;?></span>
+																										</b>
                                                 </div>
                                                 <div class="cart-item-close">
                                                     <a href="#" data-toggle="tooltip" data-title="Remove">&times;</a>
                                                 </div>
                                             </li>
-											<?php endforeach;?>
+																					<?php endforeach;?>
                                         </ul>
                                     </div>
                                     <div class="cart-footer">
                                         <div class="row row-space-10">
-                                            <div class="col-xs-6">
-                                                <a href="my-cart" class="btn btn-default btn-block">View Cart</a>
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <a href="checkout_cart.html" class="btn btn-blue btn-block">Checkout</a>
+                                            <div class="col-xs-12">
+                                                <a href="<?=base_url("my-cart");?>" class="btn btn-blue btn-block">View Cart <i class="fa fa-long-arrow-right"></i></a>
                                             </div>
                                         </div>
                                     </div>
-									<?php endif;?>
+																	<?php endif;?>
                                 </div>
                             </li>
                             <li class="divider"></li>
                             <!-- before login start -->
-							<?php if(empty($this->env->user_id)):?>
-							<li class="mobilescrollhide">
+														<?php if(empty($this->env->user_id)):?>
+														<li class="mobilescrollhide">
                                 <a href="javascript:void(0);" data-toggle="modal" data-target="#signin-up">
-                                    <img src="<?=base_url("assets/img/user-1.jpg");?>" class="user-img" alt="" /> 
+                                    <img src="<?=base_url("assets/img/user-1.jpg");?>" class="user-img" alt="" />
                                     <span class="hidden-md hidden-sm hidden-xs">Login / Register</span>
                                 </a>
                             </li>
-							<!-- before login end -->
-							<?php else:?>
-							<!-- after login start -->
+														<!-- before login end -->
+														<?php else:?>
+														<!-- after login start -->
                             <li class="dropdown dropdown-hover afterlog mobilescrollhide">
                                 <a href="javascript:void(0);" onclick="myacc_mob_boxopen()">
                                     <img src="<?=base_url("assets/img/user-1.jpg");?>" class="user-img" alt="" />
                                     <span class="hidden-md hidden-sm hidden-xs">
-										<?=$this->env->userProfile->first_name;?> <?=$this->env->userProfile->last_name;?>
-									</span>
+																			<?=$this->env->userProfile->first_name;?> <?=$this->env->userProfile->last_name;?>
+																		</span>
                                     <span class="arrow top"></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-cart p-0 loginbox animationacc" id="myacc_mobSidenav">
@@ -214,7 +203,7 @@
                                                 <a href="<?=base_url("subscription-history");?>"  class="logingiconalign">
                                                     <span class="fa fa-clock-o"></span>
                                                     <span class="m-l-10">Subscription History</span>
-                                                </a> 
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="<?=base_url("logout");?>" class="logingiconalign">
@@ -227,7 +216,7 @@
                                 </div>
                             </li>
                             <!-- after login end -->
-							<?php endif;?>
+													<?php endif;?>
                         </ul>
                     </div>
                 </div>

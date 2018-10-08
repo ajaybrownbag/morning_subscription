@@ -2,11 +2,12 @@
 # Title			: Search Subscription products
 # Author		: Ajay Kumar
 # Description	: Module with fully async behaviour
+# Comment		: Please create a copy before any changes
 -----------------------------------------*/
 class Search{
 	// Default Constructor
 	constructor(){}
-	
+
 	// listing footer loader
 	static async loading(status){
 		if(status){
@@ -17,7 +18,7 @@ class Search{
 			$(".search-item-container").find("#loader").remove();
 		}
 	}
-	
+
 	/*==== Blocking UI ==== */
 	static async blockUI(status){
 		if(status){
@@ -31,7 +32,7 @@ class Search{
 			}
 		}
 	}
-	
+
 	// Create new url
 	static async createUrl(data){
 		var url = "q="+data.term;
@@ -39,14 +40,14 @@ class Search{
 		var params=window.location.href.split("?")[0]+"?"+url;
 		window.history.pushState(null,null,params);
 	}
-	
+
 	// Communicate with server
 	static async sendRequest(url,data){
 		var self = this;
 		return $.ajax({
-			url: url, 
-			data: data, 
-			type: 'POST', 
+			url: url,
+			data: data,
+			type: 'POST',
 			dataType:'json',
 			beforeSend: function(){},
 			success: function(response){
@@ -57,13 +58,13 @@ class Search{
 			}
 		});
 	}
-	
+
 	// Discount Calculate
-	static async calculateDiscount(product_mrp,product_price){
+	static calculateDiscount(product_mrp,product_price){
 		var discount = parseFloat(100-product_price*100/product_mrp).toFixed(2);
 		return (Math.ceil(discount) == parseInt(discount)) ? parseInt(discount) : discount;
 	}
-	
+
 	// Creating product card
 	static async createCard(product){
 		var self = this;
@@ -75,20 +76,21 @@ class Search{
 			+'<a href="'+productLink+'" class="btn btn-sm btn-green">'+actionBtnTxt+'</a>'
 			+'</p>'
 			+'</div>');
-		
+
 		cell.append(actionBtn);
+		var defaultImage = window.base_url+"assets/img/no-image.png";
 		var itemImage = $('<a href="'+productLink+'" class="item-image">')
-			.append($('<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/'+product.product_image_url+'" alt="'+product.product_name+'" />'));
+			.append($('<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/'+product.product_image_url+'" alt="'+product.product_name+'" onerror="this.src=\''+defaultImage+'\';"/>'));
 		if(parseFloat(product.product_mrp) > parseFloat(product.product_price)){
-			var discount = await self.calculateDiscount(product.product_mrp,product.product_price);
+			var discount = self.calculateDiscount(product.product_mrp,product.product_price);
 			itemImage.append($('<div class="discount">').text(discount+"% OFF"));
 		}
 		cell.append(itemImage);
 		var itemInfo = $('<div class="item-info">');
-		var itemTitle = $('<h4 class="item-title">')
+		var itemTitle = $('<h4 class="item-title text-center">')
 			.append($('<a href="'+productLink+'">').text(product.product_short_name+" - "+product.unit));
 		itemInfo.append(itemTitle);
-		var w100 = $('<div class="w-100">')
+		var w100 = $('<div class="w-100  text-center">')
 			.append('<span class="item-price">₹'+product.product_price+'</span>');
 		if(parseFloat(product.product_mrp) > parseFloat(product.product_price)){
 			w100.append(' <span class="item-discount-price">'
@@ -96,7 +98,6 @@ class Search{
 			+'</span>');
 		}
 		itemInfo.append(w100);
-		
 		if(parseInt(product.is_subscribed)){
 			var days = [
 					{day:"mon",letter:"M"},
@@ -110,6 +111,7 @@ class Search{
 			var configs = product.date_configs;
 			var configContainer = $("<div>").addClass("item-info-day");
 			if(configs.pattern == 'weekdays'){
+				itemInfo.append('<p class="tag">Weekdays</p>');
 				var ul = $("<ul>").empty();
 				days.forEach(function(data){
 					var li = $("<li>").text(data.letter);
@@ -119,34 +121,32 @@ class Search{
 				});
 				configContainer.append(ul);
 			}else if(configs.pattern == 'alternate'){
-				var span = $('<span class="btn btn-xs btn-warning pull-left">').text(configs.pattern_value+" Day(s) Alternate");
-				configContainer.append(span);
+				itemInfo.append('<p class="tag">'+configs.pattern_value+' Day(s) Alternate</p>');
 			}else{
-				var span = $('<span class="btn btn-xs btn-warning pull-left">').text(configs.pattern);
-				configContainer.append(span);
+				itemInfo.append('<p class="tag">'+configs.pattern+'</p>');
 			}
 			itemInfo.append(configContainer);
 		}else if(parseInt(product.in_cart)){
 			var configContainer = $("<div>").addClass("item-info-day");
-			var cartBtn = $("<span>").addClass("fa fa-shopping-cart btn btn-xs btn-default pull-left");
-			configContainer.append(cartBtn);
+			var cartBtn = $("<p>").addClass("tag-cart").text("In Cart");
+			itemInfo.append(cartBtn);
 			itemInfo.append(configContainer);
 		}
 		cell.append(itemInfo);
 		return cell;
 	}
-	
+
 	// Adding created product cards
 	static async createProductCards(products,productContainer){
 		var self = this;
-		self.isComplete = products.length < 12 ? true : false;
+		self.isComplete = products.length < 20 ? true : false;
 		if(!products.length) return null;
 		products.forEach(async function(product){
 			var card = await self.createCard(product);
 			productContainer.append(card);
 		});
 	}
-	
+
 	// Loading more products on scroll
 	static async loadMore(data){
 		var self = this;
@@ -160,9 +160,9 @@ class Search{
 		self.loading(false);
 		productContainer.data("index",index+1);
 		self.loader = false;
-		
+
 	}
-	
+
 	// Filter category products
 	static async filterCategory(data){
 		var self = this;
@@ -177,12 +177,12 @@ class Search{
 		self.isComplete = false;
 		self.createProductCards(response.products,productContainer);
 	}
-	
+
 	// Initializing the default data and binding the events
 	static async init(){
 		var self = this;
 		// Category Clicking handling
-		$("ul.search-category-list a.category-item, a.all-category").on("click",function(){
+		$("ul.search-category-list a.category-item, a.all-category").on("click", async function(){
 			$.each($("ul.search-category-list a.category-item"),function(){
 				$(this).parent("li").removeClass("active");
 			});
@@ -193,25 +193,26 @@ class Search{
 				type : self.type,
 				index : 0
 			};
-			self.filterCategory(data);
+			await self.filterCategory(data);
+			$("html, body").animate({ scrollTop: -$(document).height()}, "slow");
 		});
-		
+
 		// Category Sticky setup
-		var footerHeight = $("#policy").outerHeight(true) 
-			+ $("#footer").outerHeight(true) 
+		var footerHeight = $("#policy").outerHeight(true)
+			+ $("#footer").outerHeight(true)
 			+ $("#footer-copyright").outerHeight(true);
 		if($(window).width() >= 767){
-			$(".search-sidebar-helper").css({'width':$(".sticky").outerWidth(true)+29});
-			$(".sticky").sticky({ 
+			$(".search-sidebar-helper").css({'width':$(".sticky").outerWidth(true)-1});
+			$(".sticky").sticky({
 				topSpacing: $("#header").outerHeight(true)+10,
 				bottomSpacing : footerHeight+58,
 				getWidthFrom : '.search-sidebar-helper'
 			});
 		}
-		
+
 		// Setup for loading more products on scroll
 		$(window).scroll(function(){
-			if($(this).scrollTop() > ($(document).height()-(footerHeight+$(window).height()+20))){
+			if($(this).scrollTop() > ($(document).height()-(footerHeight+$(window).height()+200))){
 				var data = {
 					term : $("#product-container").data("term"),
 					type : self.type,
@@ -231,4 +232,3 @@ Search.requestCount = 0;
 Search.loader = false;
 Search.type = $("#product-container").data("type");
 Search.isComplete = false;
-

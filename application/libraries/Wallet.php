@@ -9,7 +9,7 @@ class Wallet{
 		$this->userAgent = $headers['User-Agent'];
 	}
 	
-	public function apiRequest($api, $params,$token){
+	public function apiRequest($api, $params, $token){
 		$data = $params;
 		$apiUrl = $this->url.$api;
 		$curl = curl_init($apiUrl);

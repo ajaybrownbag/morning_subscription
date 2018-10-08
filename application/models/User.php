@@ -6,6 +6,7 @@ class User extends CI_Model{
 	# Default Construct
 	public function __construct(){
 		parent::__construct();
+		$this->load->library(array("smsClient"));
 	}
 	
 	#====================================================
@@ -77,10 +78,23 @@ class User extends CI_Model{
 		
 	}
 	
+	#=======================================
+	#Generating the six digits OTP
+	public function generateOTP(){
+		return mt_rand(100000,999999);
+	}
+	
+	#========================================
+	#Sending OTP
+	public function sendOTP($mobile, $otp){
+		$message = "{$otp} is your one time password, valid for next 5 minutes";
+		return $this->smsClient->send($mobile,$message);
+	}
+	
 	#====================================================
 	#Check if logged in
 	public function isLoggedIn(){
-		if($this->session->has_userdata('logged_in'))
+		if($this->session->has_userdata('logged_in') && $this->session->has_userdata('user_id'))
 		return ($this->session->userdata('logged_in')) ? true : false;
 	}
 	

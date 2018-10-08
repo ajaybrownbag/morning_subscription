@@ -47,4 +47,8 @@ class Env extends CI_Model{
 		}
 		return $response;
 	}
+	
+	public function isLoggedIn(){
+		return $this->user->isLoggedIn();
+	}
 }

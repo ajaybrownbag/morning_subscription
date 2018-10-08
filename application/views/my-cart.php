@@ -12,161 +12,35 @@
                     </div>
                 </div>
                 <div class="checkout-body">
-                    <div class="bg-efefef w-100 well-sm-custom">
-                        <div class="w-100 bg-white well-sm-custom"><i class="fa f-s-16 fa-map-marker"></i> <b>Address:</b> Seema Apartment
-                        <span class="pull-right"><button type="button" class="btn btn-xs btn-blue">Change Location</button></span>
+                  <div class="row">
+                    <div class="col-sm-6">
+                        <div class="message message-outline bg-silver-lighter">
+                          <p class="pull-left">
+                            <i class="fa f-s-16 fa-map-marker"></i> <b>Address:</b><br>Seema Apartment
+                          </p>
+                          <span class="pull-right"><button type="button" class="change-location btn btn-sm btn-blue no-radius">Change Location</button></span>
+                          <div class="clearfix"></div>
                         </div>
                     </div>
-
-
-
-                    <div class="well-area well-sm-custom bg-efefef m-t-15">
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                            <p></p>
-                             <i class="fa fa-bell m-l-10"></i> Ring The Bell
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                				<div class="checkbox pull-right height35 m-b-0 m-t-0 m-r-10">
-                				<label class="bellbtn">
-                				<input type="checkbox" checked data-toggle="toggle">
-                				</label>
-                				</div>
-                				<span class="pull-right m-r-10 m-t-5">Wake me up.</span>
-                            </div>
+                    <div class="col-sm-6">
+                      <div class="message message-outline bg-silver-lighter">
+                        <p class="pull-left">
+                          <i class="fa f-s-16 fa-bell"></i> <b>Wake me up?</b><br>
+                          <span>Ring The Bell</span>
+                        </p>
+                        <div class="pull-right checkbox" style="margin:0">
+                            <label class="bellbtn">
+                              <input type="checkbox" checked data-toggle="toggle">
+                            </label>
                         </div>
+                        <div class="clearfix"></div>
+                      </div>
                     </div>
-                    <div class="custom-responsive-table">
-                        <table class="table table-cart">
-                            <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Product Name</th>
-                                    <th>MRP</th>
-                                    <th>Quantity</th>
-                                    <th class="text-center">Total Delivery</th>
-                                    <th class="text-left">Start Date<br><span class="text-success">End Date</span></th>
-                                    <th class="text-left">Selected Date</th>
-                                    <th class="text-center">Total Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td data-title="Image">
-                                        <div class="cart-pd-img">
-                                            <img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_cow_milk_500ml_f.jpg" alt="" />
-                                        </div>
-                                    </td>
-                                    <td data-title="Product Name">
-                                       <div class="cart-product-info">
-                                            <div class="title">Mother Dairy Toned Milk</div>
-                                            <div class="desc"><b>1 liter</b></div>
-                                        </div> 
-                                    </td>
-                                    <td data-title="MRP" class="text-left"><b><i class="fa fa-rupee"></i> 21.00</b></td>
-                                    <td data-title="Quantity" class="text-center">2</td>
-                                    <td data-title="Total Delivery" class="text-center"> 2</td>
-                                    <td data-title="Start/End Date">June 16, 2018<br><span class="text-success">June 31, 2018</span></td>
-                                    <td data-title="Selected Date"> 
-                                        <div class="cart-info-day">
-                                                <ul>
-                                                    <li class="active">M</li>
-                                                    <li>T</li>
-                                                    <li class="active">W</li>
-                                                    <li>T</li>
-                                                    <li class="active">F</li>
-                                                    <li>S</li>
-                                                    <li class="active">S</li>
-                                                </ul>
-                                                <div class="w-100 m-t-10">
-                                                    <button class="btn btn-xs btn-xs btn-grey"><i class="fa fa-trash"></i> REMOVE</button>
-                                                    <button class="btn btn-xs btn-xs btn-blue m-l-5"><i class="fa fa-pencil"></i> MODIFY</button>
-                                                </div>
-                                        </div>
-                                     </td>
-                                    <td data-title="Total Price" class="text-center"> <b class="f-s-16"><i class="fa fa-rupee"></i> 42.00</b> </td>
-                                </tr>
-                                <tr>
-                                    <td data-title="Image">
-                                        <div class="cart-pd-img">
-                                            <img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/mother_dairy_cow_milk_500ml_f.jpg" alt="" />
-                                        </div>
-                                    </td>
-                                    <td data-title="Product Name">
-                                       <div class="cart-product-info">
-                                            <div class="title">Mother Dairy Toned Milk</div>
-                                            <div class="desc"><b>1 liter</b></div>
-                                        </div> 
-                                    </td>
-                                    <td data-title="MRP" class="text-left"><b><i class="fa fa-rupee"></i> 21.00</b></td>
-                                    <td data-title="Quantity" class="text-center">2</td>
-                                    <td data-title="Total Delivery" class="text-center"> 2</td>
-                                    <td data-title="Start/End Date">June 16, 2018<br><span class="text-success">June 31, 2018</span></td>
-                                    <td data-title="Selected Date">
-                                        <div class="cart-info-day">
-                                            <ul>
-                                                <li class="active">M</li>
-                                                <li>T</li>
-                                                <li class="active">W</li>
-                                                <li>T</li>
-                                                <li class="active">F</li>
-                                                <li>S</li>
-                                                <li class="active">S</li>
-                                            </ul>
-                                            <div class="w-100 m-t-10">
-                                                    <button class="btn btn-xs btn-xs btn-grey"><i class="fa fa-trash"></i> REMOVE</button>
-                                                    <button class="btn btn-xs btn-xs btn-blue m-l-5"><i class="fa fa-pencil"></i> MODIFY</button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td data-title="Total Price" class="text-center"> <b class="f-s-16"><i class="fa fa-rupee"></i> 42.00</b> </td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                        <div class="table-responsive">
-                        <table class="table table-cart">
-                            <tbody>
-                                <tr>
-                                    <td class="cart-summary">
-                                        <div class="summary-container">
-                                        <h5><b>Payment Details</b></h5>
-                                        <hr>
-                                            <div class="summary-row">
-                                                <div class="field">Cart Amount</div>
-                                                <div class="value"><i class="fa fa-rupee"></i> 10.00</div>
-                                            </div>
-                                            <div class="summary-row">
-                                                <div class="field">Modified Subscription</div>
-                                                <div class="value"><i class="fa fa-rupee"></i> 10.00</div>
-                                            </div>
-                                            <div class="summary-row">
-                                                <div class="field">Total Delivery Charges</div>
-                                                <div class="value"><i class="fa fa-rupee"></i> 10.00</div>
-                                            </div>
-                                            <div class="summary-row">
-                                                <div class="field">Used WalletCash</div>
-                                                <div class="value"><i class="fa fa-rupee"></i> 10.00</div>
-                                            </div>
-                                            <div class="summary-row text-danger">
-                                                <div class="field">Pending Subscription</div>
-                                                <div class="value"><i class="fa fa-rupee"></i> 0.00</div>
-                                            </div>
-                                            <div class="summary-row total">
-                                                <div class="field">Total</div>
-                                                <div class="value"><i class="fa fa-rupee"></i> 500.00</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-                <div class="checkout-footer bg-grey">
-                    <a href="#" class="btn btn-white btn-lg pull-left">Continue Shopping</a>
-                    <button type="submit" class="btn btn-blue btn-lg p-l-30 p-r-30 m-l-10">Checkout</button>
+                <div class="checkout-footer bg-success">
+                    <a href="#" class="btn btn-blue btn-lg pull-left">Continue Shopping</a>
+                    <button type="submit" class="btn btn-warning btn-lg p-l-30 p-r-30 m-l-10">Checkout</button>
                 </div>
             </form>
         </div>

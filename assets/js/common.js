@@ -26,7 +26,7 @@ $(".reveal").click(function () {
     $(".pwd").attr('type', type);
     $(this).removeClass("fa-eye-slash fa-eye").addClass(className);
 });
-  
+
 $('.collapse.in').prev('.panel-heading').addClass('active');
 $('#accordionaccp, .panel-collapse')
     .on('show.bs.collapse', function (a) {
@@ -34,22 +34,22 @@ $('#accordionaccp, .panel-collapse')
     })
     .on('hide.bs.collapse', function (a) {
         $(a.target).prev('.panel-heading').removeClass('active');
-});	
+});
 });
 
 $('.btn-number').click(function(e){
     e.preventDefault();
-    
+
     fieldName = $(this).attr('data-field');
     type      = $(this).attr('data-type');
     var input = $("input[name='"+fieldName+"']");
     var currentVal = parseInt(input.val());
     if (!isNaN(currentVal)) {
         if(type == 'minus') {
-            
+
             if(currentVal > input.attr('min')) {
                 input.val(currentVal - 1).change();
-            } 
+            }
             if(parseInt(input.val()) == input.attr('min')) {
                 $(this).attr('disabled', true);
             }
@@ -75,7 +75,7 @@ $('.input-number').change(function() {
     minValue =  parseInt($(this).attr('min'));
     maxValue =  parseInt($(this).attr('max'));
     valueCurrent = parseInt($(this).val());
-    
+
     name = $(this).attr('name');
     if(valueCurrent >= minValue) {
         $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
@@ -99,7 +99,7 @@ function toggleChevron(e) {
         .toggleClass('glyphicon glyphicon-plus glyphicon glyphicon-minus');
 }
 $('#accordionaccp').on('hidden.bs.collapse', toggleChevron);
-$('#accordionaccp').on('shown.bs.collapse', toggleChevron); 
+$('#accordionaccp').on('shown.bs.collapse', toggleChevron);
 
 if($(window).width() <= 767){
 function myacc_mob_boxopen() {
@@ -154,11 +154,11 @@ $('.searchwidth').css('min-width','100%');
 			$('.searchwidth').css({'left':'0px', 'right':'0px','position':'relative','z-index':'1','top':'0px','width':'100%'});
 			$('.easy-autocomplete').css({'width':'100%'});
 		}
-    }); 
+    });
 };
 headeradjustmob();
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 function productdetail(){
@@ -212,3 +212,22 @@ $(function () {
 });
 };
 productdetail();
+$( document ).ready(function() {
+    $(".tile").height($("#tile1").width());
+    $(".carousel").height($("#tile1").width());
+     $(".item").height($("#tile1").width());
+
+    $(window).resize(function() {
+    if(this.resizeTO) clearTimeout(this.resizeTO);
+	this.resizeTO = setTimeout(function() {
+		$(this).trigger('resizeEnd');
+	}, 10);
+    });
+
+    $(window).bind('resizeEnd', function() {
+    	$(".tile").height($("#tile1").width());
+        $(".carousel").height($("#tile1").width());
+        $(".item").height($("#tile1").width());
+    });
+
+});

@@ -3,7 +3,7 @@
         <div id="policy" class="section-container p-t-30 p-b-30 bg-silver-lighter sticky-stopper">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="policy">
                             <div class="policy-icon allicons delivery-icon"></div>
                             <div class="policy-info">
@@ -12,7 +12,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="policy">
                             <div class="policy-icon allicons genuine100per-icon"></div>
                             <div class="policy-info">
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="policy">
                             <div class="policy-icon allicons securepay-icon"></div>
                             <div class="policy-info">
@@ -117,34 +117,7 @@
         </div>
     </div>
 	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="<?=base_url('assets/plugins/jquery-cookie/jquery.cookie.js');?>"></script>
-	<script src="<?=base_url('assets/js/apps.min.js');?>"></script>
-    <script src="<?=base_url('assets/js/flickity-slider.min.js');?>"></script>
-    <script src="<?=base_url('assets/js/chosen.jquery.min.js');?>"></script>
-    <script src="<?=base_url('assets/js/bootstrapValidator.min.js');?>"></script>
-    <script src="<?=base_url('assets/js/moment.min.js');?>"></script>
-    <script src="<?=base_url('assets/plugins/daterangepicker/daterangepicker.js');?>"></script>
-    <script src="<?=base_url('assets/plugins/autocomplete/autocomplete.min.js');?>"></script>
-    <script src="<?=base_url('assets/plugins/ui/jquery-ui.js');?>"></script>
-    <script src="<?=base_url('assets/plugins/select2/js/select2.min.js');?>"></script>
-    <script src="<?=base_url('assets/js/bootstrap-toggle.min.js');?>"></script>
-    <script src="<?=base_url('assets/js/owl.carousel.min.js');?>"></script>
-    <script src="<?=base_url('assets/js/sticky.js');?>"></script>
-    <script src="<?=base_url('assets/js/common.js');?>"></script>
-	<script src="<?=base_url('assets/js/Home.js');?>"></script>
-	<script src="<?=base_url('assets/js/Search.js');?>"></script>
-	<script src="<?=base_url('assets/js/Utils.js');?>"></script>
-	<script src="<?=base_url('assets/js/User.js');?>"></script>
-	<!-- ================== END BASE JS ================== -->
-	<script>
-	$(document).ready(function() { 
-		App.init(); 
-		Home.init();
-		Utils.initSlider();
-		Utils.initLocationSelector();
-		User.init();
-		Search.init();
-	});
-	</script>
+	<?php $pageName = isset($pageName) ? $pageName : "";?>
+	<?=getScripts($pageName);?>
 </body>
 </html>

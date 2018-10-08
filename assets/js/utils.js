@@ -27,21 +27,21 @@ var niceTime = function(string){
 };
 
 class Utils{
-	
+
 	/*====================
-	# Default Constructor 
+	# Default Constructor
 	====================*/
 	constructor(){}
-	
+
 	/*========================
-	# Sending Server Request 
+	# Sending Server Request
 	========================*/
 	static async sendRequest(url,data){
 		var self = this;
 		return $.ajax({
-			url: url, 
-			data: data, 
-			type: 'POST', 
+			url: url,
+			data: data,
+			type: 'POST',
 			dataType:'json',
 			success: function(response){
 				return response;
@@ -80,6 +80,8 @@ class Utils{
 				var configs = product.date_configs;
 				var configContainer = $("<div>").addClass("item-info-day");
 				if(configs.pattern == 'weekdays'){
+          var tag = $('<p class=tag">').text("Weekdays");
+					configContainer.append(tag);
 					var ul = $("<ul>").empty();
 					days.forEach(function(data){
 						var li = $("<li>").text(data.letter);
@@ -89,11 +91,11 @@ class Utils{
 					});
 					configContainer.append(ul);
 				}else if(configs.pattern == 'alternate'){
-					var span = $('<span class="btn btn-xs btn-warning pull-left">').text(configs.pattern_value+" Day(s) Alternate");
-					configContainer.append(span);
+					var tag = $('<p class=tag">').text(configs.pattern_value+" Days Alternate");
+					configContainer.append(tag);
 				}else{
-					var span = $('<span class="btn btn-xs btn-warning pull-left">').text(configs.pattern);
-					configContainer.append(span);
+					var tag = $('<p class="tag">').text(configs.pattern);
+					configContainer.append(tag);
 				}
 				subOrCart.append(configContainer);
 			}else if(parseInt(product.in_cart)){
@@ -101,11 +103,12 @@ class Utils{
 				var cartBtn = $("<span>").addClass("fa fa-shopping-cart btn btn-xs btn-default pull-left");
 				configContainer.append(cartBtn);
 			}
+			var defaultImage = window.base_url+"assets/img/no-image.png";
 			var card = document.createElement('div');
 			card.className = 'carousel-cell';
 			var innerCard = '<div class="item item-thumbnail inner-cell">'
 			+'		<a href="'+window.base_url+'product-details/'+product.seourls+');?>" class="item-image">'
-			+'			<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/'+product.product_image_url+'" alt="" />'
+			+'			<img src="https://d2gxays8f387d8.cloudfront.net/prodstore/productimg_thumbs/'+product.product_image_url+'" alt="" onerror="this.src=\''+defaultImage+'\';"/>'
 			+			discountWrapper
 			+'		</a>'
 			+'		<div class="item-info">'
@@ -126,7 +129,7 @@ class Utils{
 		});
 		slider.append(productCards);
 	}
-	
+
 	// Request to add more products
 	static async addProducts(data, slider){
 		var self = this;
@@ -135,7 +138,7 @@ class Utils{
 		$(sliderContainer).data("index",index);
 		var status = $(sliderContainer).data("status");
 		data.action = "loadCategoryProducts";
-		
+
 		var url = window.base_url+"ajax/load_category_products";
 		if(parseInt(status)){
 			var response = await self.sendRequest(url,data);
@@ -146,50 +149,74 @@ class Utils{
 			}
 		}
 	}
-	
+
 	static async initSlider(){
 		var self = this;
-		// Product by category sliders
-		var productSliders = {};
-		$('.categoryslider .carousel').each(function(){	
-			var category_id = $(this).data("category");
-			var key = "productSlider_"+category_id;
-			productSliders[key] = new Flickity(".categoryslider #catSlider"+category_id,{
-			  prevNextButtons: false,
-			  pageDots: false,
-			  contain:true,
-			  freeScroll:true,
-			  pageDots:false,
-			  adaptiveWidth:true,
-			  groupCells:true,
-			  cellAlign: 'left'
-			});
-			productSliders[key].on( 'dragStart', async function( event, pointer ){
-				if(pointer.movementX < 0){
-					if(productSliders[key].slides.length - (productSliders[key].selectedIndex + 1) < 10){
-						var index = $("#catSlider"+category_id).data("index");
-						await self.addProducts({category_id,index},productSliders[key]);
-					}
-				}
-			});
+		var sliders = {
+			topSellingProductsSlider: null,
+			offerProducts: null
+		};
+		sliders.topSellingProductsSlider = new Flickity("#topSellingProductsSlider",{
+			prevNextButtons: false,
+			pageDots: false,
+			contain:true,
+			freeScroll:true,
+			pageDots:false,
+			adaptiveWidth:true,
+			groupCells:true,
+			cellAlign: 'left'
 		});
+
+		sliders.offerProducts = new Flickity("#offerProducts",{
+			prevNextButtons: false,
+			pageDots: false,
+			contain:true,
+			freeScroll:true,
+			pageDots:false,
+			adaptiveWidth:true,
+			groupCells:true,
+			cellAlign: 'left'
+		});
+
 		$('.button--previous').on( 'click', function() {
-			var category_id = $(this).data("category");
-			var key = "productSlider_"+category_id;
-			productSliders[key].previous();
+			var reference = $(this).data("reference");
+			sliders[reference].previous();
 		});
 		$('.button--next').on( 'click', function() {
-			var category_id = $(this).data("category");
-			var index = $("#catSlider"+category_id).data("index");
-			var key = "productSlider_"+category_id;
-			productSliders[key].next();
-			if(productSliders[key].slides.length - (productSliders[key].selectedIndex + 1) < 10){
-				self.addProducts({category_id,index},productSliders[key]);
-			}
+			var reference = $(this).data("reference");
+			sliders[reference].next();
 		});
+
+	}
+
+	static async initSimilarSlider(){
+		var self = this;
+		var sliders = {
+			similarProductsSlider: null
+		};
+		sliders.similarProductsSlider = new Flickity("#similarProductsSlider",{
+			prevNextButtons: false,
+			pageDots: false,
+			contain:true,
+			freeScroll:true,
+			pageDots:false,
+			adaptiveWidth:true,
+			groupCells:true,
+			cellAlign: 'center'
+		});
+
+		$('.button--previous').on( 'click', function() {
+			var reference = $(this).data("reference");
+			sliders[reference].previous();
+		});
+		$('.button--next').on( 'click', function() {
+			var reference = $(this).data("reference");
+			sliders[reference].next();
+		});
+
 	}
 	/*=========== Category Slider Ends ================*/
-	
+
 	/*============ Location Functionality Starts =========== */
 	static async createCitySelector(element,state){
 		$("button#locationSelectorBtn").attr("disabled",true);
@@ -214,7 +241,7 @@ class Utils{
 			}
 		});
 	}
-	
+
 	static async createAreaSelector(element,city_id){
 		return await $(element).select2({
 			minimumInputLength: 0,
@@ -259,7 +286,7 @@ class Utils{
 			}
 		});
 	}
-	
+
 	static async setLocation(data){
 		var url = window.base_url+"ajax/set_location";
 		data.action = "setLocation";
@@ -270,7 +297,7 @@ class Utils{
 			window.location.reload();
 		}
 	}
-	
+
 	static async checkLocation(){
 		var url = window.base_url+"ajax/check_location";
 		var data = {
@@ -282,9 +309,10 @@ class Utils{
 			$("body").css({overflowY:"hidden"});
 		}
 	}
-	
+
 	static async initLocationSelector(){
-		var self = this;		
+		var self = this;
+		var defaultImage = window.base_url+"assets/img/no-image.png";
 		var citySelector = await self.createCitySelector("select.citySelector","Delhi");
 		citySelector.on("select2:select",async function(e){
 			$("select.areaSelector").val([]);
@@ -308,10 +336,13 @@ class Utils{
 				society_id : $("select.societySelector").val()
 			};
 			self.setLocation(data);
-			
+
 		});
 		self.checkLocation();
-		
+
+		$("img").on("error",function(){
+			$(this).attr("src",defaultImage);
+		});
 	}
 	/*========== Location Selector Ends ========== */
 }

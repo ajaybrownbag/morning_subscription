@@ -2,49 +2,53 @@ class User{
 	//Default Constructor
 	constructor(){}
 	
-	//communicate with server
-	static async sendRequest(url,data,callback){
-		await (()=>{
-			$.ajax({
-				url		:url,
-				data	:data,
-				type	:"POST",
-				dataType:"json",
-				success:(response)=>{
-					callback(response);
-				},
-				error:()=>{
-					callback({status:false,message:"Unable to communicate with server!"});
-				}
-			});
-		})();
-	}
-	
-	// Login Process
-	static async login(mobile,password){
+	// Communicate with server
+	static async sendRequest(url,data){
 		var self = this;
-		var url = window.base_url+"ajax/doLogin";
-		await self.sendRequest(url,{action:"doLogin",mobile,password},(response)=>{
-			if(response.status){
-				window.location.reload();
-			}else{
-				$("p#error-message").text(response.message).show();
-				setTimeout(()=>{
-					$("p#error-message").hide();
-				},5000);
+		return $.ajax({
+			url: url, 
+			data: data, 
+			type: 'POST', 
+			dataType:'json',
+			beforeSend: function(){},
+			success: function(response){
+				return response;
+			},
+			error: function(){
+				return {status:false,message:"Failed to process your request"};
 			}
 		});
 	}
 	
+	// Login Process
+	static async login(mobile,password){
+		var $self = this;
+		var url = window.base_url+"ajax/doLogin";
+		
+		var response = await $self.sendRequest(url,{action:"doLogin",mobile,password});
+		if(response.status){
+			window.location.reload();
+		}else{
+			$("p#error-message").text(response.message).show();
+			setTimeout(()=>{
+				$("p#error-message").hide();
+			},3000);
+		}
+	}
+	
 	//Signup User
-	static async singnup(data,action,callback){
+	static async singnup(data,action){
+		var response = {
+			status : false,
+			message : "Invalid Action"
+		};
 		switch(action){
 			case "step_1":
 				var url = window.base_url+"ajax/userActions";
-				await this.sendRequest(url,data,callback);
+				response = await this.sendRequest(url,data);
 			break;
 			case "step_2":
-				
+				response = await this.sendRequest(url,data);
 			break;
 			default:
 			callback({
